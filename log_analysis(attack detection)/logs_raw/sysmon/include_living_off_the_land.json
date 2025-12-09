@@ -1,0 +1,19 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.40",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "ImageLoaded": {
+            "@name": "technique_id=T1047,technique_name=Windows Scheduled Tasks",
+            "@condition": "end with",
+            "#text": "mstask.dll"
+          }
+        }
+      }
+    }
+  }
+}

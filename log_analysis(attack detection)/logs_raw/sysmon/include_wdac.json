@@ -1,0 +1,46 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "TargetFilename": [
+                {
+                  "@name": "technique_id=T1562.001,technique_name=Disable or Modify tools",
+                  "@condition": "begin with",
+                  "#text": "C:\\Windows\\System32\\CodeIntegrity\\CIPolicies\\Active\\"
+                },
+                {
+                  "@name": "technique_id=T1562.001,technique_name=Disable or Modify tools",
+                  "@condition": "end with",
+                  "#text": ".cip"
+                }
+              ]
+            },
+            {
+              "@groupRelation": "and",
+              "TargetFilename": [
+                {
+                  "@name": "technique_id=T1562.001,technique_name=Disable or Modify tools",
+                  "@condition": "begin with",
+                  "#text": "C:\\Windows\\System32\\CodeIntegrity\\"
+                },
+                {
+                  "@name": "technique_id=T1562.001,technique_name=Disable or Modify tools",
+                  "@condition": "end with",
+                  "#text": ".p7b"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

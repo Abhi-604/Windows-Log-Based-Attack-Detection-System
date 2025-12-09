@@ -1,0 +1,28 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@condition": "contains",
+              "#text": "Roaming\\Microsoft\\Outlook\\VbaProject.OTM"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".rwz"
+            },
+            {
+              "@condition": "contains",
+              "#text": "Roaming\\Microsoft\\Outlook\\Outlook.xml"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

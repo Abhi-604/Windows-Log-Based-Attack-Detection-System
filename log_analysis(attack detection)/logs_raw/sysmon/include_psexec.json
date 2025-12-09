@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "include",
+          "Image": [
+            {
+              "@name": "technique_id=T1569.002,technique_name=Service Execution",
+              "@condition": "image",
+              "#text": "psexec.exe"
+            },
+            {
+              "@name": "technique_id=T1569.002,technique_name=Service Execution",
+              "@condition": "image",
+              "#text": "psexesvc.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

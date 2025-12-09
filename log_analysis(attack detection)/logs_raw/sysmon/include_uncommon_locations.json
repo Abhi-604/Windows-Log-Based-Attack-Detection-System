@@ -1,0 +1,121 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "include",
+          "Image": [
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\PerfLogs\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\$Recycle.bin\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Intel\\Logs\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Users\\Default\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Users\\Public\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Users\\NetworkService\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\Fonts\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\Debug\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\Media\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\Help\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\addins\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\repair\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\security\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\system32\\config\\systemprofile\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "contains",
+              "#text": "VolumeShadowCopy"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "contains",
+              "#text": "\\htdocs\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "contains",
+              "#text": "\\wwwroot\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "contains",
+              "#text": "\\Temp\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "contains",
+              "#text": "\\Downloads\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "contains",
+              "#text": "\\Desktop\\"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Masquerading",
+              "@condition": "contains",
+              "#text": "\\Appdata\\Local\\"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

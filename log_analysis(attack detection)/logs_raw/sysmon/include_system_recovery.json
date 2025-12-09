@@ -1,0 +1,94 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.21",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "include",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "is",
+                "#text": "vssadmin.exe"
+              },
+              "CommandLine": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "contains all",
+                "#text": "delete;shadow"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "is",
+                "#text": "vssadmin.exe"
+              },
+              "CommandLine": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "contains all",
+                "#text": "resize;shadowstorage"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "is",
+                "#text": "wmic.exe"
+              },
+              "CommandLine": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "contains all",
+                "#text": "delete;shadowcopy"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "is",
+                "#text": "wbadmin.exe"
+              },
+              "CommandLine": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "contains all",
+                "#text": "delete;catalog"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "is",
+                "#text": "bcdedit.exe"
+              },
+              "CommandLine": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "contains all",
+                "#text": "recoveryenabled;no"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "is",
+                "#text": "bcdedit.exe"
+              },
+              "CommandLine": {
+                "@name": "technique_id=T1490,technique_name=Inhibit System Recovery",
+                "@condition": "contains all",
+                "#text": "bootstatuspolicy;ignoreallfailures"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

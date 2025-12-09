@@ -1,0 +1,138 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "include",
+          "OriginalFileName": [
+            {
+              "@name": "technique_id=T1057,technique_name=Process Discovery",
+              "@condition": "is",
+              "#text": "PsList.exe"
+            },
+            {
+              "@name": "technique_id=T1007,technique_name=System Service Discovery",
+              "@condition": "is",
+              "#text": "PsService.exe"
+            },
+            {
+              "@name": "technique_id=T1569.002,technique_name=Service Execution",
+              "@condition": "is",
+              "#text": "PsExec.exe"
+            },
+            {
+              "@name": "technique_id=T1569.002,technique_name=Service Execution",
+              "@condition": "is",
+              "#text": "PsExec.c"
+            },
+            {
+              "@name": "technique_id=T1033,technique_name=System Owner/User Discovery",
+              "@condition": "is",
+              "#text": "PsGetSID.exe"
+            },
+            {
+              "@name": "technique_id=T1562.001,technique_name=Disable or Modify Tools",
+              "@condition": "is",
+              "#text": "PsKill.exe"
+            },
+            {
+              "@name": "technique_id=T1562.001,technique_name=Disable or Modify Tools",
+              "@condition": "is",
+              "#text": "PKill.exe"
+            },
+            {
+              "@name": "technique_id=T1003,technique_name=Credential Dumping",
+              "@condition": "contains",
+              "#text": "ProcDump"
+            },
+            {
+              "@name": "technique_id=T1033,technique_name=System Owner/User Discovery",
+              "@condition": "is",
+              "#text": "PsLoggedOn.exe"
+            },
+            {
+              "@name": "technique_id=T1105,technique_name=Ingress Tool Transfer",
+              "@condition": "image",
+              "#text": "PsFile.exe"
+            },
+            {
+              "@name": "technique_id=T1548.002,technique_name=Bypass User Access Control",
+              "@condition": "contains",
+              "#text": "ShellRunas"
+            },
+            {
+              "@name": "technique_id=T1057,technique_name=Process Discovery",
+              "@condition": "is",
+              "#text": "PipeList.exe"
+            },
+            {
+              "@name": "technique_id=T1083,technique_name=File and Directory Discovery",
+              "@condition": "is",
+              "#text": "AccessChk.exe"
+            },
+            {
+              "@name": "technique_id=T1083,technique_name=File and Directory Discovery",
+              "@condition": "is",
+              "#text": "AccessEnum.exe"
+            },
+            {
+              "@name": "technique_id=T1033,technique_name=System Owner/User Discovery",
+              "@condition": "is",
+              "#text": "LogonSessions.exe"
+            },
+            {
+              "@name": "technique_id=T1005,technique_name=Data from Local System",
+              "@condition": "is",
+              "#text": "PsLogList.exe"
+            },
+            {
+              "@name": "technique_id=T1057,technique_name=Process Discovery",
+              "@condition": "is",
+              "#text": "PsInfo.exe"
+            },
+            {
+              "@name": "technique_id=T1007,technique_name=System Service Discovery",
+              "@condition": "contains",
+              "#text": "LoadOrd"
+            },
+            {
+              "@name": "technique_id=T1098,technique_name=Account Manipulation",
+              "@condition": "is",
+              "#text": "PsPasswd.exe"
+            },
+            {
+              "@name": "technique_id=T1012,technique_name=Query Registry",
+              "@condition": "is",
+              "#text": "ru.exe"
+            },
+            {
+              "@name": "technique_id=T1012,technique_name=Query Registry",
+              "@condition": "contains",
+              "#text": "Regsize"
+            },
+            {
+              "@name": "technique_id=T1003,technique_name=Credential Dumping",
+              "@condition": "is",
+              "#text": "ProcDump"
+            }
+          ],
+          "CommandLine": [
+            {
+              "@name": "technique_id=T1003,technique_name=Credential Dumping",
+              "@condition": "contains",
+              "#text": "-ma lsass.exe"
+            },
+            {
+              "@name": "technique_id=T1036,technique_name=Process Evasion",
+              "@condition": "contains",
+              "#text": "-accepteula -ma"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

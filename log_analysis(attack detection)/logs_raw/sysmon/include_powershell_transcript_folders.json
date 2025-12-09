@@ -1,0 +1,27 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileDeleteDetected": {
+          "@onmatch": "include",
+          "Rule": {
+            "@groupRelation": "and",
+            "TargetFilename": [
+              {
+                "@condition": "contains all",
+                "#text": "C:\\PS-Transcripts\\;PowerShell_transcript"
+              },
+              {
+                "@condition": "contains",
+                "#text": ".txt"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

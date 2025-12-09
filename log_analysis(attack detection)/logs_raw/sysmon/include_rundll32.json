@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "Image": {
+            "@condition": "image",
+            "#text": "rundll32.exe"
+          }
+        }
+      }
+    }
+  }
+}

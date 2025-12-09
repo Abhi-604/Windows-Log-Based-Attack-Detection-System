@@ -1,0 +1,28 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessTerminate": {
+          "@onmatch": "include",
+          "Image": [
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Users"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Temp"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\Temp"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

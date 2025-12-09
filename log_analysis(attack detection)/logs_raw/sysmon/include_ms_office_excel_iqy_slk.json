@@ -1,0 +1,24 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@condition": "end with",
+              "#text": ".iqy"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".slk"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

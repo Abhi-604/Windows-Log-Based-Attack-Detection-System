@@ -1,0 +1,73 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "include",
+          "DestinationPort": [
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "is",
+              "#text": "22"
+            },
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "is",
+              "#text": "23"
+            },
+            {
+              "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+              "@condition": "is",
+              "#text": "25"
+            },
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "is",
+              "#text": "3389"
+            },
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "is",
+              "#text": "5800"
+            },
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "is",
+              "#text": "5900"
+            },
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "is",
+              "#text": "5985"
+            },
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "is",
+              "#text": "5986"
+            },
+            {
+              "@name": "technique_id=T1087.002,technique_name=Account Discovery: Domain Account",
+              "@condition": "is",
+              "#text": "9389"
+            }
+          ],
+          "Rule": {
+            "@groupRelation": "and",
+            "DestinationPort": {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "is",
+              "#text": "88"
+            },
+            "Image": {
+              "@condition": "is not",
+              "#text": "C:\\Windows\\System32\\lsass.exe"
+            }
+          }
+        }
+      }
+    }
+  }
+}

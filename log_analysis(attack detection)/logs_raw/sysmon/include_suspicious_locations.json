@@ -1,0 +1,36 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreateStreamHash": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@condition": "contains",
+              "#text": "Downloads"
+            },
+            {
+              "@condition": "contains",
+              "#text": "AppData"
+            },
+            {
+              "@condition": "contains",
+              "#text": "Temp"
+            },
+            {
+              "@condition": "contains",
+              "#text": "ProgramData"
+            },
+            {
+              "@condition": "contains",
+              "#text": "Users"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

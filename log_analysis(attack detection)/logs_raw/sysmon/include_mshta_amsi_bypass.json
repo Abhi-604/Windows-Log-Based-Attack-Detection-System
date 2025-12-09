@@ -1,0 +1,40 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1218.005,technique_name=MSHTA with AMSI Bypass",
+                "@condition": "is",
+                "#text": "jscript.dll"
+              },
+              "Image": {
+                "@condition": "end with",
+                "#text": "mshta.exe"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1218.005,technique_name=MSHTA with AMSI Bypass",
+                "@condition": "is",
+                "#text": "jscript9.dll"
+              },
+              "Image": {
+                "@condition": "end with",
+                "#text": "mshta.exe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

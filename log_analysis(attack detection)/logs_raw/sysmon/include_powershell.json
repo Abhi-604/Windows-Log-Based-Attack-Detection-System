@@ -1,0 +1,51 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "ImageLoaded": [
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "end with",
+              "#text": "system.management.automation.ni.dll"
+            },
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "end with",
+              "#text": "system.management.automation.dll"
+            },
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "end with",
+              "#text": "Microsoft.PowerShell.Commands.Diagnostics.dll"
+            },
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "end with",
+              "#text": "Microsoft.PowerShell.Commands.Management.dll"
+            },
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "end with",
+              "#text": "Microsoft.PowerShell.Commands.Utility.dll"
+            },
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "end with",
+              "#text": "Microsoft.PowerShell.ConsoleHost.dll"
+            },
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "end with",
+              "#text": "Microsoft.PowerShell.Security.dll"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

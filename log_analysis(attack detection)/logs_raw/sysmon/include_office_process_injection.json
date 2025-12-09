@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "include",
+          "Rule": {
+            "@groupRelation": "and",
+            "@name": "technique_id=T1055,technique_name=Process Injection",
+            "SourceImage": {
+              "@condition": "contains all",
+              "#text": "C:\\Program Files;\\Microsoft Office\\Root\\Office"
+            },
+            "CallTrace": {
+              "@condition": "contains",
+              "#text": "\\Microsoft Shared\\VBA"
+            }
+          }
+        }
+      }
+    }
+  }
+}

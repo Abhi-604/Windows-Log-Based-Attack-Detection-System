@@ -1,0 +1,19 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "ImageLoaded": {
+            "@name": "technique_id=T1210,technique_name=Exploitation of Remote Services",
+            "@condition": "begin with",
+            "#text": "C:\\Windows\\System32\\spool\\drivers\\"
+          }
+        }
+      }
+    }
+  }
+}

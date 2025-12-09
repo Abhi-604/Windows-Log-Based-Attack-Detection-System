@@ -1,0 +1,170 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "include",
+          "Image": [
+            {
+              "@name": "technique_id=T1053,technique_name=Scheduled Task",
+              "@condition": "image",
+              "#text": "at.exe"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Signed Binary Proxy Execution",
+              "@condition": "image",
+              "#text": "certutil.exe"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Signed Script Proxy Execution",
+              "@condition": "image",
+              "#text": "cscript.exe"
+            },
+            {
+              "@condition": "image",
+              "#text": "java.exe"
+            },
+            {
+              "@name": "technique_id=T1218.005,technique_name=Mshta",
+              "@condition": "image",
+              "#text": "mshta.exe"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Signed Binary Proxy Execution",
+              "@condition": "image",
+              "#text": "msiexec.exe"
+            },
+            {
+              "@name": "technique_id=T1069,technique_name=Permission Groups Discovery",
+              "@condition": "image",
+              "#text": "net.exe"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Signed Binary Proxy Execution",
+              "@condition": "image",
+              "#text": "notepad.exe"
+            },
+            {
+              "@name": "technique_id=T1012,technique_name=Query Registry",
+              "@condition": "image",
+              "#text": "reg.exe"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Regsvr32",
+              "@condition": "image",
+              "#text": "regsvr32.exe"
+            },
+            {
+              "@name": "technique_id=T1218.011,technique_name=Rundll32",
+              "@condition": "image",
+              "#text": "rundll32.exe"
+            },
+            {
+              "@name": "technique_id=T1543.003,technique_name=Windows Service",
+              "@condition": "image",
+              "#text": "sc.exe"
+            },
+            {
+              "@name": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+              "@condition": "image",
+              "#text": "wmic.exe"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Signed Script Proxy Execution",
+              "@condition": "image",
+              "#text": "wscript.exe"
+            },
+            {
+              "@condition": "image",
+              "#text": "driverquery.exe"
+            },
+            {
+              "@name": "technique_id=T1069,technique_name=Permission Groups Discovery",
+              "@condition": "image",
+              "#text": "dsquery.exe"
+            },
+            {
+              "@name": "technique_id=T1069,technique_name=Permission Groups Discovery",
+              "@condition": "image",
+              "#text": "AdFind.exe"
+            },
+            {
+              "@condition": "image",
+              "#text": "hh.exe"
+            },
+            {
+              "@condition": "image",
+              "#text": "infDefaultInstall.exe"
+            },
+            {
+              "@condition": "image",
+              "#text": "javaw.exe"
+            },
+            {
+              "@condition": "image",
+              "#text": "javaws.exe"
+            },
+            {
+              "@name": "technique_id=T1543.003,technique_name=Windows Service",
+              "@condition": "image",
+              "#text": "mmc.exe"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Signed Binary Proxy Execution",
+              "@condition": "image",
+              "#text": "msbuild.exe"
+            },
+            {
+              "@name": "technique_id=T1016,technique_name=System Network Configuration Discovery",
+              "@condition": "image",
+              "#text": "nbtstat.exe"
+            },
+            {
+              "@name": "technique_id=T1018,technique_name=Remote System Discovery",
+              "@condition": "image",
+              "#text": "nslookup.exe"
+            },
+            {
+              "@name": "technique_id=T1057,technique_name=Process Discovery",
+              "@condition": "image",
+              "#text": "qprocess.exe"
+            },
+            {
+              "@name": "technique_id=T1057,technique_name=Process Discovery",
+              "@condition": "image",
+              "#text": "qwinsta.exe"
+            },
+            {
+              "@name": "technique_id=T1218.009,technique_name=Regsvcs/Regasm",
+              "@condition": "image",
+              "#text": "regsvcs.exe"
+            },
+            {
+              "@name": "technique_id=T1057,technique_name=Process Discovery",
+              "@condition": "image",
+              "#text": "rwinsta.exe"
+            },
+            {
+              "@name": "technique_id=T1053,technique_name=Scheduled Task/Job",
+              "@condition": "image",
+              "#text": "schtasks.exe"
+            },
+            {
+              "@name": "technique_id=T1562.001,technique_name=Disable or Modify Tools",
+              "@condition": "image",
+              "#text": "taskkill.exe"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Signed Binary Proxy Execution",
+              "@condition": "image",
+              "#text": "replace.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

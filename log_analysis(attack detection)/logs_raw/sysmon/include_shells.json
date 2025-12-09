@@ -1,0 +1,41 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.90",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileExecutableDetected": {
+          "@onmatch": "include",
+          "Image": [
+            {
+              "@name": "technique_id=T1059.003,technique_name=Windows Command Shell",
+              "@condition": "is",
+              "#text": "cmd.exe"
+            },
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "image",
+              "#text": "powershell.exe"
+            },
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "image",
+              "#text": "pwsh.exe"
+            },
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "image",
+              "#text": "powershell_ise.exe"
+            },
+            {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "contains",
+              "#text": "Sqlps.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

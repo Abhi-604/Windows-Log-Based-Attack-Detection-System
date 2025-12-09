@@ -1,0 +1,40 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "include",
+          "GrantedAccess": [
+            {
+              "@name": "technique_id=T1055.012,technique_name=Process Hollowing",
+              "#text": "0x0800"
+            },
+            {
+              "@name": "technique_id=T1003,technique_name=Credential Dumping",
+              "#text": "0x0810"
+            },
+            {
+              "@name": "technique_id=T1055,technique_name=Process Injection",
+              "#text": "0x0820"
+            },
+            {
+              "@name": "technique_id=T1055.012,technique_name=Process Hollowing",
+              "#text": "0x800"
+            },
+            {
+              "@name": "technique_id=T1003,technique_name=Credential Dumping",
+              "#text": "0x810"
+            },
+            {
+              "@name": "technique_id=T1055,technique_name=Process Injection",
+              "#text": "0x820"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@condition": "end with",
+              "#text": ".rft"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".jsp"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".jspx"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".asp"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".aspx"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".php"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".war"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".ace"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

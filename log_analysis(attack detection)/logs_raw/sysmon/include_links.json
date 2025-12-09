@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@name": "technique_id=T1187,technique_name=Forced Authentication",
+              "@condition": "end with",
+              "#text": ".lnk"
+            },
+            {
+              "@name": "technique_id=T1187,technique_name=Forced Authentication",
+              "@condition": "end with",
+              "#text": ".scf"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

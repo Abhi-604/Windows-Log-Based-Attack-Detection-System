@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@name": "technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution",
+              "@condition": "end with",
+              "#text": ".*proj"
+            },
+            {
+              "@name": "technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution",
+              "@condition": "end with",
+              "#text": ".sln"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

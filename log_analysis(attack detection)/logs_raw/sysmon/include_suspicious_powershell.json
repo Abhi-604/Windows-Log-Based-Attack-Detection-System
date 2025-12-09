@@ -1,0 +1,53 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.40",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": [
+          {
+            "@onmatch": "include",
+            "CommandLine": {
+              "@name": "technique_id=T1027,technique_name=Obfuscated Files or Information",
+              "@condition": "contains",
+              "#text": "FromBase64"
+            }
+          },
+          {
+            "@onmatch": "include",
+            "CommandLine": {
+              "@name": "technique_id=T1027,technique_name=Obfuscated Files or Information",
+              "@condition": "contains",
+              "#text": "gzip"
+            }
+          },
+          {
+            "@onmatch": "include",
+            "CommandLine": {
+              "@name": "technique_id=T1027,technique_name=Obfuscated Files or Information",
+              "@condition": "contains",
+              "#text": "decompress"
+            }
+          },
+          {
+            "@onmatch": "include",
+            "CommandLine": {
+              "@name": "technique_id=T1027,technique_name=Obfuscated Files or Information",
+              "@condition": "contains",
+              "#text": "http"
+            }
+          },
+          {
+            "@onmatch": "include",
+            "CommandLine": {
+              "@name": "technique_id=T1027,technique_name=Obfuscated Files or Information",
+              "@condition": "contains",
+              "#text": "replace"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.90",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileExecutableDetected": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@condition": "contains",
+              "#text": "\\Downloads\\"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\Appdata\\Local\\Temp\\"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\Appdata\\Local\\Microsoft\\Windows\\INetCache\\Content.Outlook\\"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

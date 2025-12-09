@@ -1,0 +1,64 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "@name": "technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Microsoft Office\\root\\Office"
+              },
+              "OriginalFileName": {
+                "@condition": "is",
+                "#text": "VBE7INTL.DLL"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "@name": "technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Microsoft Office\\root\\Office"
+              },
+              "OriginalFileName": {
+                "@condition": "is",
+                "#text": "VBE7.DLL"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "@name": "technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Microsoft Office\\root\\Office"
+              },
+              "OriginalFileName": {
+                "@condition": "is",
+                "#text": "VBEUI.DLL"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "@name": "technique_id=T1137.001,technique_name=Office Application Startup - Office Template Macros",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Microsoft Office\\root\\Office"
+              },
+              "OriginalFileName": {
+                "@condition": "is",
+                "#text": "OUTLVBA.DLL"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

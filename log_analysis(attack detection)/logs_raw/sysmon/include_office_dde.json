@@ -1,0 +1,31 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "include",
+          "TargetObject": [
+            {
+              "@name": "T1559.002,office",
+              "@condition": "end with",
+              "#text": "\\Word\\Security\\AllowDDE"
+            },
+            {
+              "@name": "T1559.002,office",
+              "@condition": "end with",
+              "#text": "\\Excel\\Security\\DisableDDEServerLaunch"
+            },
+            {
+              "@name": "T1559.002,office",
+              "@condition": "end with",
+              "#text": "\\Excel\\Security\\DisableDDEServerLookup"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

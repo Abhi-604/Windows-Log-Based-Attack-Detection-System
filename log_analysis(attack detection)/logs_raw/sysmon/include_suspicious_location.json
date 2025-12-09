@@ -1,0 +1,126 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "ImageLoaded": [
+            {
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "@condition": "contains any",
+              "#text": "admin$;c$;\\\\;\\appdata\\;\\temp\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "c:\\programdata\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Windows\\Media\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Windows\\addins\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Windows\\system32\\config\\systemprofile\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Windows\\Debug\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Windows\\Temp"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\PerfLogs\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Windows\\Help\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Intel\\Logs\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Temp"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Windows\\repair\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Windows\\security\\"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "C:\\Windows\\Fonts\\"
+            },
+            {
+              "@condition": "contains",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "Downloads"
+            },
+            {
+              "@condition": "contains",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "Public"
+            },
+            {
+              "@condition": "contains",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "Documents"
+            },
+            {
+              "@condition": "contains",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "Music"
+            },
+            {
+              "@condition": "contains",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "Video"
+            },
+            {
+              "@condition": "begin with",
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "#text": "file:"
+            },
+            {
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "@condition": "contains",
+              "#text": "$Recycle.bin\\"
+            },
+            {
+              "@name": "technique_id=T1574.002,technique_name=DLL Side-Loading",
+              "@condition": "contains",
+              "#text": "\\Windows\\IME\\"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

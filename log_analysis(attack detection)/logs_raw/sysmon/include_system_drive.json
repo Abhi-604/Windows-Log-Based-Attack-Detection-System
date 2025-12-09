@@ -1,0 +1,31 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.40",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@name": "technique_id=T1574.010,technique_name=Services File Permissions Weakness",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\SysWoW64"
+            },
+            {
+              "@name": "technique_id=T1574.010,technique_name=Services File Permissions Weakness",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32"
+            },
+            {
+              "@name": "technique_id=T1574.010,technique_name=Services File Permissions Weakness",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

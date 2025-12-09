@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "Rule": {
+            "@groupRelation": "and",
+            "Image": {
+              "@name": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+              "@condition": "contains all",
+              "#text": "C:\\Program Files;\\Microsoft Office\\root\\Office"
+            },
+            "ImageLoaded": {
+              "@condition": "is",
+              "#text": "C:\\Windows\\SysWOW64\\wbem\\wbemdisp.dll"
+            }
+          }
+        }
+      }
+    }
+  }
+}

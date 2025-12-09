@@ -1,0 +1,46 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.90",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileExecutableDetected": {
+          "@onmatch": "include",
+          "Image": [
+            {
+              "@name": "technique_id=T1137,technique_name=Office Application Startup",
+              "@condition": "image",
+              "#text": "excel.exe"
+            },
+            {
+              "@name": "technique_id=T1137,technique_name=Office Application Startup",
+              "@condition": "image",
+              "#text": "winword.exe"
+            },
+            {
+              "@name": "technique_id=T1137,technique_name=Office Application Startup",
+              "@condition": "image",
+              "#text": "powerpnt.exe"
+            },
+            {
+              "@name": "technique_id=T1137,technique_name=Office Application Startup",
+              "@condition": "image",
+              "#text": "outlook.exe"
+            },
+            {
+              "@name": "technique_id=T1137,technique_name=Office Application Startup",
+              "@condition": "image",
+              "#text": "msaccess.exe"
+            },
+            {
+              "@name": "technique_id=T1137,technique_name=Office Application Startup",
+              "@condition": "image",
+              "#text": "mspub.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

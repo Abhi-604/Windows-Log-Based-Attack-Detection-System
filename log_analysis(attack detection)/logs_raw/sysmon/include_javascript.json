@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@name": "technique_id=T1059.007,technique_name=JavaScript",
+              "@condition": "end with",
+              "#text": ".js"
+            },
+            {
+              "@name": "technique_id=T1059.007,technique_name=JavaScript",
+              "@condition": "end with",
+              "#text": ".javascript"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

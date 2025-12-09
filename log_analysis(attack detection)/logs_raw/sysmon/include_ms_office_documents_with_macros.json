@@ -1,0 +1,60 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@condition": "end with",
+              "#text": ".docm"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".pptm"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".xlsm"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".xlm"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".dotm"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".xltm"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".potm"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".ppsm"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".sldm"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".xlam"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".xla"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

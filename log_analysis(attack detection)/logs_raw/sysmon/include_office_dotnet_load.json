@@ -1,0 +1,52 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "@name": "technique_id=T1055,technique_name=Process Injection",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Microsoft Office\\root\\Office"
+              },
+              "ImageLoaded": {
+                "@condition": "begin with",
+                "#text": "C:\\Windows\\assembly\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "@name": "technique_id=T1055,technique_name=Process Injection",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Microsoft Office\\root\\Office"
+              },
+              "ImageLoaded": {
+                "@condition": "begin with",
+                "#text": "C:\\Windows\\Microsoft.NET\\assembly\\GAC_MSIL"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "@name": "technique_id=T1055,technique_name=Process Injection",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Microsoft Office\\root\\Office"
+              },
+              "OriginalFileName": {
+                "@condition": "is",
+                "#text": "clr.dll"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

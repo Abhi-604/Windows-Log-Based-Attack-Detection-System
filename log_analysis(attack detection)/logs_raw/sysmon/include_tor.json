@@ -1,0 +1,40 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "include",
+          "Image": {
+            "@condition": "image",
+            "#text": "tor.exe"
+          },
+          "DestinationPort": [
+            {
+              "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+              "@condition": "is",
+              "#text": "1723"
+            },
+            {
+              "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+              "@condition": "is",
+              "#text": "4500"
+            },
+            {
+              "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+              "@condition": "is",
+              "#text": "9001"
+            },
+            {
+              "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+              "@condition": "is",
+              "#text": "9030"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

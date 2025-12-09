@@ -1,0 +1,24 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "ImageLoaded": {
+            "@name": "technique_id=T1218.010,technique_name=Regsvr32",
+            "@condition": "end with",
+            "#text": "scrobj.dll"
+          },
+          "OriginalFileName": {
+            "@name": "technique_id=T1218.010,technique_name=Regsvr32",
+            "@condition": "is",
+            "#text": "scrobj.dll"
+          }
+        }
+      }
+    }
+  }
+}

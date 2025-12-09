@@ -1,0 +1,28 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreateStreamHash": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@condition": "end with",
+              "#text": ".vb"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".vbe"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".vbs"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

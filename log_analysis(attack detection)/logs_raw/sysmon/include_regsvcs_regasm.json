@@ -1,0 +1,19 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "include",
+          "OriginalFileName": {
+            "@name": "technique_id=T1218.009,technique_name=Regsvcs/Regasm",
+            "@condition": "contains any",
+            "#text": "regsvcs.exe;regasm.exe"
+          }
+        }
+      }
+    }
+  }
+}

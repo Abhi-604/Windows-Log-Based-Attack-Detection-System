@@ -1,0 +1,34 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "include",
+          "Rule": {
+            "@groupRelation": "and",
+            "CallTrace": [
+              {
+                "@name": "technique_id=T1055,technique_name=Process Injection",
+                "@condition": "not begin with",
+                "#text": "C:\\Windows\\SYSTEM32\\ntdll.dll"
+              },
+              {
+                "@name": "technique_id=T1055,technique_name=Process Injection",
+                "@condition": "not begin with",
+                "#text": "C:\\Windows\\SYSTEM32\\win32u.dll"
+              },
+              {
+                "@name": "technique_id=T1055,technique_name=Process Injection",
+                "@condition": "not begin with",
+                "#text": "C:\\Windows\\SYSTEM32\\wow64win.dll"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

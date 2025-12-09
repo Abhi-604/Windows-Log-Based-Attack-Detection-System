@@ -1,0 +1,65 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "include",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "TargetImage": {
+                "@name": "technique_id=T1003,technique_name=Credential Dumping",
+                "@condition": "is",
+                "#text": "C:\\Windows\\system32\\lsass.exe"
+              },
+              "GrantedAccess": "0x1FFFFF"
+            },
+            {
+              "@groupRelation": "and",
+              "TargetImage": {
+                "@name": "technique_id=T1003,technique_name=Credential Dumping",
+                "@condition": "is",
+                "#text": "C:\\Windows\\system32\\lsass.exe"
+              },
+              "GrantedAccess": "0x1F1FFF"
+            },
+            {
+              "@groupRelation": "and",
+              "TargetImage": {
+                "@name": "technique_id=T1003,technique_name=Credential Dumping",
+                "@condition": "is",
+                "#text": "C:\\Windows\\system32\\lsass.exe"
+              },
+              "GrantedAccess": "0x1010"
+            },
+            {
+              "@groupRelation": "and",
+              "TargetImage": {
+                "@name": "technique_id=T1003,technique_name=Credential Dumping",
+                "@condition": "is",
+                "#text": "C:\\Windows\\system32\\lsass.exe"
+              },
+              "GrantedAccess": "0x143A"
+            },
+            {
+              "@groupRelation": "and",
+              "TargetImage": {
+                "@name": "technique_id=T1003,technique_name=Credential Dumping",
+                "@condition": "image",
+                "#text": "lsass.exe"
+              },
+              "SourceImage": {
+                "@name": "technique_id=T1003,technique_name=Credential Dumping",
+                "@condition": "image",
+                "#text": "wsmprovhost.exe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

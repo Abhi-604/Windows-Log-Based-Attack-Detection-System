@@ -1,0 +1,25 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "include",
+          "TargetObject": [
+            {
+              "@condition": "begin with",
+              "#text": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\Control.exe"
+            },
+            {
+              "@name": "technique_id=T1546.009,technique_name=AppCert DLLs",
+              "@condition": "begin with",
+              "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\AppCertDlls"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

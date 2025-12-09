@@ -1,0 +1,31 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreateTime": {
+          "@onmatch": "include",
+          "Image": [
+            {
+              "@name": "technique_id=T1070.006,technique_name=Timestomp",
+              "@condition": "begin with",
+              "#text": "C:\\Temp"
+            },
+            {
+              "@name": "technique_id=T1070.006,technique_name=Timestomp",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\Temp"
+            },
+            {
+              "@name": "technique_id=T1070.006,technique_name=Timestomp",
+              "@condition": "begin with",
+              "#text": "C:\\Tmp"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
