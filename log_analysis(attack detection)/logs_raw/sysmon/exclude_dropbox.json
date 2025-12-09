@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "end with",
+            "#text": "AppData\\Roaming\\Dropbox\\bin\\Dropbox.exe"
+          }
+        }
+      }
+    }
+  }
+}

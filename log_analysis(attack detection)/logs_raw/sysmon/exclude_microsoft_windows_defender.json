@@ -1,0 +1,28 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "exclude",
+          "SourceImage": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Microsoft Security Client\\MsMpEng.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Windows Defender\\MsMpEng.exe"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\;\\MsMpEng.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

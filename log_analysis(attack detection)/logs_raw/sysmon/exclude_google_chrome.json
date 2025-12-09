@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "CreateRemoteThread": {
+          "@onmatch": "exclude",
+          "TargetImage": {
+            "@condition": "end with",
+            "#text": "Google\\Chrome\\Application\\chrome.exe"
+          }
+        }
+      }
+    }
+  }
+}

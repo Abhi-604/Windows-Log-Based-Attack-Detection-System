@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "exclude",
+          "Rule": {
+            "@name": "Exclude Chrome SW Reporter Accessing Anything",
+            "@groupRelation": "and",
+            "SourceImage": {
+              "@condition": "image",
+              "#text": "software_reporter_tool.exe"
+            },
+            "GrantedAccess": {
+              "@condition": "is",
+              "#text": "0x1410"
+            }
+          }
+        }
+      }
+    }
+  }
+}

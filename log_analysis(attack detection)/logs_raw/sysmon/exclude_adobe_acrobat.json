@@ -1,0 +1,48 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "end with",
+                "#text": "AcroRd32.exe"
+              },
+              "CommandLine": {
+                "@condition": "contains any",
+                "#text": "/CR;channel="
+              }
+            },
+            {
+              "@groupRelation": "or",
+              "Image": [
+                {
+                  "@condition": "end with",
+                  "#text": "C:\\Program Files (x86)\\Adobe\\Acrobat DC\\Acrobat\\AcroCEF\\AcroCEF.exe"
+                },
+                {
+                  "@condition": "end with",
+                  "#text": "C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader\\AcroCEF\\RdrCEF.exe"
+                },
+                {
+                  "@condition": "end with",
+                  "#text": "C:\\Program Files (x86)\\Adobe\\Acrobat DC\\Acrobat\\LogTransport2.exe"
+                }
+              ],
+              "ParentImage": {
+                "@condition": "end with",
+                "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\AdobeGCClient\\AGSService.exe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

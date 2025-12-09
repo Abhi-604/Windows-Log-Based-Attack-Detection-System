@@ -1,0 +1,32 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "end with",
+            "#text": "C:\\Program Files (x86)\\Adobe\\Adobe Creative Cloud\\ACC\\Creative Cloud.exe"
+          },
+          "ParentImage": [
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Adobe\\Adobe Creative Cloud\\ACC\\Creative Cloud.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Adobe\\Adobe Creative Cloud\\CCXProcess\\CCXProcess.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Adobe\\Adobe Creative Cloud\\CoreSync\\CoreSync.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

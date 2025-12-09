@@ -1,0 +1,25 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "DriverLoad": {
+          "@onmatch": "exclude",
+          "Rule": {
+            "@groupRelation": "and",
+            "Signature": {
+              "@condition": "contains",
+              "#text": "Microsoft"
+            },
+            "SignatureStatus": {
+              "@condition": "is",
+              "#text": "Valid"
+            }
+          }
+        }
+      }
+    }
+  }
+}

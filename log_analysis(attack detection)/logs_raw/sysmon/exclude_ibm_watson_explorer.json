@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "PipeEvent": {
+          "@onmatch": "exclude",
+          "PipeName": {
+            "@condition": "begin with",
+            "#text": "\\Vivisimo Velocity"
+          }
+        }
+      }
+    }
+  }
+}

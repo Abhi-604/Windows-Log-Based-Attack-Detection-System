@@ -1,0 +1,51 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "CreateRemoteThread": {
+          "@onmatch": "exclude",
+          "SourceImage": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\svchost.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\wininit.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\csrss.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\services.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\winlogon.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\audiodg.exe"
+            }
+          ],
+          "Rule": {
+            "@groupRelation": "and",
+            "SourceImage": {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\dwm.exe"
+            },
+            "TargetImage": {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\csrss.exe"
+            }
+          }
+        }
+      }
+    }
+  }
+}

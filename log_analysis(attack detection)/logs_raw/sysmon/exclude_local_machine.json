@@ -1,0 +1,36 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "DnsQuery": {
+          "@onmatch": "exclude",
+          "QueryName": [
+            {
+              "@condition": "end with",
+              "#text": ".arpa."
+            },
+            {
+              "@condition": "end with",
+              "#text": ".arpa"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".msftncsi.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".localmachine"
+            },
+            {
+              "@condition": "is",
+              "#text": "localhost"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "exclude",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive;\\FileCoAuth.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive\\;\\FileSyncTelemetryExtensions.dll"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive;\\FileCoAuth.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive\\;\\FileCoAuthLib.dll"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive;\\FileCoAuth.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive\\;\\OneDriveTelemetryStable.dll"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive;\\FileCoAuth.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive\\;\\vcruntime140.dll"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive;\\FileCoAuth.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive\\;\\UpdateRingSettings.dll"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive;\\FileCoAuth.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive\\;\\LoggingPlatform.dll"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive;\\FileCoAuth.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Microsoft\\OneDrive\\;\\FileCoAuth.exe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

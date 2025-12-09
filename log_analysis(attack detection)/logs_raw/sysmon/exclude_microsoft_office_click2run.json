@@ -1,0 +1,28 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "is",
+            "#text": "C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeC2RClient.exe"
+          },
+          "ParentImage": [
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeC2RClient.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

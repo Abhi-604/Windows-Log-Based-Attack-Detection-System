@@ -1,0 +1,56 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "DnsQuery": {
+          "@onmatch": "exclude",
+          "QueryName": [
+            {
+              "@condition": "end with",
+              "#text": ".akadns.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".netflix.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".aspnetcdn.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "ajax.googleapis.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "cdnjs.cloudflare.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "fonts.googleapis.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".typekit.net"
+            },
+            {
+              "@condition": "is",
+              "#text": "cdnjs.cloudflare.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".stackassets.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".steamcontent.com"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

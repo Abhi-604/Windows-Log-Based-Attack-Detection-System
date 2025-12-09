@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "is",
+            "#text": "C:\\Program Files\\Palo Alto Networks\\Traps\\cyserver.exe"
+          }
+        }
+      }
+    }
+  }
+}

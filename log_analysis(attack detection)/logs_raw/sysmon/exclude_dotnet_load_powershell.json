@@ -1,0 +1,25 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "exclude",
+          "Rule": {
+            "@groupRelation": "and",
+            "Image": {
+              "@condition": "is",
+              "#text": "powershell.exe"
+            },
+            "OriginalFileName": {
+              "@condition": "excludes all",
+              "#text": "mscoree.dll;mscoreei.dll;mscoreeis.dll;clr.dll;clrjit.dll"
+            }
+          }
+        }
+      }
+    }
+  }
+}

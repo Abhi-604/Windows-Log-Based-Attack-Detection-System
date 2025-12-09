@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreateTime": {
+          "@onmatch": "exclude",
+          "TargetFilename": {
+            "@condition": "contains",
+            "#text": "\\NVIDIA\\NvBackend\\ApplicationOntology\\"
+          }
+        }
+      }
+    }
+  }
+}

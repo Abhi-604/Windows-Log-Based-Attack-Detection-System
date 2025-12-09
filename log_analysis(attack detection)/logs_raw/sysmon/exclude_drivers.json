@@ -1,0 +1,28 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Program Files\\NVIDIA Corporation\\"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Program Files\\Realtek\\"
+            }
+          ],
+          "ParentImage": {
+            "@condition": "end with",
+            "#text": "C:\\Program Files\\Realtek\\Audio\\HDA\\RtkAudioService64.exe"
+          }
+        }
+      }
+    }
+  }
+}

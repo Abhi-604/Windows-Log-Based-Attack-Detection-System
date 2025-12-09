@@ -1,0 +1,28 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileDeleteDetected": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "contains all",
+              "#text": "C:\\WindowsAzure\\GuestAgent;\\WindowsAzureGuestAgent.exe"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Packages\\Plugins\\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\\;\\AMAExtHealthMonitor.exe"
+            }
+          ],
+          "TargetFilename": {
+            "@condition": "begin with",
+            "#text": "C:\\WindowsAzure\\Logs\\AggregateStatus\\aggregatestatus"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "PipeEvent": {
+          "@onmatch": "exclude",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Common Files\\Adobe\\ARM\\1.0\\AdobeARM.exe"
+              },
+              "PipeName": [
+                {
+                  "@condition": "begin with",
+                  "#text": "\\32B6B37A-4A7D-4e00-95F2-"
+                },
+                {
+                  "@condition": "end with",
+                  "#text": "thsnYaVieBoda"
+                }
+              ]
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Adobe\\Acrobat Reader DC\\Reader\\AcroCEF\\RdrCEF.exe"
+              },
+              "PipeName": {
+                "@condition": "begin with",
+                "#text": "\\com.adobe.reader.rna.;\\mojo"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Common Files\\Adobe\\AdobeGCClient\\AGMService.exe"
+              },
+              "PipeName": {
+                "@condition": "begin with",
+                "#text": "\\gc_pipe_"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files;\\Common Files\\Adobe\\Creative Cloud Libraries\\libs\\node.exe"
+              },
+              "PipeName": {
+                "@condition": "begin with",
+                "#text": "\\uv\\"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

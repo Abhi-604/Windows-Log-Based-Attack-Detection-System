@@ -1,0 +1,48 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "exclude",
+          "Rule": [
+            {
+              "@name": "Exclude Chrome SW Reporter into Reporter",
+              "@groupRelation": "and",
+              "SourceImage": {
+                "@condition": "image",
+                "#text": "software_reporter_tool.exe"
+              },
+              "TargetImage": {
+                "@condition": "image",
+                "#text": "software_reporter_tool.exe"
+              },
+              "GrantedAccess": {
+                "@condition": "is",
+                "#text": "0x1410"
+              }
+            },
+            {
+              "@name": "Exclude Chrome SW Reporter into Chrome",
+              "@groupRelation": "and",
+              "SourceImage": {
+                "@condition": "image",
+                "#text": "software_reporter_tool.exe"
+              },
+              "TargetImage": {
+                "@condition": "image",
+                "#text": "chrome.exe"
+              },
+              "GrantedAccess": {
+                "@condition": "is",
+                "#text": "0x1410"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

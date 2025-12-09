@@ -1,0 +1,28 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Windows Defender Advanced Threat Protection\\MsSense.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Windows Defender Advanced Threat Protection\\SenseCncProxy.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Windows Defender Advanced Threat Protection\\SenseIR.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

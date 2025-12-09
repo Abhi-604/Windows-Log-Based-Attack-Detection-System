@@ -1,0 +1,24 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Cylance\\Optics\\CyOptics.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Cylance\\Desktop\\CylanceSvc.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

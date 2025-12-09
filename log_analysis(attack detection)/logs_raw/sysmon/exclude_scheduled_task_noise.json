@@ -1,0 +1,32 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "exclude",
+          "TargetFilename": [
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32\\Tasks\\Microsoft\\Windows\\PLA\\FabricTraces"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32\\Tasks\\Microsoft\\Windows\\SoftwareProtectionPlatform\\SvcRestartTask"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32\\Tasks\\Microsoft\\Windows\\Customer Experience Improvement Program\\Server\\ServerRoleUsageCollector"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32\\Tasks\\Microsoft\\Windows\\Customer Experience Improvement Program\\Server\\ServerCeipAssistant"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

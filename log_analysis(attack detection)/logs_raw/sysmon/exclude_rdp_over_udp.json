@@ -1,0 +1,25 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "Exclude_UDP",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "exclude",
+          "Rule": {
+            "@groupRelation": "and",
+            "Protocol": {
+              "@condition": "is",
+              "#text": "udp"
+            },
+            "DestinationPort": {
+              "@condition": "is",
+              "#text": "3389"
+            }
+          }
+        }
+      }
+    }
+  }
+}

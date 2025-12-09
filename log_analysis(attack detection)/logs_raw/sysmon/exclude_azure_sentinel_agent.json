@@ -1,0 +1,29 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "ParentCommandLine": {
+            "@condition": "is",
+            "#text": "\"C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\MonitoringHost.exe\" -Embedding"
+          },
+          "Rule": {
+            "@groupRelation": "and",
+            "ParentImage": {
+              "@condition": "is",
+              "#text": "\"C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\MonitoringHost.exe\""
+            },
+            "CommandLine": {
+              "@condition": "is",
+              "#text": "\"C:\\Windows\\system32\\cscript.exe\" /nologo \"MonitorKnowledgeDiscovery.vbs\""
+            }
+          }
+        }
+      }
+    }
+  }
+}

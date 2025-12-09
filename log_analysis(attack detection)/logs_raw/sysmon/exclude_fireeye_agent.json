@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "PipeEvent": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "contains all",
+            "#text": "C:\\Program Files;\\FireEye\\xagt\\xagt.exe"
+          }
+        }
+      }
+    }
+  }
+}

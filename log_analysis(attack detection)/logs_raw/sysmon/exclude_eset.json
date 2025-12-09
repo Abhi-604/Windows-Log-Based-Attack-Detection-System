@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "is",
+            "#text": "C:\\Program Files\\ESET\\ESET Nod32 Antivirus\\ekrn.exe"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "PipeEvent": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "end with",
+            "#text": "PostgreSQL\\9.6\\bin\\postgres.exe"
+          },
+          "PipeName": {
+            "@condition": "contains",
+            "#text": "\\pgsignal_"
+          }
+        }
+      }
+    }
+  }
+}

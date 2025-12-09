@@ -1,0 +1,62 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "exclude",
+          "SourceImage": [
+            {
+              "@condition": "end with",
+              "#text": "wmiprvse.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "GoogleUpdate.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "LTSVC.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "taskmgr.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "VBoxService.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "vmtoolsd.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\Citrix\\System32\\wfshell.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\lsm.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "Microsoft.Identity.AadConnect.Health.AadSync.Host.exe"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Program Files (x86)\\Symantec\\Symantec Endpoint Protection"
+            }
+          ],
+          "GrantedAccess": [
+            "0x1000",
+            "0x1400",
+            "0x101400",
+            "0x101000"
+          ]
+        }
+      }
+    }
+  }
+}

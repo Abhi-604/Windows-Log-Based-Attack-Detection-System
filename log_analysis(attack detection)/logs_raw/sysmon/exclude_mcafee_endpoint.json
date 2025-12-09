@@ -1,0 +1,60 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\McAfee\\Endpoint Encryption Agent\\MfeEpeHost.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\McAfee\\Endpoint Security\\Adaptive Threat Protection\\mfeatp.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\McAfee\\Endpoint Security\\Endpoint Security Platform\\mfeesp.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Common Files\\McAfee\\Engine\\AMCoreUpdater\\amupdate.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\McAfee\\Agent\\masvc.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\McAfee\\Agent\\x86\\mfemactl.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\McAfee\\Agent\\x86\\McScript_InUse.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\McAfee\\Agent\\x86\\macompatsvc.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\McAfee\\Endpoint Security\\Threat Prevention\\mfeensppl.exe"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Program Files\\Common Files\\McAfee\\Engine\\scanners"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Common Files\\McAfee\\AVSolution\\mcshield.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

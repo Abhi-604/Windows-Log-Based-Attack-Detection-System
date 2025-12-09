@@ -1,0 +1,108 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "DnsQuery": {
+          "@onmatch": "exclude",
+          "QueryName": [
+            {
+              "@condition": "end with",
+              "#text": ".digicert.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".globalsign.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".globalsign.net"
+            },
+            {
+              "@condition": "is",
+              "#text": "msocsp.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "ocsp.msocsp.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "pki.goog"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".pki.goog"
+            },
+            {
+              "@condition": "is",
+              "#text": "ocsp.godaddy.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "amazontrust.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".amazontrust.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "ocsp.sectigo.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "pki-goog.l.google.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".usertrust.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "ocsp.comodoca.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "ocsp.verisign.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "ocsp.entrust.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": "ocsp.identrust.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "status.rapidssl.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "status.thawte.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "ocsp.int-x3.letsencrypt.org"
+            },
+            {
+              "@condition": "is",
+              "#text": "subca.ocsp-certum.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "cscasha2.ocsp-certum.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "crl.verisign.com"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

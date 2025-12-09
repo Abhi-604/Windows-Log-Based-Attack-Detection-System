@@ -1,0 +1,40 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "PipeEvent": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Program Files;\\Citrix\\ICA Client\\SelfServicePlugin\\SelfService.exe"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Program Files;\\Citrix\\ICA Client\\Receiver\\Receiver.exe"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Program Files;\\Citrix\\ICA Client\\wfcrun32.exe"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Program Files;\\Citrix\\ICA Client\\concentr.exe"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Users\\;\\AppData\\Local\\Citrix\\ICA Client\\receiver\\Receiver.exe"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Users\\;\\AppData\\Local\\Citrix\\ICA Client\\SelfServicePlugin\\SelfService.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.40",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ClipboardChange": {
+          "@onmatch": "include"
+        }
+      }
+    }
+  }
+}

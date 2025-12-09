@@ -1,0 +1,25 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "exclude",
+          "Rule": {
+            "@groupRelation": "and",
+            "Image": {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\HealthService.exe"
+            },
+            "TargetObject": {
+              "@condition": "begin with",
+              "#text": "HKLM\\System\\CurrentControlSet\\Services\\HealthService\\Parameters\\Management Groups"
+            }
+          }
+        }
+      }
+    }
+  }
+}

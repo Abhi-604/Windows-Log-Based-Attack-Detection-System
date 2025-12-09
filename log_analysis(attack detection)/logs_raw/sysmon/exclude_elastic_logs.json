@@ -1,0 +1,38 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "exclude",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Program Files\\Elastic\\Endpoint\\elastic-endpoint.exe"
+              },
+              "TargetFilename": {
+                "@condition": "is",
+                "#text": "C:\\Program Files\\Elastic\\Endpoint\\state\\last-document-id.json"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "begin with",
+                "#text": "C:\\Program Files\\Elastic\\Agent\\data\\"
+              },
+              "TargetFilename": {
+                "@condition": "contains all",
+                "#text": "C:\\Program Files\\Elastic\\Agent\\data\\;.ndjson"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileDeleteDetected": {
+          "@onmatch": "exclude",
+          "TargetFilename": {
+            "@condition": "contains all",
+            "#text": "C:\\Windows\\Prefetch;.pf"
+          }
+        }
+      }
+    }
+  }
+}

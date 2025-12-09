@@ -1,0 +1,24 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files (x86)\\Ivanti\\Workspace Control\\pfwsmgr.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\RES Software\\Workspace Manager\\pfwsmgr.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

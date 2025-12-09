@@ -1,0 +1,62 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "CommandLine": {
+            "@condition": "begin with",
+            "#text": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\ngen.exe"
+          },
+          "Image": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorsvw.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvw.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\Microsoft.Net\\Framework64\\v3.0\\WPF\\PresentationFontCache.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\Microsoft.Net\\Framework64\\v3.0\\WPF\\PresentationFontCache.exe"
+            }
+          ],
+          "ParentCommandLine": {
+            "@condition": "contains",
+            "#text": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\ngentask.exe"
+          },
+          "ParentImage": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorsvw.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\ngentask.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvw.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\ngentask.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\ngentask.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

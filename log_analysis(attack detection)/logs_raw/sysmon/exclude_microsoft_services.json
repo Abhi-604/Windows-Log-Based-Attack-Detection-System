@@ -1,0 +1,42 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\smss.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\CompatTelRunner.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\wbem\\WMIADAP.EXE"
+            }
+          ],
+          "TargetFilename": [
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32\\DriverStore\\Temp\\"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32\\wbem\\Performance\\"
+            },
+            {
+              "@condition": "end with",
+              "#text": "WRITABLE.TST"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

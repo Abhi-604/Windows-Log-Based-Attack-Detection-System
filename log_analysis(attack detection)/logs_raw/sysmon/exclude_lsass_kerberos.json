@@ -1,0 +1,25 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "exclude",
+          "Rule": {
+            "@groupRelation": "and",
+            "Image": {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\lsass.exe"
+            },
+            "DestinationPort": {
+              "@condition": "is",
+              "#text": "88"
+            }
+          }
+        }
+      }
+    }
+  }
+}

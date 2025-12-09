@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "is",
+            "#text": "C:\\Windows\\system32\\igfxCUIService.exe"
+          }
+        }
+      }
+    }
+  }
+}

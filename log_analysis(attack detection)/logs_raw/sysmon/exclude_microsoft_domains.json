@@ -1,0 +1,120 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "DnsQuery": {
+          "@onmatch": "exclude",
+          "QueryName": [
+            {
+              "@condition": "end with",
+              "#text": "-pushp.svc.ms"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".b-msedge.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".bing.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".hotmail.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".live.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".live.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".s-microsoft.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".microsoft.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".microsoftonline.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".microsoftstore.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".ms-acdc.office.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".msedge.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".msn.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".msocdn.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".skype.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".skype.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".windows.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".windows.net.nsatc.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".windowsupdate.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".xboxlive.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "login.windows.net"
+            },
+            {
+              "@condition": "is",
+              "#text": "outlook.office.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "statics.teams.cdn.office.net"
+            },
+            {
+              "@condition": "is",
+              "#text": "acdc-direct.office.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".fp.measure.office.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": "office365.com"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "DnsQuery": {
+          "@onmatch": "exclude",
+          "QueryName": [
+            {
+              "@condition": "end with",
+              "#text": ".mozaws.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".mozilla.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".mozilla.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".mozilla.org"
+            },
+            {
+              "@condition": "is",
+              "#text": "clients1.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "clients2.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "clients3.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "clients4.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "clients5.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "clients6.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "safebrowsing.googleapis.com"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

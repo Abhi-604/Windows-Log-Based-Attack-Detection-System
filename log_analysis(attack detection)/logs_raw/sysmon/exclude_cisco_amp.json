@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "exclude",
+          "SourceImage": {
+            "@condition": "contains all",
+            "#text": "C:\\Program Files\\Cisco\\AMP\\;sfc.exe"
+          }
+        }
+      }
+    }
+  }
+}

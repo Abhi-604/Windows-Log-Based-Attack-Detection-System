@@ -1,0 +1,56 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "DnsQuery": {
+          "@onmatch": "exclude",
+          "QueryName": [
+            {
+              "@condition": "end with",
+              "#text": ".activedirectory.windowsazure.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".aria.microsoft.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".msauth.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".msftauth.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".opinsights.azure.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "management.azure.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "outlook.office365.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "portal.azure.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "substrate.office.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "osi.office.net"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

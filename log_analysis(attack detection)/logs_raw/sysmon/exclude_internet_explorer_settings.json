@@ -1,0 +1,36 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "exclude",
+          "TargetObject": [
+            {
+              "@condition": "end with",
+              "#text": "Toolbar\\WebBrowser"
+            },
+            {
+              "@condition": "end with",
+              "#text": "Toolbar\\WebBrowser\\ITBar7Height"
+            },
+            {
+              "@condition": "end with",
+              "#text": "Toolbar\\ShellBrowser\\ITBar7Layout"
+            },
+            {
+              "@condition": "end with",
+              "#text": "Internet Explorer\\Toolbar\\Locked"
+            },
+            {
+              "@condition": "end with",
+              "#text": "ShellBrowser"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

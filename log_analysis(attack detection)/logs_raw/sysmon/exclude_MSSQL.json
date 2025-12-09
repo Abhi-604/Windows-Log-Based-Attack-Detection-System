@@ -1,0 +1,48 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "PipeEvent": {
+          "@onmatch": "exclude",
+          "PipeName": [
+            {
+              "@condition": "is",
+              "#text": "\\SQLLocal\\MSSQLSERVER"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\SQLLocal\\INSTANCE01"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\SQLLocal\\SQLEXPRESS"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\SQLLocal\\COMMVAULT"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\SQLLocal\\RTCLOCAL"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\SQLLocal\\RTC"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\SQLLocal\\TMSM"
+            }
+          ],
+          "Image": {
+            "@condition": "is",
+            "#text": "Program Files (x86)\\Microsoft SQL Server\\110\\DTS\\binn\\dtexec.exe"
+          }
+        }
+      }
+    }
+  }
+}

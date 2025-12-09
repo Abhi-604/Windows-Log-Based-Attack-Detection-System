@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "PipeEvent": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "is",
+            "#text": "Program Files\\Qlik\\Sense\\Engine\\Engine.exe"
+          }
+        }
+      }
+    }
+  }
+}

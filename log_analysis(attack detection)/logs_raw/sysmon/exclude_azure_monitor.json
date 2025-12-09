@@ -1,0 +1,35 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "exclude",
+          "Rule": {
+            "@groupRelation": "and",
+            "SourceImage": {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\MonitoringHost.exe"
+            },
+            "TargetImage": {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\cscript.exe"
+            }
+          },
+          "SourceImage": [
+            {
+              "@condition": "contains all",
+              "#text": "C:\\WindowsAzure\\GuestAgent_;CollectGuestLogs.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\HealthService.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

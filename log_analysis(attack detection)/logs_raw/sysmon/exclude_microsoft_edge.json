@@ -1,0 +1,59 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.50",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessTampering": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "is",
+            "#text": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+          },
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "Image": [
+                {
+                  "@condition": "begin with",
+                  "#text": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\"
+                },
+                {
+                  "@condition": "end with",
+                  "#text": "\\BHO\\ie_to_edge_stub.exe"
+                }
+              ]
+            },
+            {
+              "@groupRelation": "and",
+              "Image": [
+                {
+                  "@condition": "begin with",
+                  "#text": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\"
+                },
+                {
+                  "@condition": "end with",
+                  "#text": "\\identity_helper.exe"
+                }
+              ]
+            },
+            {
+              "@groupRelation": "and",
+              "Image": [
+                {
+                  "@condition": "begin with",
+                  "#text": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\Install\\"
+                },
+                {
+                  "@condition": "contains",
+                  "#text": "\\MicrosoftEdge_X64_"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

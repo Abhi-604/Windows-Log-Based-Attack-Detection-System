@@ -1,0 +1,24 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.40",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "end with",
+              "#text": "winlogbeat.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "packetbeat.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "end with",
+            "#text": "C:\\Windows\\SysWOW64\\Macromed\\Flash\\FlashPlayerUpdateService.exe"
+          }
+        }
+      }
+    }
+  }
+}

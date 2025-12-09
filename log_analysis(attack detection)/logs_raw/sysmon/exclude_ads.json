@@ -1,0 +1,396 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "DnsQuery": {
+          "@onmatch": "exclude",
+          "QueryName": [
+            {
+              "@condition": "end with",
+              "#text": ".1rx.io"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".2mdn.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".adadvisor.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".adap.tv"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".addthis.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".adform.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".adnxs.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".adroll.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".adrta.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".adsafeprotected.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".adsrvr.org"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".advertising.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".amazon-adsystem.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".amazon-adsystem.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".analytics.yahoo.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".aol.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".betrad.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".bidswitch.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".casalemedia.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".chartbeat.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".cnn.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".convertro.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".criteo.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".criteo.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".crwdcntrl.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".demdex.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".domdex.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".dotomi.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".doubleclick.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".doubleverify.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".emxdgt.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".exelator.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".google-analytics.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".googleadservices.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".googlesyndication.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".googletagmanager.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".googlevideo.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".gstatic.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".gvt1.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".gvt2.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".ib-ibi.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".jivox.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".mathtag.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".moatads.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".moatpixel.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".mookie1.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".myvisualiq.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".netmng.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".nexac.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".openx.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".optimizely.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".outbrain.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".pardot.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".phx.gbl"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".pinterest.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".pubmatic.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".quantcount.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".quantserve.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".revsci.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".rfihub.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".rlcdn.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".rubiconproject.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".scdn.co"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".scorecardresearch.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".serving-sys.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".sharethrough.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".simpli.fi"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".sitescout.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".smartadserver.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".snapads.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".spotxchange.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".taboola.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".taboola.map.fastly.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".tapad.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".tidaltv.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".trafficmanager.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".tremorhub.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".tribalfusion.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".turn.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".twimg.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".tynt.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".w55c.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".ytimg.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".zorosrv.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "1rx.io"
+            },
+            {
+              "@condition": "is",
+              "#text": "adservice.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "ampcid.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "clientservices.googleapis.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "googleadapis.l.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "imasdk.googleapis.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "l.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "ml314.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "mtalk.google.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "update.googleapis.com"
+            },
+            {
+              "@condition": "is",
+              "#text": "www.googletagservices.com"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

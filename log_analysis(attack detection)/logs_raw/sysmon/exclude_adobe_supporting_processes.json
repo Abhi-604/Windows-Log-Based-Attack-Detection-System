@@ -1,0 +1,62 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\AdobeARM.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\armsvc.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Adobe\\Acrobat DC\\Acrobat\\AdobeCollabSync.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\Adobe Desktop Common\\HEX\\Adobe CEF Helper.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\AdobeGCClient\\AdobeGCClient.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\OOBE\\PDApp\\P6\\adobe_licutil.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\OOBE\\PDApp\\P7\\adobe_licutil.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\OOBE\\PDApp\\UWA\\updaterstartuputility.exe"
+            }
+          ],
+          "ParentImage": [
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\AdobeARM.exe"
+            },
+            {
+              "@condition": "end with",
+              "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\OOBE\\PDApp\\P7\\adobe_licutil.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files (x86)\\Common Files\\Adobe\\OOBE\\PDApp\\UWA\\updaterstartuputility.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

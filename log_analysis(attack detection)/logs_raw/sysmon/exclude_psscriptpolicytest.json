@@ -1,0 +1,42 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "exclude",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\system32\\wsmprovhost.exe"
+              },
+              "TargetFilename": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Temp;__PSScriptPolicyTest;.ps1"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe"
+              },
+              "TargetFilename": {
+                "@condition": "contains all",
+                "#text": "C:\\Windows\\Temp;__PSScriptPolicyTest;.ps1"
+              },
+              "User": {
+                "@condition": "is",
+                "#text": "NT AUTHORITY\\SYSTEM"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
