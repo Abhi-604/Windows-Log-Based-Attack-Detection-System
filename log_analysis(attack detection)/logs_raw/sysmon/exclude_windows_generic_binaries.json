@@ -1,0 +1,40 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "end with",
+              "#text": "Office\\root\\integration\\integrator.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\WINDOWS\\system32\\backgroundTaskHost.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Windows Defender\\MsMpEng.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\SystemApps\\Microsoft.Windows.Cortana_cw5n1h2txyewy\\SearchUI.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Microsoft Application Virtualization\\Client\\AppVClient.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

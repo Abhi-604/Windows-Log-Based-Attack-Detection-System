@@ -1,0 +1,44 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "exclude",
+          "TargetObject": [
+            {
+              "@condition": "contains",
+              "#text": "\\OpenWithProgids"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\OpenWithList"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\UserChoice"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\UserChoice\\ProgId"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\UserChoice\\Hash"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\OpenWithList\\MRUList"
+            },
+            {
+              "@condition": "end with",
+              "#text": "} 0xFFFF"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

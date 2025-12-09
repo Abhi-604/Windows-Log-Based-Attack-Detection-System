@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "include",
+          "GrantedAccess": {
+            "@name": "technique_id=T1055.012,technique_name=Process Hollowing",
+            "#text": "0x21410"
+          }
+        }
+      }
+    }
+  }
+}

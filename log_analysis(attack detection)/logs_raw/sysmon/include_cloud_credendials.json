@@ -1,0 +1,36 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Users\\;\\.azure\\accesstokens.json"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Users\\;\\.aws\\credentials"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Users\\;\\config\\gcloud"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Users\\;\\.alibabacloud\\credentials"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "C:\\Users\\;\\.kube\\config"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

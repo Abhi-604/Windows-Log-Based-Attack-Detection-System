@@ -1,0 +1,40 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files (x86)\\Sophos\\Sophos Anti-Virus\\Web Intelligence\\swi_service.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files (x86)\\Sophos\\AutoUpdate\\ALsvc.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files (x86)\\Sophos\\Remote Management System\\RouterNT.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files (x86)\\Sophos\\Sophos Anti-Virus\\Web Control\\swc_service.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files (x86)\\Sophos\\Sophos Anti-Virus\\Web Intelligence\\swi_service.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Sophos\\Sophos Network Threat Protection\\bin\\SntpService.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "include",
+          "ParentImage": [
+            {
+              "@name": "technique_id=T1546.008,technique_name=Accessibility Features",
+              "@condition": "image",
+              "#text": "sethc.exe"
+            },
+            {
+              "@name": "technique_id=T1546.008,technique_name=Accessibility Features",
+              "@condition": "image",
+              "#text": "utilman.exe"
+            },
+            {
+              "@name": "technique_id=T1546.008,technique_name=Accessibility Features",
+              "@condition": "image",
+              "#text": "osk.exe"
+            },
+            {
+              "@name": "technique_id=T1546.008,technique_name=Accessibility Features",
+              "@condition": "image",
+              "#text": "Magnify.exe"
+            },
+            {
+              "@name": "technique_id=T1546.008,technique_name=Accessibility Features",
+              "@condition": "image",
+              "#text": "DisplaySwitch.exe"
+            },
+            {
+              "@name": "technique_id=T1546.008,technique_name=Accessibility Features",
+              "@condition": "image",
+              "#text": "Narrator.exe"
+            },
+            {
+              "@name": "technique_id=T1546.008,technique_name=Accessibility Features",
+              "@condition": "image",
+              "#text": "AtBroker.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

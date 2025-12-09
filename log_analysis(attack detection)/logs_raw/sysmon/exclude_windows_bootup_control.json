@@ -1,0 +1,40 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "exclude",
+          "TargetObject": [
+            {
+              "@condition": "end with",
+              "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Audit"
+            },
+            {
+              "@condition": "end with",
+              "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Audit\\AuditPolicy"
+            },
+            {
+              "@condition": "end with",
+              "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Audit\\PerUserAuditing\\System"
+            },
+            {
+              "@condition": "end with",
+              "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\SspiCache"
+            },
+            {
+              "@condition": "end with",
+              "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Kerberos\\Domains"
+            },
+            {
+              "@condition": "end with",
+              "#text": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\Audit"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

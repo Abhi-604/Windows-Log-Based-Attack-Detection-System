@@ -1,0 +1,100 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1055,technique_name=Process Injection",
+                "@condition": "is",
+                "#text": "clr.dll"
+              },
+              "Image": {
+                "@condition": "excludes",
+                "#text": "C:\\Windows\\Microsoft.NET\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1055,technique_name=Process Injection",
+                "@condition": "is",
+                "#text": "clrjit.dll"
+              },
+              "Image": {
+                "@condition": "excludes",
+                "#text": "C:\\Windows\\Microsoft.NET\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1055,technique_name=Process Injection",
+                "@condition": "is",
+                "#text": "mscoreei.dll"
+              },
+              "Image": {
+                "@condition": "excludes",
+                "#text": "C:\\Windows\\Microsoft.NET\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1055,technique_name=Process Injection",
+                "@condition": "is",
+                "#text": "mscoree.dll"
+              },
+              "Image": {
+                "@condition": "excludes",
+                "#text": "C:\\Windows\\Microsoft.NET\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1055,technique_name=Process Injection",
+                "@condition": "is",
+                "#text": "mscoreeis.dll"
+              },
+              "Image": {
+                "@condition": "excludes",
+                "#text": "C:\\Windows\\Microsoft.NET\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1055,technique_name=Process Injection",
+                "@condition": "is",
+                "#text": "mscorlib.dll"
+              },
+              "Image": {
+                "@condition": "excludes",
+                "#text": "C:\\Windows\\Microsoft.NET\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "OriginalFileName": {
+                "@name": "technique_id=T1055,technique_name=Process Injection",
+                "@condition": "is",
+                "#text": "mscorlib.ni.dll"
+              },
+              "Image": {
+                "@condition": "excludes",
+                "#text": "C:\\Windows\\Microsoft.NET\\"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

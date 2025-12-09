@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreateTime": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "contains",
+            "#text": "setup"
+          }
+        }
+      }
+    }
+  }
+}

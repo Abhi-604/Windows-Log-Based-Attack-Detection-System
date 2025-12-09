@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "CreateRemoteThread": {
+          "@onmatch": "exclude",
+          "SourceImage": {
+            "@condition": "is",
+            "#text": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe"
+          }
+        }
+      }
+    }
+  }
+}

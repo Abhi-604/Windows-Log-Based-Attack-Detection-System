@@ -1,0 +1,32 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Program Files\\Windows Defender\\"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\MpSigStub.exe"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\SoftwareDistribution\\Download\\Install\\AM_"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Microsoft Security Client\\MpCmdRun.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

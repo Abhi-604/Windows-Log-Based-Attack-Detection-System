@@ -1,0 +1,36 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "include",
+          "Image": [
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "image",
+              "#text": "vnc.exe"
+            },
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "image",
+              "#text": "vncviewer.exe"
+            },
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "image",
+              "#text": "vncservice.exe"
+            },
+            {
+              "@name": "technique_id=T1569.002,technique_name=Service Execution",
+              "@condition": "image",
+              "#text": "winexesvc.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

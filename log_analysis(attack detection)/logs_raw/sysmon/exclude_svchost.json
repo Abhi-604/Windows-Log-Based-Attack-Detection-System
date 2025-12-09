@@ -1,0 +1,278 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "CommandLine": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k appmodel -s StateRepository"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k appmodel"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\WINDOWS\\system32\\svchost.exe -k appmodel -p -s tiledatamodelsvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k camera -s FrameServer"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k dcomlaunch -s LSM"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k dcomlaunch -s PlugPlay"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k defragsvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k devicesflow -s DevicesFlowUserSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k imgsvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localService -s EventSystem"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localService -s bthserv"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localService -s nsi"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localService -s w32Time"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localServiceAndNoImpersonation"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localServiceNetworkRestricted -s Dhcp"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localServiceNetworkRestricted -s EventLog"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localServiceNetworkRestricted -s TimeBrokerSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localServiceNetworkRestricted -s WFDSConMgrSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localServiceNetworkRestricted"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localServiceAndNoImpersonation -s SensrSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localServiceNoNetwork"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted -p -s WPDBusEnum"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted -p -s fhsvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted -s DeviceAssociationService"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted -s NcbService"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted -s SensorService"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted -s TabletInputService"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted -s UmRdpService"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted -s WPDBusEnum"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted -s WdiSystemHost"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s WdiSystemHost"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s wlidsvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -p -s ncaSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -s BDESVC"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -s BITS"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -s CertPropSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -s DsmSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -s Gpsvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -s ProfSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -s SENS"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -s SessionEnv"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -s Themes"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs -s Winmgmt"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k networkService -p -s DoSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k networkService -s Dnscache"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k networkService -s LanmanWorkstation"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k networkService -s NlaSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k networkService -s TermService"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k networkService"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k networkServiceNetworkRestricted"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k rPCSS"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k secsvcs"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k swprv"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k unistackSvcGroup"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k utcsvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k wbioSvcGroup"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k werSvcGroup"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\WINDOWS\\System32\\svchost.exe -k wsappx -p -s ClipSVC"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\WINDOWS\\system32\\svchost.exe -k wsappx -p -s AppXSvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k wsappx -s ClipSVC"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k wsappx"
+            }
+          ],
+          "ParentCommandLine": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k netsvcs"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\svchost.exe -k localSystemNetworkRestricted"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

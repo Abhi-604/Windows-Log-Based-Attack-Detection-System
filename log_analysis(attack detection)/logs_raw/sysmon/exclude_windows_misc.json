@@ -1,0 +1,154 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "exclude",
+          "TargetObject": [
+            {
+              "@condition": "end with",
+              "#text": "\\CurrentVersion\\App Paths"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\CurrentVersion\\Image File Execution Options"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\CurrentVersion\\Shell Extensions\\Cached"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\CurrentVersion\\Shell Extensions\\Approved"
+            },
+            {
+              "@condition": "end with",
+              "#text": "}\\PreviousPolicyAreas"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\Control\\WMI\\Autologger\\"
+            },
+            {
+              "@condition": "end with",
+              "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\UsoSvc\\Start"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\Lsa\\OfflineJoin\\CurrentValue"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\Components\\TrustedInstaller\\Events"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\Components\\TrustedInstaller"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\Components\\Wlansvc"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\Components\\Wlansvc\\Events"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Installer\\UserData\\S-1-5-18\\"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\Directory\\shellex"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\Directory\\shellex\\DragDropHandlers"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\Drive\\shellex"
+            },
+            {
+              "@condition": "end with",
+              "#text": "\\Drive\\shellex\\DragDropHandlers"
+            },
+            {
+              "@condition": "contains",
+              "#text": "_Classes\\AppX"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WINEVT\\Publishers\\"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "SOFTWARE;\\Microsoft\\EnterpriseCertificates\\Disallowed"
+            },
+            {
+              "@condition": "contains all",
+              "#text": "SOFTWARE;\\Microsoft\\SystemCertificates\\Disallowed"
+            },
+            {
+              "@condition": "contains",
+              "#text": "Software\\Microsoft\\Windows\\CurrentVersion\\WinTrust\\Trust Providers\\Software Publishing"
+            },
+            {
+              "@condition": "is",
+              "#text": "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Root\\Certificates"
+            },
+            {
+              "@condition": "is",
+              "#text": "HKLM\\System\\CurrentControlSet\\Services\\Tcpip\\Parameters"
+            },
+            {
+              "@condition": "is",
+              "#text": "HKLM\\System\\CurrentControlSet\\Services\\W32Time\\Config\\LastKnownGoodTime"
+            },
+            {
+              "@condition": "is",
+              "#text": "HKLM\\System\\CurrentControlSet\\Services\\SmsRouter\\State\\Registration\\Ids"
+            }
+          ],
+          "Image": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\SystemApps\\Microsoft.Windows.Cortana_cw5n1h2txyewy\\SearchUI.exe"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\$WINDOWS.~BT\\"
+            }
+          ],
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\system32\\lsass.exe"
+              },
+              "TargetObject": {
+                "@condition": "contains",
+                "#text": "HKLM\\System\\CurrentControlSet\\Services"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "contains",
+                "#text": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\DeliveryOptimization"
+              },
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\svchost.exe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

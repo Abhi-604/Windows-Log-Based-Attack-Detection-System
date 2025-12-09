@@ -1,0 +1,42 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "Image": [
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Program Files\\Splunk\\bin\\"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "D:\\Program Files\\Splunk\\bin\\"
+            }
+          ],
+          "ParentImage": [
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Splunk\\bin\\splunkd.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Program Files\\Splunk\\bin\\splunk.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "D:\\Program Files\\Splunk\\bin\\splunkd.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "D:\\Program Files\\Splunk\\bin\\splunk.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

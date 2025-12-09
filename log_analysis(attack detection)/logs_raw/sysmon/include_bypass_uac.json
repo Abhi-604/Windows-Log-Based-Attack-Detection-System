@@ -1,0 +1,32 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "include",
+          "Rule": {
+            "@name": "Eventviewer Bypass UAC",
+            "@groupRelation": "and",
+            "ParentImage": {
+              "@name": "technique_id=T1548.002,technique_name=Bypass User Access Control",
+              "@condition": "image",
+              "#text": "eventvwr.exe"
+            },
+            "Image": {
+              "@condition": "is not",
+              "#text": "c:\\windows\\system32\\mmc.exe"
+            }
+          },
+          "ParentImage": {
+            "@name": "technique_id=T1548.002,technique_name=Bypass User Access Control",
+            "@condition": "image",
+            "#text": "fodhelper.exe"
+          }
+        }
+      }
+    }
+  }
+}

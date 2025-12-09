@@ -1,0 +1,41 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "include",
+          "DestinationPort": [
+            {
+              "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+              "@condition": "is",
+              "#text": "4444"
+            },
+            {
+              "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+              "@condition": "is",
+              "#text": "31337"
+            },
+            {
+              "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+              "@condition": "is",
+              "#text": "6667"
+            },
+            {
+              "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+              "@condition": "is",
+              "#text": "5555"
+            },
+            {
+              "@name": "technique_id=T1571,technique_name=Non-Standard Port",
+              "@condition": "is",
+              "#text": "5353"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

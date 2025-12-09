@@ -1,0 +1,48 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "exclude",
+          "DestinationHostname": [
+            {
+              "@condition": "end with",
+              "#text": ".windowsupdate.microsoft.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".windowsupdate.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": "wustat.windows.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": "go.microsoft.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": ".update.microsoft.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": "download.microsoft.com"
+            },
+            {
+              "@condition": "end with",
+              "#text": "microsoft.com.akadns.net"
+            },
+            {
+              "@condition": "end with",
+              "#text": "microsoft.com.nsatc.net"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

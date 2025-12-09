@@ -1,0 +1,48 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "PipeEvent": {
+          "@onmatch": "exclude",
+          "PipeName": [
+            {
+              "@condition": "is",
+              "#text": "\\ntapvsrq"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\srvsvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\wkssvc"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\lsass"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\winreg"
+            },
+            {
+              "@condition": "is",
+              "#text": "\\spoolss"
+            },
+            {
+              "@condition": "contains",
+              "#text": "Anonymous Pipe"
+            }
+          ],
+          "Image": {
+            "@condition": "is",
+            "#text": "c:\\windows\\system32\\inetsrv\\w3wp.exe"
+          }
+        }
+      }
+    }
+  }
+}

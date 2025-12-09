@@ -1,0 +1,78 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "exclude",
+          "CommandLine": [
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\system32\\DllHost.exe /Processid"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\SearchIndexer.exe /Embedding"
+            }
+          ],
+          "Image": [
+            {
+              "@condition": "end with",
+              "#text": "C:\\Windows\\System32\\CompatTelRunner.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\MusNotification.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\MusNotificationUx.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\audiodg.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\conhost.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\powercfg.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\wbem\\WmiApSrv.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\wermgr.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\SysWOW64\\wermgr.exe"
+            },
+            {
+              "@condition": "is",
+              "#text": "C:\\Windows\\system32\\sppsvc.exe"
+            }
+          ],
+          "IntegrityLevel": {
+            "@condition": "is",
+            "#text": "AppContainer"
+          },
+          "ParentCommandLine": {
+            "@condition": "begin with",
+            "#text": "%%SystemRoot%%\\system32\\csrss.exe ObjectDirectory=\\Windows"
+          },
+          "ParentImage": {
+            "@condition": "is",
+            "#text": "C:\\Windows\\system32\\SearchIndexer.exe"
+          }
+        }
+      }
+    }
+  }
+}

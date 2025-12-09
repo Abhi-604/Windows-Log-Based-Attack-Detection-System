@@ -1,0 +1,37 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "exclude",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\svchost.exe"
+              },
+              "TargetFilename": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Local\\lastalive0.dat"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\svchost.exe"
+              },
+              "TargetFilename": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Local\\lastalive1.dat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

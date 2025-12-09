@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.50",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessTampering": {
+          "@onmatch": "exclude",
+          "Image": {
+            "@condition": "is",
+            "#text": "C:\\Windows\\System32\\wbem\\WMIADAP.exe"
+          }
+        }
+      }
+    }
+  }
+}

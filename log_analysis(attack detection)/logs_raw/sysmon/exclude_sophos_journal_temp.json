@@ -1,0 +1,29 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileDelete": {
+          "@onmatch": "exclude",
+          "TargetFilename": {
+            "@condition": "begin with",
+            "#text": "C:\\ProgramData\\Sophos"
+          },
+          "Rule": {
+            "@groupRelation": "and",
+            "Image": {
+              "@condition": "is",
+              "#text": "C:\\Windows\\System32\\svchost.exe"
+            },
+            "TargetFilename": {
+              "@condition": "end with",
+              "#text": ".tmp"
+            }
+          }
+        }
+      }
+    }
+  }
+}

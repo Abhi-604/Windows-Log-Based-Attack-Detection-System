@@ -1,0 +1,101 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "TargetFilename": [
+                {
+                  "@condition": "end with",
+                  "#text": ".js"
+                },
+                {
+                  "@condition": "contains",
+                  "#text": "Appdata\\Local\\whatsapp\\"
+                }
+              ],
+              "Image": {
+                "@condition": "excludes",
+                "#text": "Appdata\\Local\\whatsapp\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetFilename": [
+                {
+                  "@condition": "end with",
+                  "#text": ".js"
+                },
+                {
+                  "@condition": "contains",
+                  "#text": "Appdata\\Local\\Microsoft\\Teams\\"
+                }
+              ],
+              "Image": {
+                "@condition": "excludes",
+                "#text": "Appdata\\Local\\Microsoft\\Teams\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetFilename": [
+                {
+                  "@condition": "end with",
+                  "#text": ".js"
+                },
+                {
+                  "@condition": "contains",
+                  "#text": "Appdata\\Local\\slack\\"
+                }
+              ],
+              "Image": {
+                "@condition": "excludes",
+                "#text": "Appdata\\Local\\slack\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetFilename": [
+                {
+                  "@condition": "end with",
+                  "#text": ".js"
+                },
+                {
+                  "@condition": "contains",
+                  "#text": "Appdata\\Local\\discord\\"
+                }
+              ],
+              "Image": {
+                "@condition": "excludes",
+                "#text": "Appdata\\Local\\discord\\"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetFilename": [
+                {
+                  "@condition": "end with",
+                  "#text": ".js"
+                },
+                {
+                  "@condition": "contains",
+                  "#text": "Appdata\\Local\\signal\\"
+                }
+              ],
+              "Image": {
+                "@condition": "excludes",
+                "#text": "Appdata\\Local\\signal\\"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

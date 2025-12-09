@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "Rule": {
+            "@groupRelation": "and",
+            "Image": {
+              "@name": "technique_id=T1037.005,technique_name=Boot or Logon Initialization Scripts - Startup Items",
+              "@condition": "end with",
+              "#text": "bginfo.exe"
+            },
+            "ImageLoaded": {
+              "@condition": "contains any",
+              "#text": "System.ni.dll;System.Core.ni.dll"
+            }
+          }
+        }
+      }
+    }
+  }
+}

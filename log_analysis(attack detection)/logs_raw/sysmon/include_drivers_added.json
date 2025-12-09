@@ -1,0 +1,24 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32\\Drivers"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\SysWOW64\\Drivers"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

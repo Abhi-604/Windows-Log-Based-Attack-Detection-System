@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "include",
+          "Rule": {
+            "@groupRelation": "and",
+            "OriginalFileName": {
+              "@name": "technique_id=T1059.001,technique_name=PowerShell",
+              "@condition": "is",
+              "#text": "amsi.dll"
+            },
+            "Image": {
+              "@condition": "excludes any",
+              "#text": "powershell.exe;powershell_ise.exe"
+            }
+          }
+        }
+      }
+    }
+  }
+}

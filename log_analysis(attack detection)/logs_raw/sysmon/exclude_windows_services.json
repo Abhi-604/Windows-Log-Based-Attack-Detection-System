@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileDeleteDetected": {
+          "@onmatch": "exclude",
+          "User": {
+            "@condition": "contains any",
+            "#text": "NETWORK SERVICE; LOCAL SERVICE"
+          }
+        }
+      }
+    }
+  }
+}

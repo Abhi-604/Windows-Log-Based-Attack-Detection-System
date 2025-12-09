@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "include",
+          "Image": [
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "image",
+              "#text": "omniinet.exe"
+            },
+            {
+              "@name": "technique_id=T1021,technique_name=Remote Services",
+              "@condition": "image",
+              "#text": "hpsmhd.exe"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessAccess": {
+          "@onmatch": "exclude",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "SourceImage": {
+                "@condition": "is",
+                "#text": "C:\\Program Files\\Microsoft VS Code\\Code.exe"
+              },
+              "TargetImage": {
+                "@condition": "is",
+                "#text": "C:\\Program Files\\Microsoft VS Code\\Code.exe"
+              },
+              "GrantedAccess": {
+                "@condition": "is",
+                "#text": "0x100000"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "SourceImage": {
+                "@condition": "is",
+                "#text": "C:\\Program Files\\Microsoft VS Code\\Code.exe"
+              },
+              "TargetImage": {
+                "@condition": "is",
+                "#text": "C:\\Program Files\\Microsoft VS Code\\Code.exe"
+              },
+              "GrantedAccess": {
+                "@condition": "is",
+                "#text": "0x1401"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "SourceImage": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+              },
+              "TargetImage": {
+                "@condition": "contains all",
+                "#text": "C:\\Users\\;\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+              },
+              "GrantedAccess": {
+                "@condition": "is",
+                "#text": "0x1401"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "include",
+          "TargetObject": [
+            {
+              "@condition": "contains",
+              "#text": "\\Internet Explorer\\Toolbar"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\Internet Explorer\\Extensions"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\Browser Helper Objects"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\software\\microsoft\\internet explorer\\desktop\\components\\Source"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\software\\microsoft\\internet explorer\\explorer bars\\"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\software\\microsoft\\internet explorer\\Styles\\MaxScriptStatements"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\software\\microsoft\\internet explorer\\toolbar\\WebBrowser\\ITBarLayout"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\software\\wow6432node\\microsoft\\internet explorer\\toolbar\\WebBrowser\\ITBarLayout"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\software\\microsoft\\internet explorer\\urlsearchhooks\\"
+            },
+            {
+              "@condition": "contains",
+              "#text": "HKLM\\software\\wow6432node\\microsoft\\internet explorer\\urlsearchhooks\\"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

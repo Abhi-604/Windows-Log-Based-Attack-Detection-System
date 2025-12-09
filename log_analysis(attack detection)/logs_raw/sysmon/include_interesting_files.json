@@ -1,0 +1,251 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.60",
+    "ArchiveDirectory": "Sysmon",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@groupRelation": "or",
+        "FileDelete": [
+          {
+            "@onmatch": "include",
+            "Rule": [
+              {
+                "@name": "Executables",
+                "@groupRelation": "and",
+                "IsExecutable": "True",
+                "Image": {
+                  "@condition": "is not",
+                  "#text": "C:\\Windows\\system32\\cleanmgr.exe"
+                },
+                "TargetFilename": {
+                  "@condition": "not end with",
+                  "#text": ".mui"
+                }
+              },
+              {
+                "@name": "Office documents",
+                "@groupRelation": "or",
+                "TargetFilename": [
+                  {
+                    "@condition": "end with",
+                    "#text": ".doc"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".dot"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".docx"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".docm"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".doc"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".dot"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".docx"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".docm"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".dotx"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".dotm"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".docb"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".xls"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".xlt"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".xlm"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".xlsx"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".xlsm"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".xltx"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".xltm"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".xlsb"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".ppt"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".pptx"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".pptm"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".potx"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".potm"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".odt"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".ods"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".odp"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".pdf"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".rtf"
+                  }
+                ]
+              },
+              {
+                "@name": "Scripts and payloads",
+                "@groupRelation": "or",
+                "TargetFilename": [
+                  {
+                    "@condition": "end with",
+                    "#text": ".aspx"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".bat"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".ps1"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".vbs"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".vba"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".hta"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".jar"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".js"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".cmd"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".sh"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".sct"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".lnk"
+                  }
+                ]
+              },
+              {
+                "@name": "other interesting files",
+                "@groupRelation": "or",
+                "TargetFilename": [
+                  {
+                    "@condition": "end with",
+                    "#text": ".bin"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".iso"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".7z"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".msi"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".dmp"
+                  },
+                  {
+                    "@condition": "end with",
+                    "#text": ".reg"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "@onmatch": "exclude",
+            "Rule": {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\svchost.exe"
+              },
+              "TargetFilename": {
+                "@condition": "end with",
+                "#text": ".tmp"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@name": "technique_id=T1218,technique_name=Office Signed Binary Proxy Execution",
+              "@condition": "contains",
+              "#text": "AppData\\Local\\Microsoft\\CLR_v2.0\\UsageLogs\\"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Office Signed Binary Proxy Execution",
+              "@condition": "end with",
+              "#text": "\\UsageLogs\\cscript.exe.log"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Office Signed Binary Proxy Execution",
+              "@condition": "end with",
+              "#text": "\\UsageLogs\\wscript.exe.log"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Office Signed Binary Proxy Execution",
+              "@condition": "end with",
+              "#text": "\\UsageLogs\\wmic.exe.log"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Office Signed Binary Proxy Execution",
+              "@condition": "end with",
+              "#text": "\\UsageLogs\\mshta.exe.log"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Office Signed Binary Proxy Execution",
+              "@condition": "end with",
+              "#text": "\\UsageLogs\\svchost.exe.log"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Office Signed Binary Proxy Execution",
+              "@condition": "end with",
+              "#text": "\\UsageLogs\\regsvr32.exe.log"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Office Signed Binary Proxy Execution",
+              "@condition": "end with",
+              "#text": "\\UsageLogs\\rundll32.exe.log"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

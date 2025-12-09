@@ -1,0 +1,25 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "FileCreate": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "Rule": {
+            "@groupRelation": "and",
+            "Image": {
+              "@condition": "end with",
+              "#text": "\\WINWORD.EXE"
+            },
+            "TargetFilename": {
+              "@condition": "contains any",
+              "#text": ".cab;.inf"
+            }
+          }
+        }
+      }
+    }
+  }
+}

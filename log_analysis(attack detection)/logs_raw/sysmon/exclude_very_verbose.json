@@ -1,0 +1,60 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ImageLoad": {
+          "@onmatch": "exclude",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\svchost.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\netapi32.dll"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\svchost.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\msvcp110_win.dll"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\svchost.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\dsreg.dll"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "Image": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\svchost.exe"
+              },
+              "ImageLoaded": {
+                "@condition": "is",
+                "#text": "C:\\Windows\\System32\\perfctrs.dll"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
