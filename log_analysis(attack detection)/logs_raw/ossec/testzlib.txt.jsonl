@@ -1,0 +1,8 @@
+{"event": "To build testzLib with Visual Studio 2005:"}
+{"event": "copy to a directory file from :"}
+{"event": "- root of zLib tree"}
+{"event": "- contrib/testzlib"}
+{"event": "- contrib/masmx86"}
+{"event": "- contrib/masmx64"}
+{"event": "- contrib/vstudio/vc7"}
+{"event": "and open testzlib8.sln"}

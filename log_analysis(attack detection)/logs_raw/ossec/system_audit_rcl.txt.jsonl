@@ -1,0 +1,75 @@
+{"event": "# OSSEC Linux Audit - (C) 2018 OSSEC Project"}
+{"event": "#"}
+{"event": "# Released under the same license as OSSEC."}
+{"event": "# More details at the LICENSE file included with OSSEC or online"}
+{"event": "# at: https://github.com/ossec/ossec-hids/blob/master/LICENSE"}
+{"event": "#"}
+{"event": "# [Application name] [any or all] [reference]"}
+{"event": "# type:<entry name>;"}
+{"event": "#"}
+{"event": "# Type can be:"}
+{"event": "#             - f (for file or directory)"}
+{"event": "#             - p (process running)"}
+{"event": "#             - d (any file inside the directory)"}
+{"event": "#"}
+{"event": "# Additional values:"}
+{"event": "# For the registry and for directories, use \"->\" to look for a specific entry and another"}
+{"event": "# \"->\" to look for the value."}
+{"event": "# Also, use \" -> r:^\\. -> ...\" to search all files in a directory"}
+{"event": "# For files, use \"->\" to look for a specific value in the file."}
+{"event": "#"}
+{"event": "# Values can be preceded by: =: (for equal) - default"}
+{"event": "#                             r: (for ossec regexes)"}
+{"event": "#                             >: (for strcmp greater)"}
+{"event": "#                             <: (for strcmp  lower)"}
+{"event": "# Multiple patterns can be specified by using \" && \" between them."}
+{"event": "# (All of them must match for it to return true)."}
+{"event": "$php.ini=/etc/php.ini,/var/www/conf/php.ini,/etc/php5/apache2/php.ini,/usr/local/etc/php.ini;"}
+{"event": "$web_dirs=/var/www,/var/htdocs,/home/httpd,/usr/local/apache,/usr/local/apache2,/usr/local/www;"}
+{"event": "# PHP checks"}
+{"event": "[PHP - Register globals are enabled] [any] []"}
+{"event": "f:$php.ini -> r:^register_globals = On;"}
+{"event": "# PHP checks"}
+{"event": "[PHP - Expose PHP is enabled] [any] []"}
+{"event": "f:$php.ini -> r:^expose_php = On;"}
+{"event": "# PHP checks"}
+{"event": "[PHP - Allow URL fopen is enabled] [any] []"}
+{"event": "f:$php.ini -> r:^allow_url_fopen = On;"}
+{"event": "# PHP checks"}
+{"event": "[PHP - Displaying of errors is enabled] [any] []"}
+{"event": "f:$php.ini -> r:^display_errors = On;"}
+{"event": "# PHP checks - consider open_basedir && disable_functions"}
+{"event": "## Looking for common web exploits (might indicate that you are owned)."}
+{"event": "## Using http://dcid.me/blog/logsamples/webattacks_links as a reference."}
+{"event": "#[Web exploits - Possible compromise] [any] []"}
+{"event": "#d:$web_dirs -> .txt$ -> r:^<?php|^#!;"}
+{"event": "## Looking for common web exploits files (might indicate that you are owned)."}
+{"event": "## There are not specific, like the above."}
+{"event": "## Using http://dcid.me/blog/logsamples/webattacks_links as a reference."}
+{"event": "[Web exploits (uncommon file name inside htdocs) - Possible compromise  {PCI_DSS: 6.5, 6.6, 11.4}] [any] []"}
+{"event": "d:$web_dirs -> ^.yop$;"}
+{"event": "[Web exploits (uncommon file name inside htdocs) - Possible compromise {PCI_DSS: 6.5, 6.6, 11.4}] [any] []"}
+{"event": "d:$web_dirs -> ^id$;"}
+{"event": "[Web exploits (uncommon file name inside htdocs) - Possible compromise {PCI_DSS: 6.5, 6.6, 11.4}] [any] []"}
+{"event": "d:$web_dirs -> ^.ssh$;"}
+{"event": "[Web exploits (uncommon file name inside htdocs) - Possible compromise {PCI_DSS: 6.5, 6.6, 11.4}] [any] []"}
+{"event": "d:$web_dirs -> ^...$;"}
+{"event": "[Web exploits (uncommon file name inside htdocs) - Possible compromise {PCI_DSS: 6.5, 6.6, 11.4}] [any] []"}
+{"event": "d:$web_dirs -> ^.shell$;"}
+{"event": "## Looking for outdated Web applications"}
+{"event": "## Taken from http://sucuri.net/latest-versions"}
+{"event": "[Web vulnerability - Outdated WordPress installation {PCI_DSS: 6.5, 6.6, 11.4}] [any] [http://sucuri.net/latest-versions]"}
+{"event": "d:$web_dirs -> ^version.php$ -> r:^\\.wp_version && >:$wp_version = '4.4.2';"}
+{"event": "[Web vulnerability - Outdated Joomla installation {PCI_DSS: 6.5, 6.6, 11.4}] [any] [http://sucuri.net/latest-versions]"}
+{"event": "d:$web_dirs -> ^version.php$ -> r:var \\.RELEASE && r:'3.4.8';"}
+{"event": "[Web vulnerability - Outdated osCommerce (v2.2) installation {PCI_DSS: 6.5, 6.6, 11.4}] [any] [http://sucuri.net/latest-versions]"}
+{"event": "d:$web_dirs -> ^application_top.php$ -> r:'osCommerce 2.2-;"}
+{"event": "## Looking for known backdoors"}
+{"event": "[Web vulnerability - Backdoors / Web based malware found - eval(base64_decode {PCI_DSS: 6.5, 6.6, 11.4}] [any] []"}
+{"event": "d:$web_dirs -> .php$ -> r:eval\\(base64_decode\\(\\paWYo;"}
+{"event": "[Web vulnerability - Backdoors / Web based malware found - eval(base64_decode(POST {PCI_DSS: 6.5, 6.6, 11.4}] [any] []"}
+{"event": "d:$web_dirs -> .php$ -> r:eval\\(base64_decode\\(\\S_POST;"}
+{"event": "[Web vulnerability - .htaccess file compromised {PCI_DSS: 6.5, 6.6, 11.4}] [any] [http://blog.sucuri.net/2011/05/understanding-htaccess-attacks-part-1.html]"}
+{"event": "d:$web_dirs -> ^.htaccess$ -> r:RewriteCond \\S+HTTP_REFERERS \\S+google;"}
+{"event": "[Web vulnerability - .htaccess file compromised - auto append {PCI_DSS: 6.5, 6.6, 11.4}] [any] [http://blog.sucuri.net/2011/05/understanding-htaccess-attacks-part-1.html]"}
+{"event": "d:$web_dirs -> ^.htaccess$ -> r:php_value auto_append_file;"}

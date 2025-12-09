@@ -1,0 +1,169 @@
+{"event": "1. Compression algorithm (deflate)"}
+{"event": "The deflation algorithm used by gzip (also zip and zlib) is a variation of"}
+{"event": "LZ77 (Lempel-Ziv 1977, see reference below). It finds duplicated strings in"}
+{"event": "the input data.  The second occurrence of a string is replaced by a"}
+{"event": "pointer to the previous string, in the form of a pair (distance,"}
+{"event": "length).  Distances are limited to 32K bytes, and lengths are limited"}
+{"event": "to 258 bytes. When a string does not occur anywhere in the previous"}
+{"event": "32K bytes, it is emitted as a sequence of literal bytes.  (In this"}
+{"event": "description, `string' must be taken as an arbitrary sequence of bytes,"}
+{"event": "and is not restricted to printable characters.)"}
+{"event": "Literals or match lengths are compressed with one Huffman tree, and"}
+{"event": "match distances are compressed with another tree. The trees are stored"}
+{"event": "in a compact form at the start of each block. The blocks can have any"}
+{"event": "size (except that the compressed data for one block must fit in"}
+{"event": "available memory). A block is terminated when deflate() determines that"}
+{"event": "it would be useful to start another block with fresh trees. (This is"}
+{"event": "somewhat similar to the behavior of LZW-based _compress_.)"}
+{"event": "Duplicated strings are found using a hash table. All input strings of"}
+{"event": "length 3 are inserted in the hash table. A hash index is computed for"}
+{"event": "the next 3 bytes. If the hash chain for this index is not empty, all"}
+{"event": "strings in the chain are compared with the current input string, and"}
+{"event": "the longest match is selected."}
+{"event": "The hash chains are searched starting with the most recent strings, to"}
+{"event": "favor small distances and thus take advantage of the Huffman encoding."}
+{"event": "The hash chains are singly linked. There are no deletions from the"}
+{"event": "hash chains, the algorithm simply discards matches that are too old."}
+{"event": "To avoid a worst-case situation, very long hash chains are arbitrarily"}
+{"event": "truncated at a certain length, determined by a runtime option (level"}
+{"event": "parameter of deflateInit). So deflate() does not always find the longest"}
+{"event": "possible match but generally finds a match which is long enough."}
+{"event": "deflate() also defers the selection of matches with a lazy evaluation"}
+{"event": "mechanism. After a match of length N has been found, deflate() searches for"}
+{"event": "a longer match at the next input byte. If a longer match is found, the"}
+{"event": "previous match is truncated to a length of one (thus producing a single"}
+{"event": "literal byte) and the process of lazy evaluation begins again. Otherwise,"}
+{"event": "the original match is kept, and the next match search is attempted only N"}
+{"event": "steps later."}
+{"event": "The lazy match evaluation is also subject to a runtime parameter. If"}
+{"event": "the current match is long enough, deflate() reduces the search for a longer"}
+{"event": "match, thus speeding up the whole process. If compression ratio is more"}
+{"event": "important than speed, deflate() attempts a complete second search even if"}
+{"event": "the first match is already long enough."}
+{"event": "The lazy match evaluation is not performed for the fastest compression"}
+{"event": "modes (level parameter 1 to 3). For these fast modes, new strings"}
+{"event": "are inserted in the hash table only when no match was found, or"}
+{"event": "when the match is not too long. This degrades the compression ratio"}
+{"event": "but saves time since there are both fewer insertions and fewer searches."}
+{"event": "2. Decompression algorithm (inflate)"}
+{"event": "2.1 Introduction"}
+{"event": "The key question is how to represent a Huffman code (or any prefix code) so"}
+{"event": "that you can decode fast.  The most important characteristic is that shorter"}
+{"event": "codes are much more common than longer codes, so pay attention to decoding the"}
+{"event": "short codes fast, and let the long codes take longer to decode."}
+{"event": "inflate() sets up a first level table that covers some number of bits of"}
+{"event": "input less than the length of longest code.  It gets that many bits from the"}
+{"event": "stream, and looks it up in the table.  The table will tell if the next"}
+{"event": "code is that many bits or less and how many, and if it is, it will tell"}
+{"event": "the value, else it will point to the next level table for which inflate()"}
+{"event": "grabs more bits and tries to decode a longer code."}
+{"event": "How many bits to make the first lookup is a tradeoff between the time it"}
+{"event": "takes to decode and the time it takes to build the table.  If building the"}
+{"event": "table took no time (and if you had infinite memory), then there would only"}
+{"event": "be a first level table to cover all the way to the longest code.  However,"}
+{"event": "building the table ends up taking a lot longer for more bits since short"}
+{"event": "codes are replicated many times in such a table.  What inflate() does is"}
+{"event": "simply to make the number of bits in the first table a variable, and  then"}
+{"event": "to set that variable for the maximum speed."}
+{"event": "For inflate, which has 286 possible codes for the literal/length tree, the size"}
+{"event": "of the first table is nine bits.  Also the distance trees have 30 possible"}
+{"event": "values, and the size of the first table is six bits.  Note that for each of"}
+{"event": "those cases, the table ended up one bit longer than the ``average'' code"}
+{"event": "length, i.e. the code length of an approximately flat code which would be a"}
+{"event": "little more than eight bits for 286 symbols and a little less than five bits"}
+{"event": "for 30 symbols."}
+{"event": "2.2 More details on the inflate table lookup"}
+{"event": "Ok, you want to know what this cleverly obfuscated inflate tree actually"}
+{"event": "looks like.  You are correct that it's not a Huffman tree.  It is simply a"}
+{"event": "lookup table for the first, let's say, nine bits of a Huffman symbol.  The"}
+{"event": "symbol could be as short as one bit or as long as 15 bits.  If a particular"}
+{"event": "symbol is shorter than nine bits, then that symbol's translation is duplicated"}
+{"event": "in all those entries that start with that symbol's bits.  For example, if the"}
+{"event": "symbol is four bits, then it's duplicated 32 times in a nine-bit table.  If a"}
+{"event": "symbol is nine bits long, it appears in the table once."}
+{"event": "If the symbol is longer than nine bits, then that entry in the table points"}
+{"event": "to another similar table for the remaining bits.  Again, there are duplicated"}
+{"event": "entries as needed.  The idea is that most of the time the symbol will be short"}
+{"event": "and there will only be one table look up.  (That's whole idea behind data"}
+{"event": "compression in the first place.)  For the less frequent long symbols, there"}
+{"event": "will be two lookups.  If you had a compression method with really long"}
+{"event": "symbols, you could have as many levels of lookups as is efficient.  For"}
+{"event": "inflate, two is enough."}
+{"event": "So a table entry either points to another table (in which case nine bits in"}
+{"event": "the above example are gobbled), or it contains the translation for the symbol"}
+{"event": "and the number of bits to gobble.  Then you start again with the next"}
+{"event": "ungobbled bit."}
+{"event": "You may wonder: why not just have one lookup table for how ever many bits the"}
+{"event": "longest symbol is?  The reason is that if you do that, you end up spending"}
+{"event": "more time filling in duplicate symbol entries than you do actually decoding."}
+{"event": "At least for deflate's output that generates new trees every several 10's of"}
+{"event": "kbytes.  You can imagine that filling in a 2^15 entry table for a 15-bit code"}
+{"event": "would take too long if you're only decoding several thousand symbols.  At the"}
+{"event": "other extreme, you could make a new table for every bit in the code.  In fact,"}
+{"event": "that's essentially a Huffman tree.  But then you spend too much time"}
+{"event": "traversing the tree while decoding, even for short symbols."}
+{"event": "So the number of bits for the first lookup table is a trade of the time to"}
+{"event": "fill out the table vs. the time spent looking at the second level and above of"}
+{"event": "the table."}
+{"event": "Here is an example, scaled down:"}
+{"event": "The code being decoded, with 10 symbols, from 1 to 6 bits long:"}
+{"event": "A: 0"}
+{"event": "B: 10"}
+{"event": "C: 1100"}
+{"event": "D: 11010"}
+{"event": "E: 11011"}
+{"event": "F: 11100"}
+{"event": "G: 11101"}
+{"event": "H: 11110"}
+{"event": "I: 111110"}
+{"event": "J: 111111"}
+{"event": "Let's make the first table three bits long (eight entries):"}
+{"event": "000: A,1"}
+{"event": "001: A,1"}
+{"event": "010: A,1"}
+{"event": "011: A,1"}
+{"event": "100: B,2"}
+{"event": "101: B,2"}
+{"event": "110: -> table X (gobble 3 bits)"}
+{"event": "111: -> table Y (gobble 3 bits)"}
+{"event": "Each entry is what the bits decode as and how many bits that is, i.e. how"}
+{"event": "many bits to gobble.  Or the entry points to another table, with the number of"}
+{"event": "bits to gobble implicit in the size of the table."}
+{"event": "Table X is two bits long since the longest code starting with 110 is five bits"}
+{"event": "long:"}
+{"event": "00: C,1"}
+{"event": "01: C,1"}
+{"event": "10: D,2"}
+{"event": "11: E,2"}
+{"event": "Table Y is three bits long since the longest code starting with 111 is six"}
+{"event": "bits long:"}
+{"event": "000: F,2"}
+{"event": "001: F,2"}
+{"event": "010: G,2"}
+{"event": "011: G,2"}
+{"event": "100: H,2"}
+{"event": "101: H,2"}
+{"event": "110: I,3"}
+{"event": "111: J,3"}
+{"event": "So what we have here are three tables with a total of 20 entries that had to"}
+{"event": "be constructed.  That's compared to 64 entries for a single table.  Or"}
+{"event": "compared to 16 entries for a Huffman tree (six two entry tables and one four"}
+{"event": "entry table).  Assuming that the code ideally represents the probability of"}
+{"event": "the symbols, it takes on the average 1.25 lookups per symbol.  That's compared"}
+{"event": "to one lookup for the single table, or 1.66 lookups per symbol for the"}
+{"event": "Huffman tree."}
+{"event": "There, I think that gives you a picture of what's going on.  For inflate, the"}
+{"event": "meaning of a particular symbol is often more than just a letter.  It can be a"}
+{"event": "byte (a \"literal\"), or it can be either a length or a distance which"}
+{"event": "indicates a base value and a number of bits to fetch after the code that is"}
+{"event": "added to the base value.  Or it might be the special end-of-block code.  The"}
+{"event": "data structures created in inftrees.c try to encode all that information"}
+{"event": "compactly in the tables."}
+{"event": "Jean-loup Gailly        Mark Adler"}
+{"event": "jloup@gzip.org          madler@alumni.caltech.edu"}
+{"event": "References:"}
+{"event": "[LZ77] Ziv J., Lempel A., ``A Universal Algorithm for Sequential Data"}
+{"event": "Compression,'' IEEE Transactions on Information Theory, Vol. 23, No. 3,"}
+{"event": "pp. 337-343."}
+{"event": "``DEFLATE Compressed Data Format Specification'' available in"}
+{"event": "http://tools.ietf.org/html/rfc1951"}

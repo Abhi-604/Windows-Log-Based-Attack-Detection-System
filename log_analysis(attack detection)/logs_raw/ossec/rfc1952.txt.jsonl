@@ -1,0 +1,472 @@
+{"event": "Network Working Group                                         P. Deutsch"}
+{"event": "Request for Comments: 1952                           Aladdin Enterprises"}
+{"event": "Category: Informational                                         May 1996"}
+{"event": "GZIP file format specification version 4.3"}
+{"event": "Status of This Memo"}
+{"event": "This memo provides information for the Internet community.  This memo"}
+{"event": "does not specify an Internet standard of any kind.  Distribution of"}
+{"event": "this memo is unlimited."}
+{"event": "IESG Note:"}
+{"event": "The IESG takes no position on the validity of any Intellectual"}
+{"event": "Property Rights statements contained in this document."}
+{"event": "Notices"}
+{"event": "Copyright (c) 1996 L. Peter Deutsch"}
+{"event": "Permission is granted to copy and distribute this document for any"}
+{"event": "purpose and without charge, including translations into other"}
+{"event": "languages and incorporation into compilations, provided that the"}
+{"event": "copyright notice and this notice are preserved, and that any"}
+{"event": "substantive changes or deletions from the original are clearly"}
+{"event": "marked."}
+{"event": "A pointer to the latest version of this and related documentation in"}
+{"event": "HTML format can be found at the URL"}
+{"event": "<ftp://ftp.uu.net/graphics/png/documents/zlib/zdoc-index.html>."}
+{"event": "Abstract"}
+{"event": "This specification defines a lossless compressed data format that is"}
+{"event": "compatible with the widely used GZIP utility.  The format includes a"}
+{"event": "cyclic redundancy check value for detecting data corruption.  The"}
+{"event": "format presently uses the DEFLATE method of compression but can be"}
+{"event": "easily extended to use other compression methods.  The format can be"}
+{"event": "implemented readily in a manner not covered by patents."}
+{"event": "Deutsch                      Informational                      [Page 1]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "Table of Contents"}
+{"event": "1. Introduction ................................................... 2"}
+{"event": "1.1. Purpose ................................................... 2"}
+{"event": "1.2. Intended audience ......................................... 3"}
+{"event": "1.3. Scope ..................................................... 3"}
+{"event": "1.4. Compliance ................................................ 3"}
+{"event": "1.5. Definitions of terms and conventions used ................. 3"}
+{"event": "1.6. Changes from previous versions ............................ 3"}
+{"event": "2. Detailed specification ......................................... 4"}
+{"event": "2.1. Overall conventions ....................................... 4"}
+{"event": "2.2. File format ............................................... 5"}
+{"event": "2.3. Member format ............................................. 5"}
+{"event": "2.3.1. Member header and trailer ........................... 6"}
+{"event": "2.3.1.1. Extra field ................................... 8"}
+{"event": "2.3.1.2. Compliance .................................... 9"}
+{"event": "3. References .................................................. 9"}
+{"event": "4. Security Considerations .................................... 10"}
+{"event": "5. Acknowledgements ........................................... 10"}
+{"event": "6. Author's Address ........................................... 10"}
+{"event": "7. Appendix: Jean-Loup Gailly's gzip utility .................. 11"}
+{"event": "8. Appendix: Sample CRC Code .................................. 11"}
+{"event": "1. Introduction"}
+{"event": "1.1. Purpose"}
+{"event": "The purpose of this specification is to define a lossless"}
+{"event": "compressed data format that:"}
+{"event": "* Is independent of CPU type, operating system, file system,"}
+{"event": "and character set, and hence can be used for interchange;"}
+{"event": "* Can compress or decompress a data stream (as opposed to a"}
+{"event": "randomly accessible file) to produce another data stream,"}
+{"event": "using only an a priori bounded amount of intermediate"}
+{"event": "storage, and hence can be used in data communications or"}
+{"event": "similar structures such as Unix filters;"}
+{"event": "* Compresses data with efficiency comparable to the best"}
+{"event": "currently available general-purpose compression methods,"}
+{"event": "and in particular considerably better than the \"compress\""}
+{"event": "program;"}
+{"event": "* Can be implemented readily in a manner not covered by"}
+{"event": "patents, and hence can be practiced freely;"}
+{"event": "* Is compatible with the file format produced by the current"}
+{"event": "widely used gzip utility, in that conforming decompressors"}
+{"event": "will be able to read data produced by the existing gzip"}
+{"event": "compressor."}
+{"event": "Deutsch                      Informational                      [Page 2]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "The data format defined by this specification does not attempt to:"}
+{"event": "* Provide random access to compressed data;"}
+{"event": "* Compress specialized data (e.g., raster graphics) as well as"}
+{"event": "the best currently available specialized algorithms."}
+{"event": "1.2. Intended audience"}
+{"event": "This specification is intended for use by implementors of software"}
+{"event": "to compress data into gzip format and/or decompress data from gzip"}
+{"event": "format."}
+{"event": "The text of the specification assumes a basic background in"}
+{"event": "programming at the level of bits and other primitive data"}
+{"event": "representations."}
+{"event": "1.3. Scope"}
+{"event": "The specification specifies a compression method and a file format"}
+{"event": "(the latter assuming only that a file can store a sequence of"}
+{"event": "arbitrary bytes).  It does not specify any particular interface to"}
+{"event": "a file system or anything about character sets or encodings"}
+{"event": "(except for file names and comments, which are optional)."}
+{"event": "1.4. Compliance"}
+{"event": "Unless otherwise indicated below, a compliant decompressor must be"}
+{"event": "able to accept and decompress any file that conforms to all the"}
+{"event": "specifications presented here; a compliant compressor must produce"}
+{"event": "files that conform to all the specifications presented here.  The"}
+{"event": "material in the appendices is not part of the specification per se"}
+{"event": "and is not relevant to compliance."}
+{"event": "1.5. Definitions of terms and conventions used"}
+{"event": "byte: 8 bits stored or transmitted as a unit (same as an octet)."}
+{"event": "(For this specification, a byte is exactly 8 bits, even on"}
+{"event": "machines which store a character on a number of bits different"}
+{"event": "from 8.)  See below for the numbering of bits within a byte."}
+{"event": "1.6. Changes from previous versions"}
+{"event": "There have been no technical changes to the gzip format since"}
+{"event": "version 4.1 of this specification.  In version 4.2, some"}
+{"event": "terminology was changed, and the sample CRC code was rewritten for"}
+{"event": "clarity and to eliminate the requirement for the caller to do pre-"}
+{"event": "and post-conditioning.  Version 4.3 is a conversion of the"}
+{"event": "specification to RFC style."}
+{"event": "Deutsch                      Informational                      [Page 3]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "2. Detailed specification"}
+{"event": "2.1. Overall conventions"}
+{"event": "In the diagrams below, a box like this:"}
+{"event": "+---+"}
+{"event": "|   | <-- the vertical bars might be missing"}
+{"event": "+---+"}
+{"event": "represents one byte; a box like this:"}
+{"event": "+==============+"}
+{"event": "|              |"}
+{"event": "+==============+"}
+{"event": "represents a variable number of bytes."}
+{"event": "Bytes stored within a computer do not have a \"bit order\", since"}
+{"event": "they are always treated as a unit.  However, a byte considered as"}
+{"event": "an integer between 0 and 255 does have a most- and least-"}
+{"event": "significant bit, and since we write numbers with the most-"}
+{"event": "significant digit on the left, we also write bytes with the most-"}
+{"event": "significant bit on the left.  In the diagrams below, we number the"}
+{"event": "bits of a byte so that bit 0 is the least-significant bit, i.e.,"}
+{"event": "the bits are numbered:"}
+{"event": "+--------+"}
+{"event": "|76543210|"}
+{"event": "+--------+"}
+{"event": "This document does not address the issue of the order in which"}
+{"event": "bits of a byte are transmitted on a bit-sequential medium, since"}
+{"event": "the data format described here is byte- rather than bit-oriented."}
+{"event": "Within a computer, a number may occupy multiple bytes.  All"}
+{"event": "multi-byte numbers in the format described here are stored with"}
+{"event": "the least-significant byte first (at the lower memory address)."}
+{"event": "For example, the decimal number 520 is stored as:"}
+{"event": "0        1"}
+{"event": "+--------+--------+"}
+{"event": "|00001000|00000010|"}
+{"event": "+--------+--------+"}
+{"event": "^        ^"}
+{"event": "|        |"}
+{"event": "|        + more significant byte = 2 x 256"}
+{"event": "+ less significant byte = 8"}
+{"event": "Deutsch                      Informational                      [Page 4]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "2.2. File format"}
+{"event": "A gzip file consists of a series of \"members\" (compressed data"}
+{"event": "sets).  The format of each member is specified in the following"}
+{"event": "section.  The members simply appear one after another in the file,"}
+{"event": "with no additional information before, between, or after them."}
+{"event": "2.3. Member format"}
+{"event": "Each member has the following structure:"}
+{"event": "+---+---+---+---+---+---+---+---+---+---+"}
+{"event": "|ID1|ID2|CM |FLG|     MTIME     |XFL|OS | (more-->)"}
+{"event": "+---+---+---+---+---+---+---+---+---+---+"}
+{"event": "(if FLG.FEXTRA set)"}
+{"event": "+---+---+=================================+"}
+{"event": "| XLEN  |...XLEN bytes of \"extra field\"...| (more-->)"}
+{"event": "+---+---+=================================+"}
+{"event": "(if FLG.FNAME set)"}
+{"event": "+=========================================+"}
+{"event": "|...original file name, zero-terminated...| (more-->)"}
+{"event": "+=========================================+"}
+{"event": "(if FLG.FCOMMENT set)"}
+{"event": "+===================================+"}
+{"event": "|...file comment, zero-terminated...| (more-->)"}
+{"event": "+===================================+"}
+{"event": "(if FLG.FHCRC set)"}
+{"event": "+---+---+"}
+{"event": "| CRC16 |"}
+{"event": "+---+---+"}
+{"event": "+=======================+"}
+{"event": "|...compressed blocks...| (more-->)"}
+{"event": "+=======================+"}
+{"event": "0   1   2   3   4   5   6   7"}
+{"event": "+---+---+---+---+---+---+---+---+"}
+{"event": "|     CRC32     |     ISIZE     |"}
+{"event": "+---+---+---+---+---+---+---+---+"}
+{"event": "Deutsch                      Informational                      [Page 5]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "2.3.1. Member header and trailer"}
+{"event": "ID1 (IDentification 1)"}
+{"event": "ID2 (IDentification 2)"}
+{"event": "These have the fixed values ID1 = 31 (0x1f, \\037), ID2 = 139"}
+{"event": "(0x8b, \\213), to identify the file as being in gzip format."}
+{"event": "CM (Compression Method)"}
+{"event": "This identifies the compression method used in the file.  CM"}
+{"event": "= 0-7 are reserved.  CM = 8 denotes the \"deflate\""}
+{"event": "compression method, which is the one customarily used by"}
+{"event": "gzip and which is documented elsewhere."}
+{"event": "FLG (FLaGs)"}
+{"event": "This flag byte is divided into individual bits as follows:"}
+{"event": "bit 0   FTEXT"}
+{"event": "bit 1   FHCRC"}
+{"event": "bit 2   FEXTRA"}
+{"event": "bit 3   FNAME"}
+{"event": "bit 4   FCOMMENT"}
+{"event": "bit 5   reserved"}
+{"event": "bit 6   reserved"}
+{"event": "bit 7   reserved"}
+{"event": "If FTEXT is set, the file is probably ASCII text.  This is"}
+{"event": "an optional indication, which the compressor may set by"}
+{"event": "checking a small amount of the input data to see whether any"}
+{"event": "non-ASCII characters are present.  In case of doubt, FTEXT"}
+{"event": "is cleared, indicating binary data. For systems which have"}
+{"event": "different file formats for ascii text and binary data, the"}
+{"event": "decompressor can use FTEXT to choose the appropriate format."}
+{"event": "We deliberately do not specify the algorithm used to set"}
+{"event": "this bit, since a compressor always has the option of"}
+{"event": "leaving it cleared and a decompressor always has the option"}
+{"event": "of ignoring it and letting some other program handle issues"}
+{"event": "of data conversion."}
+{"event": "If FHCRC is set, a CRC16 for the gzip header is present,"}
+{"event": "immediately before the compressed data. The CRC16 consists"}
+{"event": "of the two least significant bytes of the CRC32 for all"}
+{"event": "bytes of the gzip header up to and not including the CRC16."}
+{"event": "[The FHCRC bit was never set by versions of gzip up to"}
+{"event": "1.2.4, even though it was documented with a different"}
+{"event": "meaning in gzip 1.2.4.]"}
+{"event": "If FEXTRA is set, optional extra fields are present, as"}
+{"event": "described in a following section."}
+{"event": "Deutsch                      Informational                      [Page 6]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "If FNAME is set, an original file name is present,"}
+{"event": "terminated by a zero byte.  The name must consist of ISO"}
+{"event": "8859-1 (LATIN-1) characters; on operating systems using"}
+{"event": "EBCDIC or any other character set for file names, the name"}
+{"event": "must be translated to the ISO LATIN-1 character set.  This"}
+{"event": "is the original name of the file being compressed, with any"}
+{"event": "directory components removed, and, if the file being"}
+{"event": "compressed is on a file system with case insensitive names,"}
+{"event": "forced to lower case. There is no original file name if the"}
+{"event": "data was compressed from a source other than a named file;"}
+{"event": "for example, if the source was stdin on a Unix system, there"}
+{"event": "is no file name."}
+{"event": "If FCOMMENT is set, a zero-terminated file comment is"}
+{"event": "present.  This comment is not interpreted; it is only"}
+{"event": "intended for human consumption.  The comment must consist of"}
+{"event": "ISO 8859-1 (LATIN-1) characters.  Line breaks should be"}
+{"event": "denoted by a single line feed character (10 decimal)."}
+{"event": "Reserved FLG bits must be zero."}
+{"event": "MTIME (Modification TIME)"}
+{"event": "This gives the most recent modification time of the original"}
+{"event": "file being compressed.  The time is in Unix format, i.e.,"}
+{"event": "seconds since 00:00:00 GMT, Jan.  1, 1970.  (Note that this"}
+{"event": "may cause problems for MS-DOS and other systems that use"}
+{"event": "local rather than Universal time.)  If the compressed data"}
+{"event": "did not come from a file, MTIME is set to the time at which"}
+{"event": "compression started.  MTIME = 0 means no time stamp is"}
+{"event": "available."}
+{"event": "XFL (eXtra FLags)"}
+{"event": "These flags are available for use by specific compression"}
+{"event": "methods.  The \"deflate\" method (CM = 8) sets these flags as"}
+{"event": "follows:"}
+{"event": "XFL = 2 - compressor used maximum compression,"}
+{"event": "slowest algorithm"}
+{"event": "XFL = 4 - compressor used fastest algorithm"}
+{"event": "OS (Operating System)"}
+{"event": "This identifies the type of file system on which compression"}
+{"event": "took place.  This may be useful in determining end-of-line"}
+{"event": "convention for text files.  The currently defined values are"}
+{"event": "as follows:"}
+{"event": "Deutsch                      Informational                      [Page 7]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "0 - FAT filesystem (MS-DOS, OS/2, NT/Win32)"}
+{"event": "1 - Amiga"}
+{"event": "2 - VMS (or OpenVMS)"}
+{"event": "3 - Unix"}
+{"event": "4 - VM/CMS"}
+{"event": "5 - Atari TOS"}
+{"event": "6 - HPFS filesystem (OS/2, NT)"}
+{"event": "7 - Macintosh"}
+{"event": "8 - Z-System"}
+{"event": "9 - CP/M"}
+{"event": "10 - TOPS-20"}
+{"event": "11 - NTFS filesystem (NT)"}
+{"event": "12 - QDOS"}
+{"event": "13 - Acorn RISCOS"}
+{"event": "255 - unknown"}
+{"event": "XLEN (eXtra LENgth)"}
+{"event": "If FLG.FEXTRA is set, this gives the length of the optional"}
+{"event": "extra field.  See below for details."}
+{"event": "CRC32 (CRC-32)"}
+{"event": "This contains a Cyclic Redundancy Check value of the"}
+{"event": "uncompressed data computed according to CRC-32 algorithm"}
+{"event": "used in the ISO 3309 standard and in section 8.1.1.6.2 of"}
+{"event": "ITU-T recommendation V.42.  (See http://www.iso.ch for"}
+{"event": "ordering ISO documents. See gopher://info.itu.ch for an"}
+{"event": "online version of ITU-T V.42.)"}
+{"event": "ISIZE (Input SIZE)"}
+{"event": "This contains the size of the original (uncompressed) input"}
+{"event": "data modulo 2^32."}
+{"event": "2.3.1.1. Extra field"}
+{"event": "If the FLG.FEXTRA bit is set, an \"extra field\" is present in"}
+{"event": "the header, with total length XLEN bytes.  It consists of a"}
+{"event": "series of subfields, each of the form:"}
+{"event": "+---+---+---+---+==================================+"}
+{"event": "|SI1|SI2|  LEN  |... LEN bytes of subfield data ...|"}
+{"event": "+---+---+---+---+==================================+"}
+{"event": "SI1 and SI2 provide a subfield ID, typically two ASCII letters"}
+{"event": "with some mnemonic value.  Jean-Loup Gailly"}
+{"event": "<gzip@prep.ai.mit.edu> is maintaining a registry of subfield"}
+{"event": "IDs; please send him any subfield ID you wish to use.  Subfield"}
+{"event": "IDs with SI2 = 0 are reserved for future use.  The following"}
+{"event": "IDs are currently defined:"}
+{"event": "Deutsch                      Informational                      [Page 8]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "SI1         SI2         Data"}
+{"event": "----------  ----------  ----"}
+{"event": "0x41 ('A')  0x70 ('P')  Apollo file type information"}
+{"event": "LEN gives the length of the subfield data, excluding the 4"}
+{"event": "initial bytes."}
+{"event": "2.3.1.2. Compliance"}
+{"event": "A compliant compressor must produce files with correct ID1,"}
+{"event": "ID2, CM, CRC32, and ISIZE, but may set all the other fields in"}
+{"event": "the fixed-length part of the header to default values (255 for"}
+{"event": "OS, 0 for all others).  The compressor must set all reserved"}
+{"event": "bits to zero."}
+{"event": "A compliant decompressor must check ID1, ID2, and CM, and"}
+{"event": "provide an error indication if any of these have incorrect"}
+{"event": "values.  It must examine FEXTRA/XLEN, FNAME, FCOMMENT and FHCRC"}
+{"event": "at least so it can skip over the optional fields if they are"}
+{"event": "present.  It need not examine any other part of the header or"}
+{"event": "trailer; in particular, a decompressor may ignore FTEXT and OS"}
+{"event": "and always produce binary output, and still be compliant.  A"}
+{"event": "compliant decompressor must give an error indication if any"}
+{"event": "reserved bit is non-zero, since such a bit could indicate the"}
+{"event": "presence of a new field that would cause subsequent data to be"}
+{"event": "interpreted incorrectly."}
+{"event": "3. References"}
+{"event": "[1] \"Information Processing - 8-bit single-byte coded graphic"}
+{"event": "character sets - Part 1: Latin alphabet No.1\" (ISO 8859-1:1987)."}
+{"event": "The ISO 8859-1 (Latin-1) character set is a superset of 7-bit"}
+{"event": "ASCII. Files defining this character set are available as"}
+{"event": "iso_8859-1.* in ftp://ftp.uu.net/graphics/png/documents/"}
+{"event": "[2] ISO 3309"}
+{"event": "[3] ITU-T recommendation V.42"}
+{"event": "[4] Deutsch, L.P.,\"DEFLATE Compressed Data Format Specification\","}
+{"event": "available in ftp://ftp.uu.net/pub/archiving/zip/doc/"}
+{"event": "[5] Gailly, J.-L., GZIP documentation, available as gzip-*.tar in"}
+{"event": "ftp://prep.ai.mit.edu/pub/gnu/"}
+{"event": "[6] Sarwate, D.V., \"Computation of Cyclic Redundancy Checks via Table"}
+{"event": "Look-Up\", Communications of the ACM, 31(8), pp.1008-1013."}
+{"event": "Deutsch                      Informational                      [Page 9]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "[7] Schwaderer, W.D., \"CRC Calculation\", April 85 PC Tech Journal,"}
+{"event": "pp.118-133."}
+{"event": "[8] ftp://ftp.adelaide.edu.au/pub/rocksoft/papers/crc_v3.txt,"}
+{"event": "describing the CRC concept."}
+{"event": "4. Security Considerations"}
+{"event": "Any data compression method involves the reduction of redundancy in"}
+{"event": "the data.  Consequently, any corruption of the data is likely to have"}
+{"event": "severe effects and be difficult to correct.  Uncompressed text, on"}
+{"event": "the other hand, will probably still be readable despite the presence"}
+{"event": "of some corrupted bytes."}
+{"event": "It is recommended that systems using this data format provide some"}
+{"event": "means of validating the integrity of the compressed data, such as by"}
+{"event": "setting and checking the CRC-32 check value."}
+{"event": "5. Acknowledgements"}
+{"event": "Trademarks cited in this document are the property of their"}
+{"event": "respective owners."}
+{"event": "Jean-Loup Gailly designed the gzip format and wrote, with Mark Adler,"}
+{"event": "the related software described in this specification.  Glenn"}
+{"event": "Randers-Pehrson converted this document to RFC and HTML format."}
+{"event": "6. Author's Address"}
+{"event": "L. Peter Deutsch"}
+{"event": "Aladdin Enterprises"}
+{"event": "203 Santa Margarita Ave."}
+{"event": "Menlo Park, CA 94025"}
+{"event": "Phone: (415) 322-0103 (AM only)"}
+{"event": "FAX:   (415) 322-1734"}
+{"event": "EMail: <ghost@aladdin.com>"}
+{"event": "Questions about the technical content of this specification can be"}
+{"event": "sent by email to:"}
+{"event": "Jean-Loup Gailly <gzip@prep.ai.mit.edu> and"}
+{"event": "Mark Adler <madler@alumni.caltech.edu>"}
+{"event": "Editorial comments on this specification can be sent by email to:"}
+{"event": "L. Peter Deutsch <ghost@aladdin.com> and"}
+{"event": "Glenn Randers-Pehrson <randeg@alumni.rpi.edu>"}
+{"event": "Deutsch                      Informational                     [Page 10]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "7. Appendix: Jean-Loup Gailly's gzip utility"}
+{"event": "The most widely used implementation of gzip compression, and the"}
+{"event": "original documentation on which this specification is based, were"}
+{"event": "created by Jean-Loup Gailly <gzip@prep.ai.mit.edu>.  Since this"}
+{"event": "implementation is a de facto standard, we mention some more of its"}
+{"event": "features here.  Again, the material in this section is not part of"}
+{"event": "the specification per se, and implementations need not follow it to"}
+{"event": "be compliant."}
+{"event": "When compressing or decompressing a file, gzip preserves the"}
+{"event": "protection, ownership, and modification time attributes on the local"}
+{"event": "file system, since there is no provision for representing protection"}
+{"event": "attributes in the gzip file format itself.  Since the file format"}
+{"event": "includes a modification time, the gzip decompressor provides a"}
+{"event": "command line switch that assigns the modification time from the file,"}
+{"event": "rather than the local modification time of the compressed input, to"}
+{"event": "the decompressed output."}
+{"event": "8. Appendix: Sample CRC Code"}
+{"event": "The following sample code represents a practical implementation of"}
+{"event": "the CRC (Cyclic Redundancy Check). (See also ISO 3309 and ITU-T V.42"}
+{"event": "for a formal specification.)"}
+{"event": "The sample code is in the ANSI C programming language. Non C users"}
+{"event": "may find it easier to read with these hints:"}
+{"event": "&      Bitwise AND operator."}
+{"event": "^      Bitwise exclusive-OR operator."}
+{"event": ">>     Bitwise right shift operator. When applied to an"}
+{"event": "unsigned quantity, as here, right shift inserts zero"}
+{"event": "bit(s) at the left."}
+{"event": "!      Logical NOT operator."}
+{"event": "++     \"n++\" increments the variable n."}
+{"event": "0xNNN  0x introduces a hexadecimal (base 16) constant."}
+{"event": "Suffix L indicates a long value (at least 32 bits)."}
+{"event": "/* Table of CRCs of all 8-bit messages. */"}
+{"event": "unsigned long crc_table[256];"}
+{"event": "/* Flag: has the table been computed? Initially false. */"}
+{"event": "int crc_table_computed = 0;"}
+{"event": "/* Make the table for a fast CRC. */"}
+{"event": "void make_crc_table(void)"}
+{"event": "{"}
+{"event": "unsigned long c;"}
+{"event": "Deutsch                      Informational                     [Page 11]"}
+{"event": "RFC 1952             GZIP File Format Specification             May 1996"}
+{"event": "int n, k;"}
+{"event": "for (n = 0; n < 256; n++) {"}
+{"event": "c = (unsigned long) n;"}
+{"event": "for (k = 0; k < 8; k++) {"}
+{"event": "if (c & 1) {"}
+{"event": "c = 0xedb88320L ^ (c >> 1);"}
+{"event": "} else {"}
+{"event": "c = c >> 1;"}
+{"event": "}"}
+{"event": "}"}
+{"event": "crc_table[n] = c;"}
+{"event": "}"}
+{"event": "crc_table_computed = 1;"}
+{"event": "}"}
+{"event": "/*"}
+{"event": "Update a running crc with the bytes buf[0..len-1] and return"}
+{"event": "the updated crc. The crc should be initialized to zero. Pre- and"}
+{"event": "post-conditioning (one's complement) is performed within this"}
+{"event": "function so it shouldn't be done by the caller. Usage example:"}
+{"event": "unsigned long crc = 0L;"}
+{"event": "while (read_buffer(buffer, length) != EOF) {"}
+{"event": "crc = update_crc(crc, buffer, length);"}
+{"event": "}"}
+{"event": "if (crc != original_crc) error();"}
+{"event": "*/"}
+{"event": "unsigned long update_crc(unsigned long crc,"}
+{"event": "unsigned char *buf, int len)"}
+{"event": "{"}
+{"event": "unsigned long c = crc ^ 0xffffffffL;"}
+{"event": "int n;"}
+{"event": "if (!crc_table_computed)"}
+{"event": "make_crc_table();"}
+{"event": "for (n = 0; n < len; n++) {"}
+{"event": "c = crc_table[(c ^ buf[n]) & 0xff] ^ (c >> 8);"}
+{"event": "}"}
+{"event": "return c ^ 0xffffffffL;"}
+{"event": "}"}
+{"event": "/* Return the CRC of the bytes buf[0..len-1]. */"}
+{"event": "unsigned long crc(unsigned char *buf, int len)"}
+{"event": "{"}
+{"event": "return update_crc(0L, buf, len);"}
+{"event": "}"}
+{"event": "Deutsch                      Informational                     [Page 12]"}

@@ -1,0 +1,374 @@
+{"event": "Network Working Group                                         P. Deutsch"}
+{"event": "Request for Comments: 1950                           Aladdin Enterprises"}
+{"event": "Category: Informational                                      J-L. Gailly"}
+{"event": "Info-ZIP"}
+{"event": "May 1996"}
+{"event": "ZLIB Compressed Data Format Specification version 3.3"}
+{"event": "Status of This Memo"}
+{"event": "This memo provides information for the Internet community.  This memo"}
+{"event": "does not specify an Internet standard of any kind.  Distribution of"}
+{"event": "this memo is unlimited."}
+{"event": "IESG Note:"}
+{"event": "The IESG takes no position on the validity of any Intellectual"}
+{"event": "Property Rights statements contained in this document."}
+{"event": "Notices"}
+{"event": "Copyright (c) 1996 L. Peter Deutsch and Jean-Loup Gailly"}
+{"event": "Permission is granted to copy and distribute this document for any"}
+{"event": "purpose and without charge, including translations into other"}
+{"event": "languages and incorporation into compilations, provided that the"}
+{"event": "copyright notice and this notice are preserved, and that any"}
+{"event": "substantive changes or deletions from the original are clearly"}
+{"event": "marked."}
+{"event": "A pointer to the latest version of this and related documentation in"}
+{"event": "HTML format can be found at the URL"}
+{"event": "<ftp://ftp.uu.net/graphics/png/documents/zlib/zdoc-index.html>."}
+{"event": "Abstract"}
+{"event": "This specification defines a lossless compressed data format.  The"}
+{"event": "data can be produced or consumed, even for an arbitrarily long"}
+{"event": "sequentially presented input data stream, using only an a priori"}
+{"event": "bounded amount of intermediate storage.  The format presently uses"}
+{"event": "the DEFLATE compression method but can be easily extended to use"}
+{"event": "other compression methods.  It can be implemented readily in a manner"}
+{"event": "not covered by patents.  This specification also defines the ADLER-32"}
+{"event": "checksum (an extension and improvement of the Fletcher checksum),"}
+{"event": "used for detection of data corruption, and provides an algorithm for"}
+{"event": "computing it."}
+{"event": "Deutsch & Gailly             Informational                      [Page 1]"}
+{"event": "RFC 1950       ZLIB Compressed Data Format Specification        May 1996"}
+{"event": "Table of Contents"}
+{"event": "1. Introduction ................................................... 2"}
+{"event": "1.1. Purpose ................................................... 2"}
+{"event": "1.2. Intended audience ......................................... 3"}
+{"event": "1.3. Scope ..................................................... 3"}
+{"event": "1.4. Compliance ................................................ 3"}
+{"event": "1.5.  Definitions of terms and conventions used ................ 3"}
+{"event": "1.6. Changes from previous versions ............................ 3"}
+{"event": "2. Detailed specification ......................................... 3"}
+{"event": "2.1. Overall conventions ....................................... 3"}
+{"event": "2.2. Data format ............................................... 4"}
+{"event": "2.3. Compliance ................................................ 7"}
+{"event": "3. References ..................................................... 7"}
+{"event": "4. Source code .................................................... 8"}
+{"event": "5. Security Considerations ........................................ 8"}
+{"event": "6. Acknowledgements ............................................... 8"}
+{"event": "7. Authors' Addresses ............................................. 8"}
+{"event": "8. Appendix: Rationale ............................................ 9"}
+{"event": "9. Appendix: Sample code ..........................................10"}
+{"event": "1. Introduction"}
+{"event": "1.1. Purpose"}
+{"event": "The purpose of this specification is to define a lossless"}
+{"event": "compressed data format that:"}
+{"event": "* Is independent of CPU type, operating system, file system,"}
+{"event": "and character set, and hence can be used for interchange;"}
+{"event": "* Can be produced or consumed, even for an arbitrarily long"}
+{"event": "sequentially presented input data stream, using only an a"}
+{"event": "priori bounded amount of intermediate storage, and hence can"}
+{"event": "be used in data communications or similar structures such as"}
+{"event": "Unix filters;"}
+{"event": "* Can use a number of different compression methods;"}
+{"event": "* Can be implemented readily in a manner not covered by"}
+{"event": "patents, and hence can be practiced freely."}
+{"event": "The data format defined by this specification does not attempt to"}
+{"event": "allow random access to compressed data."}
+{"event": "Deutsch & Gailly             Informational                      [Page 2]"}
+{"event": "RFC 1950       ZLIB Compressed Data Format Specification        May 1996"}
+{"event": "1.2. Intended audience"}
+{"event": "This specification is intended for use by implementors of software"}
+{"event": "to compress data into zlib format and/or decompress data from zlib"}
+{"event": "format."}
+{"event": "The text of the specification assumes a basic background in"}
+{"event": "programming at the level of bits and other primitive data"}
+{"event": "representations."}
+{"event": "1.3. Scope"}
+{"event": "The specification specifies a compressed data format that can be"}
+{"event": "used for in-memory compression of a sequence of arbitrary bytes."}
+{"event": "1.4. Compliance"}
+{"event": "Unless otherwise indicated below, a compliant decompressor must be"}
+{"event": "able to accept and decompress any data set that conforms to all"}
+{"event": "the specifications presented here; a compliant compressor must"}
+{"event": "produce data sets that conform to all the specifications presented"}
+{"event": "here."}
+{"event": "1.5.  Definitions of terms and conventions used"}
+{"event": "byte: 8 bits stored or transmitted as a unit (same as an octet)."}
+{"event": "(For this specification, a byte is exactly 8 bits, even on"}
+{"event": "machines which store a character on a number of bits different"}
+{"event": "from 8.) See below, for the numbering of bits within a byte."}
+{"event": "1.6. Changes from previous versions"}
+{"event": "Version 3.1 was the first public release of this specification."}
+{"event": "In version 3.2, some terminology was changed and the Adler-32"}
+{"event": "sample code was rewritten for clarity.  In version 3.3, the"}
+{"event": "support for a preset dictionary was introduced, and the"}
+{"event": "specification was converted to RFC style."}
+{"event": "2. Detailed specification"}
+{"event": "2.1. Overall conventions"}
+{"event": "In the diagrams below, a box like this:"}
+{"event": "+---+"}
+{"event": "|   | <-- the vertical bars might be missing"}
+{"event": "+---+"}
+{"event": "Deutsch & Gailly             Informational                      [Page 3]"}
+{"event": "RFC 1950       ZLIB Compressed Data Format Specification        May 1996"}
+{"event": "represents one byte; a box like this:"}
+{"event": "+==============+"}
+{"event": "|              |"}
+{"event": "+==============+"}
+{"event": "represents a variable number of bytes."}
+{"event": "Bytes stored within a computer do not have a \"bit order\", since"}
+{"event": "they are always treated as a unit.  However, a byte considered as"}
+{"event": "an integer between 0 and 255 does have a most- and least-"}
+{"event": "significant bit, and since we write numbers with the most-"}
+{"event": "significant digit on the left, we also write bytes with the most-"}
+{"event": "significant bit on the left.  In the diagrams below, we number the"}
+{"event": "bits of a byte so that bit 0 is the least-significant bit, i.e.,"}
+{"event": "the bits are numbered:"}
+{"event": "+--------+"}
+{"event": "|76543210|"}
+{"event": "+--------+"}
+{"event": "Within a computer, a number may occupy multiple bytes.  All"}
+{"event": "multi-byte numbers in the format described here are stored with"}
+{"event": "the MOST-significant byte first (at the lower memory address)."}
+{"event": "For example, the decimal number 520 is stored as:"}
+{"event": "0     1"}
+{"event": "+--------+--------+"}
+{"event": "|00000010|00001000|"}
+{"event": "+--------+--------+"}
+{"event": "^        ^"}
+{"event": "|        |"}
+{"event": "|        + less significant byte = 8"}
+{"event": "+ more significant byte = 2 x 256"}
+{"event": "2.2. Data format"}
+{"event": "A zlib stream has the following structure:"}
+{"event": "0   1"}
+{"event": "+---+---+"}
+{"event": "|CMF|FLG|   (more-->)"}
+{"event": "+---+---+"}
+{"event": "Deutsch & Gailly             Informational                      [Page 4]"}
+{"event": "RFC 1950       ZLIB Compressed Data Format Specification        May 1996"}
+{"event": "(if FLG.FDICT set)"}
+{"event": "0   1   2   3"}
+{"event": "+---+---+---+---+"}
+{"event": "|     DICTID    |   (more-->)"}
+{"event": "+---+---+---+---+"}
+{"event": "+=====================+---+---+---+---+"}
+{"event": "|...compressed data...|    ADLER32    |"}
+{"event": "+=====================+---+---+---+---+"}
+{"event": "Any data which may appear after ADLER32 are not part of the zlib"}
+{"event": "stream."}
+{"event": "CMF (Compression Method and flags)"}
+{"event": "This byte is divided into a 4-bit compression method and a 4-"}
+{"event": "bit information field depending on the compression method."}
+{"event": "bits 0 to 3  CM     Compression method"}
+{"event": "bits 4 to 7  CINFO  Compression info"}
+{"event": "CM (Compression method)"}
+{"event": "This identifies the compression method used in the file. CM = 8"}
+{"event": "denotes the \"deflate\" compression method with a window size up"}
+{"event": "to 32K.  This is the method used by gzip and PNG (see"}
+{"event": "references [1] and [2] in Chapter 3, below, for the reference"}
+{"event": "documents).  CM = 15 is reserved.  It might be used in a future"}
+{"event": "version of this specification to indicate the presence of an"}
+{"event": "extra field before the compressed data."}
+{"event": "CINFO (Compression info)"}
+{"event": "For CM = 8, CINFO is the base-2 logarithm of the LZ77 window"}
+{"event": "size, minus eight (CINFO=7 indicates a 32K window size). Values"}
+{"event": "of CINFO above 7 are not allowed in this version of the"}
+{"event": "specification.  CINFO is not defined in this specification for"}
+{"event": "CM not equal to 8."}
+{"event": "FLG (FLaGs)"}
+{"event": "This flag byte is divided as follows:"}
+{"event": "bits 0 to 4  FCHECK  (check bits for CMF and FLG)"}
+{"event": "bit  5       FDICT   (preset dictionary)"}
+{"event": "bits 6 to 7  FLEVEL  (compression level)"}
+{"event": "The FCHECK value must be such that CMF and FLG, when viewed as"}
+{"event": "a 16-bit unsigned integer stored in MSB order (CMF*256 + FLG),"}
+{"event": "is a multiple of 31."}
+{"event": "Deutsch & Gailly             Informational                      [Page 5]"}
+{"event": "RFC 1950       ZLIB Compressed Data Format Specification        May 1996"}
+{"event": "FDICT (Preset dictionary)"}
+{"event": "If FDICT is set, a DICT dictionary identifier is present"}
+{"event": "immediately after the FLG byte. The dictionary is a sequence of"}
+{"event": "bytes which are initially fed to the compressor without"}
+{"event": "producing any compressed output. DICT is the Adler-32 checksum"}
+{"event": "of this sequence of bytes (see the definition of ADLER32"}
+{"event": "below).  The decompressor can use this identifier to determine"}
+{"event": "which dictionary has been used by the compressor."}
+{"event": "FLEVEL (Compression level)"}
+{"event": "These flags are available for use by specific compression"}
+{"event": "methods.  The \"deflate\" method (CM = 8) sets these flags as"}
+{"event": "follows:"}
+{"event": "0 - compressor used fastest algorithm"}
+{"event": "1 - compressor used fast algorithm"}
+{"event": "2 - compressor used default algorithm"}
+{"event": "3 - compressor used maximum compression, slowest algorithm"}
+{"event": "The information in FLEVEL is not needed for decompression; it"}
+{"event": "is there to indicate if recompression might be worthwhile."}
+{"event": "compressed data"}
+{"event": "For compression method 8, the compressed data is stored in the"}
+{"event": "deflate compressed data format as described in the document"}
+{"event": "\"DEFLATE Compressed Data Format Specification\" by L. Peter"}
+{"event": "Deutsch. (See reference [3] in Chapter 3, below)"}
+{"event": "Other compressed data formats are not specified in this version"}
+{"event": "of the zlib specification."}
+{"event": "ADLER32 (Adler-32 checksum)"}
+{"event": "This contains a checksum value of the uncompressed data"}
+{"event": "(excluding any dictionary data) computed according to Adler-32"}
+{"event": "algorithm. This algorithm is a 32-bit extension and improvement"}
+{"event": "of the Fletcher algorithm, used in the ITU-T X.224 / ISO 8073"}
+{"event": "standard. See references [4] and [5] in Chapter 3, below)"}
+{"event": "Adler-32 is composed of two sums accumulated per byte: s1 is"}
+{"event": "the sum of all bytes, s2 is the sum of all s1 values. Both sums"}
+{"event": "are done modulo 65521. s1 is initialized to 1, s2 to zero.  The"}
+{"event": "Adler-32 checksum is stored as s2*65536 + s1 in most-"}
+{"event": "significant-byte first (network) order."}
+{"event": "Deutsch & Gailly             Informational                      [Page 6]"}
+{"event": "RFC 1950       ZLIB Compressed Data Format Specification        May 1996"}
+{"event": "2.3. Compliance"}
+{"event": "A compliant compressor must produce streams with correct CMF, FLG"}
+{"event": "and ADLER32, but need not support preset dictionaries.  When the"}
+{"event": "zlib data format is used as part of another standard data format,"}
+{"event": "the compressor may use only preset dictionaries that are specified"}
+{"event": "by this other data format.  If this other format does not use the"}
+{"event": "preset dictionary feature, the compressor must not set the FDICT"}
+{"event": "flag."}
+{"event": "A compliant decompressor must check CMF, FLG, and ADLER32, and"}
+{"event": "provide an error indication if any of these have incorrect values."}
+{"event": "A compliant decompressor must give an error indication if CM is"}
+{"event": "not one of the values defined in this specification (only the"}
+{"event": "value 8 is permitted in this version), since another value could"}
+{"event": "indicate the presence of new features that would cause subsequent"}
+{"event": "data to be interpreted incorrectly.  A compliant decompressor must"}
+{"event": "give an error indication if FDICT is set and DICTID is not the"}
+{"event": "identifier of a known preset dictionary.  A decompressor may"}
+{"event": "ignore FLEVEL and still be compliant.  When the zlib data format"}
+{"event": "is being used as a part of another standard format, a compliant"}
+{"event": "decompressor must support all the preset dictionaries specified by"}
+{"event": "the other format. When the other format does not use the preset"}
+{"event": "dictionary feature, a compliant decompressor must reject any"}
+{"event": "stream in which the FDICT flag is set."}
+{"event": "3. References"}
+{"event": "[1] Deutsch, L.P.,\"GZIP Compressed Data Format Specification\","}
+{"event": "available in ftp://ftp.uu.net/pub/archiving/zip/doc/"}
+{"event": "[2] Thomas Boutell, \"PNG (Portable Network Graphics) specification\","}
+{"event": "available in ftp://ftp.uu.net/graphics/png/documents/"}
+{"event": "[3] Deutsch, L.P.,\"DEFLATE Compressed Data Format Specification\","}
+{"event": "available in ftp://ftp.uu.net/pub/archiving/zip/doc/"}
+{"event": "[4] Fletcher, J. G., \"An Arithmetic Checksum for Serial"}
+{"event": "Transmissions,\" IEEE Transactions on Communications, Vol. COM-30,"}
+{"event": "No. 1, January 1982, pp. 247-252."}
+{"event": "[5] ITU-T Recommendation X.224, Annex D, \"Checksum Algorithms,\""}
+{"event": "November, 1993, pp. 144, 145. (Available from"}
+{"event": "gopher://info.itu.ch). ITU-T X.244 is also the same as ISO 8073."}
+{"event": "Deutsch & Gailly             Informational                      [Page 7]"}
+{"event": "RFC 1950       ZLIB Compressed Data Format Specification        May 1996"}
+{"event": "4. Source code"}
+{"event": "Source code for a C language implementation of a \"zlib\" compliant"}
+{"event": "library is available at ftp://ftp.uu.net/pub/archiving/zip/zlib/."}
+{"event": "5. Security Considerations"}
+{"event": "A decoder that fails to check the ADLER32 checksum value may be"}
+{"event": "subject to undetected data corruption."}
+{"event": "6. Acknowledgements"}
+{"event": "Trademarks cited in this document are the property of their"}
+{"event": "respective owners."}
+{"event": "Jean-Loup Gailly and Mark Adler designed the zlib format and wrote"}
+{"event": "the related software described in this specification.  Glenn"}
+{"event": "Randers-Pehrson converted this document to RFC and HTML format."}
+{"event": "7. Authors' Addresses"}
+{"event": "L. Peter Deutsch"}
+{"event": "Aladdin Enterprises"}
+{"event": "203 Santa Margarita Ave."}
+{"event": "Menlo Park, CA 94025"}
+{"event": "Phone: (415) 322-0103 (AM only)"}
+{"event": "FAX:   (415) 322-1734"}
+{"event": "EMail: <ghost@aladdin.com>"}
+{"event": "Jean-Loup Gailly"}
+{"event": "EMail: <gzip@prep.ai.mit.edu>"}
+{"event": "Questions about the technical content of this specification can be"}
+{"event": "sent by email to"}
+{"event": "Jean-Loup Gailly <gzip@prep.ai.mit.edu> and"}
+{"event": "Mark Adler <madler@alumni.caltech.edu>"}
+{"event": "Editorial comments on this specification can be sent by email to"}
+{"event": "L. Peter Deutsch <ghost@aladdin.com> and"}
+{"event": "Glenn Randers-Pehrson <randeg@alumni.rpi.edu>"}
+{"event": "Deutsch & Gailly             Informational                      [Page 8]"}
+{"event": "RFC 1950       ZLIB Compressed Data Format Specification        May 1996"}
+{"event": "8. Appendix: Rationale"}
+{"event": "8.1. Preset dictionaries"}
+{"event": "A preset dictionary is specially useful to compress short input"}
+{"event": "sequences. The compressor can take advantage of the dictionary"}
+{"event": "context to encode the input in a more compact manner. The"}
+{"event": "decompressor can be initialized with the appropriate context by"}
+{"event": "virtually decompressing a compressed version of the dictionary"}
+{"event": "without producing any output. However for certain compression"}
+{"event": "algorithms such as the deflate algorithm this operation can be"}
+{"event": "achieved without actually performing any decompression."}
+{"event": "The compressor and the decompressor must use exactly the same"}
+{"event": "dictionary. The dictionary may be fixed or may be chosen among a"}
+{"event": "certain number of predefined dictionaries, according to the kind"}
+{"event": "of input data. The decompressor can determine which dictionary has"}
+{"event": "been chosen by the compressor by checking the dictionary"}
+{"event": "identifier. This document does not specify the contents of"}
+{"event": "predefined dictionaries, since the optimal dictionaries are"}
+{"event": "application specific. Standard data formats using this feature of"}
+{"event": "the zlib specification must precisely define the allowed"}
+{"event": "dictionaries."}
+{"event": "8.2. The Adler-32 algorithm"}
+{"event": "The Adler-32 algorithm is much faster than the CRC32 algorithm yet"}
+{"event": "still provides an extremely low probability of undetected errors."}
+{"event": "The modulo on unsigned long accumulators can be delayed for 5552"}
+{"event": "bytes, so the modulo operation time is negligible.  If the bytes"}
+{"event": "are a, b, c, the second sum is 3a + 2b + c + 3, and so is position"}
+{"event": "and order sensitive, unlike the first sum, which is just a"}
+{"event": "checksum.  That 65521 is prime is important to avoid a possible"}
+{"event": "large class of two-byte errors that leave the check unchanged."}
+{"event": "(The Fletcher checksum uses 255, which is not prime and which also"}
+{"event": "makes the Fletcher check insensitive to single byte changes 0 <->"}
+{"event": "255.)"}
+{"event": "The sum s1 is initialized to 1 instead of zero to make the length"}
+{"event": "of the sequence part of s2, so that the length does not have to be"}
+{"event": "checked separately. (Any sequence of zeroes has a Fletcher"}
+{"event": "checksum of zero.)"}
+{"event": "Deutsch & Gailly             Informational                      [Page 9]"}
+{"event": "RFC 1950       ZLIB Compressed Data Format Specification        May 1996"}
+{"event": "9. Appendix: Sample code"}
+{"event": "The following C code computes the Adler-32 checksum of a data buffer."}
+{"event": "It is written for clarity, not for speed.  The sample code is in the"}
+{"event": "ANSI C programming language. Non C users may find it easier to read"}
+{"event": "with these hints:"}
+{"event": "&      Bitwise AND operator."}
+{"event": ">>     Bitwise right shift operator. When applied to an"}
+{"event": "unsigned quantity, as here, right shift inserts zero bit(s)"}
+{"event": "at the left."}
+{"event": "<<     Bitwise left shift operator. Left shift inserts zero"}
+{"event": "bit(s) at the right."}
+{"event": "++     \"n++\" increments the variable n."}
+{"event": "%      modulo operator: a % b is the remainder of a divided by b."}
+{"event": "#define BASE 65521 /* largest prime smaller than 65536 */"}
+{"event": "/*"}
+{"event": "Update a running Adler-32 checksum with the bytes buf[0..len-1]"}
+{"event": "and return the updated checksum. The Adler-32 checksum should be"}
+{"event": "initialized to 1."}
+{"event": "Usage example:"}
+{"event": "unsigned long adler = 1L;"}
+{"event": "while (read_buffer(buffer, length) != EOF) {"}
+{"event": "adler = update_adler32(adler, buffer, length);"}
+{"event": "}"}
+{"event": "if (adler != original_adler) error();"}
+{"event": "*/"}
+{"event": "unsigned long update_adler32(unsigned long adler,"}
+{"event": "unsigned char *buf, int len)"}
+{"event": "{"}
+{"event": "unsigned long s1 = adler & 0xffff;"}
+{"event": "unsigned long s2 = (adler >> 16) & 0xffff;"}
+{"event": "int n;"}
+{"event": "for (n = 0; n < len; n++) {"}
+{"event": "s1 = (s1 + buf[n]) % BASE;"}
+{"event": "s2 = (s2 + s1)     % BASE;"}
+{"event": "}"}
+{"event": "return (s2 << 16) + s1;"}
+{"event": "}"}
+{"event": "/* Return the adler32 of the bytes buf[0..len-1] */"}
+{"event": "Deutsch & Gailly             Informational                     [Page 10]"}
+{"event": "RFC 1950       ZLIB Compressed Data Format Specification        May 1996"}
+{"event": "unsigned long adler32(unsigned char *buf, int len)"}
+{"event": "{"}
+{"event": "return update_adler32(1L, buf, len);"}
+{"event": "}"}
+{"event": "Deutsch & Gailly             Informational                     [Page 11]"}

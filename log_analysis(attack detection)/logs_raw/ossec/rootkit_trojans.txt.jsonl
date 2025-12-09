@@ -1,0 +1,100 @@
+{"event": "# rootkit_trojans.txt, (C) 2018 OSSEC Project"}
+{"event": "# Imported from the rootcheck project."}
+{"event": "# Some entries taken from the chkrootkit project."}
+{"event": "#"}
+{"event": "# Released under the same license as OSSEC."}
+{"event": "# More details at the LICENSE file included with OSSEC or online"}
+{"event": "# at: https://github.com/ossec/ossec-hids/blob/master/LICENSE"}
+{"event": "#"}
+{"event": "# Blank lines and lines starting with '#' are ignored."}
+{"event": "#"}
+{"event": "# Each line must be in the following format:"}
+{"event": "# file_name !string_to_search!Description"}
+{"event": "# Common binaries and public trojan entries"}
+{"event": "ls          !bash|^/bin/sh|dev/[^clu]|\\.tmp/lsfile|duarawkz|/prof|/security|file\\.h!"}
+{"event": "env         !bash|^/bin/sh|file\\.h|proc\\.h|/dev/|^/bin/.*sh!"}
+{"event": "echo        !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^cl]|^/bin/.*sh!"}
+{"event": "chown       !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^cl]|^/bin/.*sh!"}
+{"event": "chmod       !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^cl]|^/bin/.*sh!"}
+{"event": "chgrp       !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^cl]|^/bin/.*sh!"}
+{"event": "cat         !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^cl]|^/bin/.*sh!"}
+{"event": "bash        !proc\\.h|/dev/[0-9]|/dev/[hijkz]!"}
+{"event": "sh          !proc\\.h|/dev/[0-9]|/dev/[hijkz]!"}
+{"event": "uname       !bash|^/bin/sh|file\\.h|proc\\.h|^/bin/.*sh!"}
+{"event": "date        !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^cln]|^/bin/.*sh!"}
+{"event": "du          !w0rm|/prof|file\\.h!"}
+{"event": "df          !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^clurdv]|^/bin/.*sh!"}
+{"event": "login       !elite|SucKIT|xlogin|vejeta|porcao|lets_log|sukasuk!"}
+{"event": "passwd      !bash|file\\.h|proc\\.h|/dev/ttyo|/dev/[A-Z]|/dev/[b-s,uvxz]!"}
+{"event": "mingetty    !bash|Dimensioni|pacchetto!"}
+{"event": "chfn        !bash|file\\.h|proc\\.h|/dev/ttyo|/dev/[A-Z]|/dev/[a-s,uvxz]!"}
+{"event": "chsh        !bash|file\\.h|proc\\.h|/dev/ttyo|/dev/[A-Z]|/dev/[a-s,uvxz]!"}
+{"event": "mail        !file\\.h|proc\\.h|/dev/[^nu]!"}
+{"event": "su          !/dev/[d-s,abuvxz]|/dev/[A-D]|/dev/[F-Z]|/dev/[0-9]|satori|vejeta|conf\\.inv!"}
+{"event": "sudo        !satori|vejeta|conf\\.inv!"}
+{"event": "crond       !/dev/[^nt]|bash!"}
+{"event": "gpm         !bash|mingetty!"}
+{"event": "ifconfig    !bash|^/bin/sh|/dev/tux|session.null|/dev/[^cludisopt]!"}
+{"event": "diff        !bash|^/bin/sh|file\\.h|proc\\.h|^/bin/.*sh!"}
+{"event": "md5sum      !bash|^/bin/sh|file\\.h|proc\\.h|/dev/|^/bin/.*sh!"}
+{"event": "hdparm      !bash|/dev/ida!"}
+{"event": "ldd         !/dev/[^n]|proc\\.h|libshow.so|libproc.a!"}
+{"event": "# Trojan entries for troubleshooting binaries"}
+{"event": "grep        !bash|givemer!"}
+{"event": "egrep       !bash|^/bin/sh|file\\.h|proc\\.h|/dev/|^/bin/.*sh!"}
+{"event": "find        !bash|/dev/[^tnlcs]|/prof|/home/virus|file\\.h!"}
+{"event": "lsof        !/prof|/dev/[^apcmnfk]|proc\\.h|bash|^/bin/sh|/dev/ttyo|/dev/ttyp!"}
+{"event": "netstat     !bash|^/bin/sh|/dev/[^aik]|/prof|grep|addr\\.h!"}
+{"event": "top         !/dev/[^npi3st%]|proc\\.h|/prof/!"}
+{"event": "ps          !/dev/ttyo|\\.1proc|proc\\.h|bash|^/bin/sh!"}
+{"event": "tcpdump     !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^bu]|^/bin/.*sh!"}
+{"event": "pidof       !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^f]|^/bin/.*sh!"}
+{"event": "fuser       !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[a-dtz]|^/bin/.*sh!"}
+{"event": "w           !uname -a|proc\\.h|bash!"}
+{"event": "# Trojan entries for common daemons"}
+{"event": "sendmail    !bash|fuck!"}
+{"event": "named       !bash|blah|/dev/[0-9]|^/bin/sh!"}
+{"event": "inetd       !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^un%]|^/bin/.*sh!"}
+{"event": "apachectl   !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^n]|^/bin/.*sh!"}
+{"event": "sshd        !check_global_passwd|panasonic|satori|vejeta|\\.ark|/hash\\.zk|bash|/dev[a-s]|/dev[A-Z]/!"}
+{"event": "syslogd     !bash|/usr/lib/pt07|/dev/[^cln]]|syslogs\\.h|proc\\.h!"}
+{"event": "xinetd      !bash|file\\.h|proc\\.h!"}
+{"event": "in.telnetd  !cterm100|vt350|VT100|ansi-term|bash|^/bin/sh|/dev[A-R]|/dev/[a-z]/!"}
+{"event": "in.fingerd  !bash|^/bin/sh|cterm100|/dev/!"}
+{"event": "identd      !bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^n]|^/bin/.*sh!"}
+{"event": "init        !bash|/dev/h"}
+{"event": "tcpd        !bash|proc\\.h|p1r0c4|hack|/dev/[^n]!"}
+{"event": "rlogin      !p1r0c4|r00t|bash|/dev/[^nt]!"}
+{"event": "# Kill trojan"}
+{"event": "killall     !/dev/[^t%]|proc\\.h|bash|tmp!"}
+{"event": "kill        !/dev/[ab,d-k,m-z]|/dev/[F-Z]|/dev/[A-D]|/dev/[0-9]|proc\\.h|bash|tmp!"}
+{"event": "# Rootkit entries"}
+{"event": "/etc/rc.d/rc.sysinit    !enyelkmHIDE! enye-sec Rootkit"}
+{"event": "# ZK rootkit (http://honeyblog.org/junkyard/reports/redhat-compromise2.pdf)"}
+{"event": "/etc/sysconfig/console/load.zk   !/bin/sh! ZK rootkit"}
+{"event": "/etc/sysconfig/console/load.zk   !usr/bin/run! ZK rootkit"}
+{"event": "# Modified /etc/hosts entries"}
+{"event": "# Idea taken from:"}
+{"event": "# http://blog.tenablesecurity.com/2006/12/detecting_compr.html"}
+{"event": "# http://www.sophos.com/security/analyses/trojbagledll.html"}
+{"event": "# http://www.f-secure.com/v-descs/fantibag_b.shtml"}
+{"event": "/etc/hosts  !^[^#]*avp.ch!Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*avp.ru!Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*awaps.net! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*ca.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*mcafee.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*microsoft.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*f-secure.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*sophos.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*symantec.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*my-etrust.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*nai.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*networkassociates.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*viruslist.ru! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*kaspersky! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*symantecliveupdate.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*grisoft.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*clamav.net! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*bitdefender.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*antivirus.com! Anti-virus site on the hosts file"}
+{"event": "/etc/hosts  !^[^#]*sans.org! Security site on the hosts file"}

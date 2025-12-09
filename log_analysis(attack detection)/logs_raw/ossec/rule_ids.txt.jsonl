@@ -1,0 +1,35 @@
+{"event": "0100 - 0199 Wiadomo\u00c5\u009bci b\u00c5\u0082\u00c4\u0099d\u00c3\u00b3w Syslog"}
+{"event": "0200 - 0299 Wiadomo\u00c5\u009bci NFS"}
+{"event": "0300 - 0399 Wiadomo\u00c5\u009bci Xinetd"}
+{"event": "0400 - 0499 Wiadomo\u00c5\u009bci kontroli dost\u00c4\u0099pu"}
+{"event": "0500 - 0599 Wiadomo\u00c5\u009bci Sendmail"}
+{"event": "0600 - 0699 Wiadomo\u00c5\u009bci Ftp"}
+{"event": "0700 - 0799 Wiadomo\u00c5\u009bci Smartd"}
+{"event": "0800 - 0899 Wiadomo\u00c5\u009bci Kernel"}
+{"event": "0900 - 0949 Wiadomo\u00c5\u009bci Crond"}
+{"event": "0950 - 0999 Wiadomo\u00c5\u009bci Automount"}
+{"event": "1000 - 1099 Wiadomo\u00c5\u009bci Squid syslog"}
+{"event": "1100 - 1199 Wiadomo\u00c5\u009bci Su"}
+{"event": "1200 - 1299 Wiadomo\u00c5\u009bci Tripwire"}
+{"event": "1300 - 1399 Wiadomo\u00c5\u009bci Adduser"}
+{"event": "1400 - 1499 Wiadomo\u00c5\u009bci Sudo"}
+{"event": "1500 - 1599 Wiadomo\u00c5\u009bci sshd"}
+{"event": "1600 - 1699 Wzorce atak\u00c3\u00b3w"}
+{"event": "1700 - 1799 Wzorce przejmowania uprawnie\u00c5\u0084"}
+{"event": "1800 - 1899 Wzorce skanowa\u00c5\u0084"}
+{"event": "1900 - 1999 Regu\u00c5\u0082y DNS"}
+{"event": "2000 - 2499 Regu\u00c5\u0082y PIX"}
+{"event": "2500 - 2599 Regu\u00c5\u0082y Proftpd"}
+{"event": "2600 - 2699 Wiadomo\u00c5\u009bci PPTP"}
+{"event": "2700 - 2799 Regu\u00c5\u0082y Regu\u00c5\u0082y FTS"}
+{"event": "2800 - 2899 Regu\u00c5\u0082y Pure-FTPD"}
+{"event": "2900 - 2999 Regu\u00c5\u0082y Spamd"}
+{"event": "3000 - 3099 Regu\u00c5\u0082y b\u00c5\u0082\u00c4\u0099d\u00c3\u00b3w dla Apache'a (dla log\u00c3\u00b3w)"}
+{"event": "3100 - 3199 Regu\u00c5\u0082y dost\u00c4\u0099pu dla Apache'a (dla log\u00c3\u00b3w)"}
+{"event": "4000 - 4999 Regu\u00c5\u0082y IDS"}
+{"event": "5000 - 5999 Regu\u00c5\u0082y Squid"}
+{"event": "6000 - 6199 Regu\u00c5\u0082y Postfix"}
+{"event": "6200 - 6499 Regu\u00c5\u0082y Sendmail"}
+{"event": "7000 - 7499 Regu\u00c5\u0082y Firewall"}
+{"event": "8000 - 8999 Regu\u00c5\u0082y Windows"}
+{"event": "100000 - 199999 Regu\u00c5\u0082y zdefiniowane przez u\u00c5\u00bcytkownika"}

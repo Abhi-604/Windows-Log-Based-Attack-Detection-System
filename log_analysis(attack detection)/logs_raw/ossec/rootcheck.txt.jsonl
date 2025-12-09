@@ -1,0 +1,55 @@
+{"event": "Rootkit detection techniques used by the OSSEC HIDS"}
+{"event": "by Daniel B. Cid, daniel.cid@gmail.com"}
+{"event": "Zaczynaj\u00c4\u0085c od wersji 0.4, OSSEC HIDS dokonuje wykrywania rootkit\u00c3\u00b3w na"}
+{"event": "ka\u00c5\u00bcdym systemnie na kt\u00c3\u00b3rym jest zainstalowany agent. Mechanizm"}
+{"event": "wykrywania rootkit\u00c3\u00b3w (rootcheck) jest wykonywany co X minut"}
+{"event": "(wyspecyfikowane przez u\u00c5\u00bcytkownika - domy\u00c5\u009bnie co dwie godziny) w celu"}
+{"event": "wykrycia zinstalowanych rootkit\u00c3\u00b3w. U\u00c5\u00bcywany razem z analizatorem log\u00c3\u00b3w"}
+{"event": "oraz mechanizmem sprawdzania integralno\u00c5\u009bci, staje si\u00c4\u0099 bardzo wydajnym"}
+{"event": "systemem monitorowania (OSSEC HIDS dokonuje analizy log\u00c3\u00b3w i sprawdzania"}
+{"event": "integralno\u00c5\u009bci od wersji 0.1)."}
+{"event": "Inn\u00c4\u0085 w\u00c5\u0082a\u00c5\u009bciwo\u00c5\u009bci\u00c4\u0085 do\u00c5\u0082\u00c4\u0085czon\u00c4\u0085 do wersji 0.4 jest automatyczne rozsy\u00c5\u0082anie"}
+{"event": "sygnatur wykrywania rootkit\u00c3\u00b3w do wszystkich agent\u00c3\u00b3w przez serwer."}
+{"event": "Redukuje to ilo\u00c5\u009b\u00c4\u0087 obowi\u00c4\u0085zk\u00c3\u00b3w administratora. Serwer z agentami utrzymuje"}
+{"event": "kontakt co 10 minut. Dodatkowo je\u00c5\u009bli serwer zostanie zaktualizowany"}
+{"event": "nowymi sygnaturami, przekazuje je wszystkim skonfigurowanym agentom."}
+{"event": "Aby uzyska\u00c4\u0087 wi\u00c4\u0099cej informacji zaj\u00c5\u00bcyj do dokumentacji zarz\u00c4\u0085dzania."}
+{"event": "Kroki wykonywane przez rootcheck w celu wykrycia rootkit\u00c3\u00b3w:"}
+{"event": "1- Czyta plik rootkit_files.txt, kt\u00c3\u00b3ry zawiera spor\u00c4\u0085 baze danych o"}
+{"event": "rootkitach i u\u00c5\u00bcywanych przez nie plik\u00c3\u00b3w. Pr\u00c3\u00b3buje wykona\u00c4\u0087: stats,"}
+{"event": "fopen i opendir na ka\u00c5\u00bcdym z takich plik\u00c3\u00b3w. U\u00c5\u00bcywa wszystkich tych"}
+{"event": "wywo\u00c5\u0082a\u00c5\u0084 systemowych, poniewa\u00c5\u00bc istniej\u00c4\u0085 rootkity pracuj\u00c4\u0085ce na poziomie"}
+{"event": "j\u00c4\u0085dra, kt\u00c3\u00b3re ukrywaj\u00c4\u0085 pliki przed niekt\u00c3\u00b3rymi wywo\u00c5\u0082aniami. Im wi\u00c4\u0099cej"}
+{"event": "u\u00c5\u00bcyjemy wywo\u00c5\u0082a\u00c5\u0084, tym lepsza b\u00c4\u0099dzie detekcja. Metoda jest podobna do"}
+{"event": "regu\u00c5\u0082y anty-virusa, potrzebuje nieustanntgo uaktualniania. Szanse"}
+{"event": "detekcji rootkita kt\u00c3\u00b3rego nie ma (false-positive) s\u00c4\u0085 ma\u00c5\u0082e, za to ju\u00c5\u00bc"}
+{"event": "szanse nie wykrycie rootkita (false-negative) rosn\u00c4\u0085 wraz z"}
+{"event": "modyfikacjami rootkit\u00c3\u00b3w."}
+{"event": "2- Czyta plik rootkit_trojans.txt kt\u00c3\u00b3ry zawiera baze danych sygnatur"}
+{"event": "plik\u00c3\u00b3w modyfikowanych na trojany przez rootkity. Technika modyfikacji"}
+{"event": "binari\u00c3\u00b3w na wersje z trojanami jest powszechnie u\u00c5\u00bcywana przez"}
+{"event": "wi\u00c4\u0099kszo\u00c5\u009b\u00c4\u0087 dost\u00c4\u0099pnych rootkit\u00c3\u00b3w. Nastepuj\u00c4\u0085ca metoda nie wykrywa"}
+{"event": "rootkit\u00c3\u00b3w poziomu j\u00c4\u0085dra ani \u00c5\u00bcadnych jeszcze nie znanych."}
+{"event": "3- Skanuje katalog /dev wyszukuj\u00c4\u0085c anomali. /dev powinien tylko zawiera\u00c4\u0087"}
+{"event": "pliki urz\u00c4\u0085dze\u00c5\u0084 oraz skrypt Makedev. Du\u00c5\u00bca cz\u00c4\u0099\u00c5\u009b\u00c4\u0087 rootkit\u00c3\u00b3w u\u00c5\u00bcywa"}
+{"event": "katalogu /dev w celu ukrycia plik\u00c3\u00b3w. Ta metoda mo\u00c5\u00bce wykry\u00c4\u0087 nieznane"}
+{"event": "dot\u00c4\u0085d rootkity."}
+{"event": "4- Skanuje ca\u00c5\u0082y system plik\u00c3\u00b3w szukaj\u00c4\u0085c niespotykanych plik\u00c3\u00b3w oraz"}
+{"event": "tych z podejrzanymi uprawnieiami. Pliki u\u00c5\u00bcytkownika root z"}
+{"event": "mo\u00c5\u00bcliwo\u00c5\u009bci\u00c4\u0085 zapisu dla innych s\u00c4\u0085 bardzo niebezpieczne, dlatego"}
+{"event": "rootkit wyszukuje takie. Pliki z ustawionym suid oraz ukryte katalogi"}
+{"event": "r\u00c3\u00b3wnie\u00c5\u00bc s\u00c4\u0085 sprawdane."}
+{"event": "5- Szuja ukrytych proces\u00c3\u00b3w. U\u00c5\u00bcywa getsid() oraz kill() do sprawdzenia"}
+{"event": "czy dany pid jest u\u00c5\u00bcywany. Je\u00c5\u009bli dany pid jest u\u00c5\u00bcywany, a \"ps\" nie"}
+{"event": "widzi go, wskazuje to na obecno\u00c5\u009b\u00c4\u0087 rootkita poziomu j\u00c4\u0085dra lub"}
+{"event": "zmodyfikowan\u00c4\u0085 wersj\u00c4\u0099 \"ps\". Weryfikuje tak\u00c5\u00bce wyniki kill i getsid,"}
+{"event": "kt\u00c3\u00b3re powinny by\u00c4\u0087 identyczne."}
+{"event": "6- Wyszukuje ukrytych port\u00c3\u00b3w. U\u00c5\u00bcywa bind() do sprawdzenia ka\u00c5\u00bcdego portu"}
+{"event": "tcp i udp w systemie. Je\u00c5\u009bli nie mo\u00c5\u00bcemy wykona\u00c4\u0087 bind na danym porcie"}
+{"event": "(czyli jest u\u00c5\u00bcywany), a \"netstat\" go nie pokazuje, to prawdopodobnie"}
+{"event": "mamy zainstalowanego rootkita."}
+{"event": "7- Skanuje wszystkie interfejsy w systemnie i wyszukuje te z w\u00c5\u0082\u00c4\u0085czonym"}
+{"event": "trybem \"promisc\". Je\u00c5\u009bli interfejs jest w trybie \"promisc\", \"ifconfig\""}
+{"event": "tego powinien pokaza\u00c4\u0087 to, je\u00c5\u009bli nie prawdopodobnie mamy"}
+{"event": "zainstalowanego rootkita."}
+{"event": "EOF"}

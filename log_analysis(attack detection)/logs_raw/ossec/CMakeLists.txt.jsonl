@@ -1,0 +1,217 @@
+{"event": "cmake_minimum_required(VERSION 2.4.4)"}
+{"event": "set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS ON)"}
+{"event": "project(zlib C)"}
+{"event": "set(VERSION \"1.2.11\")"}
+{"event": "option(ASM686 \"Enable building i686 assembly implementation\")"}
+{"event": "option(AMD64 \"Enable building amd64 assembly implementation\")"}
+{"event": "set(INSTALL_BIN_DIR \"${CMAKE_INSTALL_PREFIX}/bin\" CACHE PATH \"Installation directory for executables\")"}
+{"event": "set(INSTALL_LIB_DIR \"${CMAKE_INSTALL_PREFIX}/lib\" CACHE PATH \"Installation directory for libraries\")"}
+{"event": "set(INSTALL_INC_DIR \"${CMAKE_INSTALL_PREFIX}/include\" CACHE PATH \"Installation directory for headers\")"}
+{"event": "set(INSTALL_MAN_DIR \"${CMAKE_INSTALL_PREFIX}/share/man\" CACHE PATH \"Installation directory for manual pages\")"}
+{"event": "set(INSTALL_PKGCONFIG_DIR \"${CMAKE_INSTALL_PREFIX}/share/pkgconfig\" CACHE PATH \"Installation directory for pkgconfig (.pc) files\")"}
+{"event": "include(CheckTypeSize)"}
+{"event": "include(CheckFunctionExists)"}
+{"event": "include(CheckIncludeFile)"}
+{"event": "include(CheckCSourceCompiles)"}
+{"event": "enable_testing()"}
+{"event": "check_include_file(sys/types.h HAVE_SYS_TYPES_H)"}
+{"event": "check_include_file(stdint.h    HAVE_STDINT_H)"}
+{"event": "check_include_file(stddef.h    HAVE_STDDEF_H)"}
+{"event": "#"}
+{"event": "# Check to see if we have large file support"}
+{"event": "#"}
+{"event": "set(CMAKE_REQUIRED_DEFINITIONS -D_LARGEFILE64_SOURCE=1)"}
+{"event": "# We add these other definitions here because CheckTypeSize.cmake"}
+{"event": "# in CMake 2.4.x does not automatically do so and we want"}
+{"event": "# compatibility with CMake 2.4.x."}
+{"event": "if(HAVE_SYS_TYPES_H)"}
+{"event": "list(APPEND CMAKE_REQUIRED_DEFINITIONS -DHAVE_SYS_TYPES_H)"}
+{"event": "endif()"}
+{"event": "if(HAVE_STDINT_H)"}
+{"event": "list(APPEND CMAKE_REQUIRED_DEFINITIONS -DHAVE_STDINT_H)"}
+{"event": "endif()"}
+{"event": "if(HAVE_STDDEF_H)"}
+{"event": "list(APPEND CMAKE_REQUIRED_DEFINITIONS -DHAVE_STDDEF_H)"}
+{"event": "endif()"}
+{"event": "check_type_size(off64_t OFF64_T)"}
+{"event": "if(HAVE_OFF64_T)"}
+{"event": "add_definitions(-D_LARGEFILE64_SOURCE=1)"}
+{"event": "endif()"}
+{"event": "set(CMAKE_REQUIRED_DEFINITIONS) # clear variable"}
+{"event": "#"}
+{"event": "# Check for fseeko"}
+{"event": "#"}
+{"event": "check_function_exists(fseeko HAVE_FSEEKO)"}
+{"event": "if(NOT HAVE_FSEEKO)"}
+{"event": "add_definitions(-DNO_FSEEKO)"}
+{"event": "endif()"}
+{"event": "#"}
+{"event": "# Check for unistd.h"}
+{"event": "#"}
+{"event": "check_include_file(unistd.h Z_HAVE_UNISTD_H)"}
+{"event": "if(MSVC)"}
+{"event": "set(CMAKE_DEBUG_POSTFIX \"d\")"}
+{"event": "add_definitions(-D_CRT_SECURE_NO_DEPRECATE)"}
+{"event": "add_definitions(-D_CRT_NONSTDC_NO_DEPRECATE)"}
+{"event": "include_directories(${CMAKE_CURRENT_SOURCE_DIR})"}
+{"event": "endif()"}
+{"event": "if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)"}
+{"event": "# If we're doing an out of source build and the user has a zconf.h"}
+{"event": "# in their source tree..."}
+{"event": "if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h)"}
+{"event": "message(STATUS \"Renaming\")"}
+{"event": "message(STATUS \"    ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h\")"}
+{"event": "message(STATUS \"to 'zconf.h.included' because this file is included with zlib\")"}
+{"event": "message(STATUS \"but CMake generates it automatically in the build directory.\")"}
+{"event": "file(RENAME ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h.included)"}
+{"event": "endif()"}
+{"event": "endif()"}
+{"event": "set(ZLIB_PC ${CMAKE_CURRENT_BINARY_DIR}/zlib.pc)"}
+{"event": "configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/zlib.pc.cmakein"}
+{"event": "${ZLIB_PC} @ONLY)"}
+{"event": "configure_file(\t${CMAKE_CURRENT_SOURCE_DIR}/zconf.h.cmakein"}
+{"event": "${CMAKE_CURRENT_BINARY_DIR}/zconf.h @ONLY)"}
+{"event": "include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR})"}
+{"event": "#============================================================================"}
+{"event": "# zlib"}
+{"event": "#============================================================================"}
+{"event": "set(ZLIB_PUBLIC_HDRS"}
+{"event": "${CMAKE_CURRENT_BINARY_DIR}/zconf.h"}
+{"event": "zlib.h"}
+{"event": ")"}
+{"event": "set(ZLIB_PRIVATE_HDRS"}
+{"event": "crc32.h"}
+{"event": "deflate.h"}
+{"event": "gzguts.h"}
+{"event": "inffast.h"}
+{"event": "inffixed.h"}
+{"event": "inflate.h"}
+{"event": "inftrees.h"}
+{"event": "trees.h"}
+{"event": "zutil.h"}
+{"event": ")"}
+{"event": "set(ZLIB_SRCS"}
+{"event": "adler32.c"}
+{"event": "compress.c"}
+{"event": "crc32.c"}
+{"event": "deflate.c"}
+{"event": "gzclose.c"}
+{"event": "gzlib.c"}
+{"event": "gzread.c"}
+{"event": "gzwrite.c"}
+{"event": "inflate.c"}
+{"event": "infback.c"}
+{"event": "inftrees.c"}
+{"event": "inffast.c"}
+{"event": "trees.c"}
+{"event": "uncompr.c"}
+{"event": "zutil.c"}
+{"event": ")"}
+{"event": "if(NOT MINGW)"}
+{"event": "set(ZLIB_DLL_SRCS"}
+{"event": "win32/zlib1.rc # If present will override custom build rule below."}
+{"event": ")"}
+{"event": "endif()"}
+{"event": "if(CMAKE_COMPILER_IS_GNUCC)"}
+{"event": "if(ASM686)"}
+{"event": "set(ZLIB_ASMS contrib/asm686/match.S)"}
+{"event": "elseif (AMD64)"}
+{"event": "set(ZLIB_ASMS contrib/amd64/amd64-match.S)"}
+{"event": "endif ()"}
+{"event": "if(ZLIB_ASMS)"}
+{"event": "add_definitions(-DASMV)"}
+{"event": "set_source_files_properties(${ZLIB_ASMS} PROPERTIES LANGUAGE C COMPILE_FLAGS -DNO_UNDERLINE)"}
+{"event": "endif()"}
+{"event": "endif()"}
+{"event": "if(MSVC)"}
+{"event": "if(ASM686)"}
+{"event": "ENABLE_LANGUAGE(ASM_MASM)"}
+{"event": "set(ZLIB_ASMS"}
+{"event": "contrib/masmx86/inffas32.asm"}
+{"event": "contrib/masmx86/match686.asm"}
+{"event": ")"}
+{"event": "elseif (AMD64)"}
+{"event": "ENABLE_LANGUAGE(ASM_MASM)"}
+{"event": "set(ZLIB_ASMS"}
+{"event": "contrib/masmx64/gvmat64.asm"}
+{"event": "contrib/masmx64/inffasx64.asm"}
+{"event": ")"}
+{"event": "endif()"}
+{"event": "if(ZLIB_ASMS)"}
+{"event": "add_definitions(-DASMV -DASMINF)"}
+{"event": "endif()"}
+{"event": "endif()"}
+{"event": "# parse the full version number from zlib.h and include in ZLIB_FULL_VERSION"}
+{"event": "file(READ ${CMAKE_CURRENT_SOURCE_DIR}/zlib.h _zlib_h_contents)"}
+{"event": "string(REGEX REPLACE \".*#define[ \\t]+ZLIB_VERSION[ \\t]+\\\"([-0-9A-Za-z.]+)\\\".*\""}
+{"event": "\"\\\\1\" ZLIB_FULL_VERSION ${_zlib_h_contents})"}
+{"event": "if(MINGW)"}
+{"event": "# This gets us DLL resource information when compiling on MinGW."}
+{"event": "if(NOT CMAKE_RC_COMPILER)"}
+{"event": "set(CMAKE_RC_COMPILER windres.exe)"}
+{"event": "endif()"}
+{"event": "add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/zlib1rc.obj"}
+{"event": "COMMAND ${CMAKE_RC_COMPILER}"}
+{"event": "-D GCC_WINDRES"}
+{"event": "-I ${CMAKE_CURRENT_SOURCE_DIR}"}
+{"event": "-I ${CMAKE_CURRENT_BINARY_DIR}"}
+{"event": "-o ${CMAKE_CURRENT_BINARY_DIR}/zlib1rc.obj"}
+{"event": "-i ${CMAKE_CURRENT_SOURCE_DIR}/win32/zlib1.rc)"}
+{"event": "set(ZLIB_DLL_SRCS ${CMAKE_CURRENT_BINARY_DIR}/zlib1rc.obj)"}
+{"event": "endif(MINGW)"}
+{"event": "add_library(zlib SHARED ${ZLIB_SRCS} ${ZLIB_ASMS} ${ZLIB_DLL_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})"}
+{"event": "add_library(zlibstatic STATIC ${ZLIB_SRCS} ${ZLIB_ASMS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})"}
+{"event": "set_target_properties(zlib PROPERTIES DEFINE_SYMBOL ZLIB_DLL)"}
+{"event": "set_target_properties(zlib PROPERTIES SOVERSION 1)"}
+{"event": "if(NOT CYGWIN)"}
+{"event": "# This property causes shared libraries on Linux to have the full version"}
+{"event": "# encoded into their final filename.  We disable this on Cygwin because"}
+{"event": "# it causes cygz-${ZLIB_FULL_VERSION}.dll to be created when cygz.dll"}
+{"event": "# seems to be the default."}
+{"event": "#"}
+{"event": "# This has no effect with MSVC, on that platform the version info for"}
+{"event": "# the DLL comes from the resource file win32/zlib1.rc"}
+{"event": "set_target_properties(zlib PROPERTIES VERSION ${ZLIB_FULL_VERSION})"}
+{"event": "endif()"}
+{"event": "if(UNIX)"}
+{"event": "# On unix-like platforms the library is almost always called libz"}
+{"event": "set_target_properties(zlib zlibstatic PROPERTIES OUTPUT_NAME z)"}
+{"event": "if(NOT APPLE)"}
+{"event": "set_target_properties(zlib PROPERTIES LINK_FLAGS \"-Wl,--version-script,\\\"${CMAKE_CURRENT_SOURCE_DIR}/zlib.map\\\"\")"}
+{"event": "endif()"}
+{"event": "elseif(BUILD_SHARED_LIBS AND WIN32)"}
+{"event": "# Creates zlib1.dll when building shared library version"}
+{"event": "set_target_properties(zlib PROPERTIES SUFFIX \"1.dll\")"}
+{"event": "endif()"}
+{"event": "if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL )"}
+{"event": "install(TARGETS zlib zlibstatic"}
+{"event": "RUNTIME DESTINATION \"${INSTALL_BIN_DIR}\""}
+{"event": "ARCHIVE DESTINATION \"${INSTALL_LIB_DIR}\""}
+{"event": "LIBRARY DESTINATION \"${INSTALL_LIB_DIR}\" )"}
+{"event": "endif()"}
+{"event": "if(NOT SKIP_INSTALL_HEADERS AND NOT SKIP_INSTALL_ALL )"}
+{"event": "install(FILES ${ZLIB_PUBLIC_HDRS} DESTINATION \"${INSTALL_INC_DIR}\")"}
+{"event": "endif()"}
+{"event": "if(NOT SKIP_INSTALL_FILES AND NOT SKIP_INSTALL_ALL )"}
+{"event": "install(FILES zlib.3 DESTINATION \"${INSTALL_MAN_DIR}/man3\")"}
+{"event": "endif()"}
+{"event": "if(NOT SKIP_INSTALL_FILES AND NOT SKIP_INSTALL_ALL )"}
+{"event": "install(FILES ${ZLIB_PC} DESTINATION \"${INSTALL_PKGCONFIG_DIR}\")"}
+{"event": "endif()"}
+{"event": "#============================================================================"}
+{"event": "# Example binaries"}
+{"event": "#============================================================================"}
+{"event": "add_executable(example test/example.c)"}
+{"event": "target_link_libraries(example zlib)"}
+{"event": "add_test(example example)"}
+{"event": "add_executable(minigzip test/minigzip.c)"}
+{"event": "target_link_libraries(minigzip zlib)"}
+{"event": "if(HAVE_OFF64_T)"}
+{"event": "add_executable(example64 test/example.c)"}
+{"event": "target_link_libraries(example64 zlib)"}
+{"event": "set_target_properties(example64 PROPERTIES COMPILE_FLAGS \"-D_FILE_OFFSET_BITS=64\")"}
+{"event": "add_test(example64 example64)"}
+{"event": "add_executable(minigzip64 test/minigzip.c)"}
+{"event": "target_link_libraries(minigzip64 zlib)"}
+{"event": "set_target_properties(minigzip64 PROPERTIES COMPILE_FLAGS \"-D_FILE_OFFSET_BITS=64\")"}
+{"event": "endif()"}

@@ -1,0 +1,74 @@
+{"event": "ZLIB DATA COMPRESSION LIBRARY"}
+{"event": "zlib 1.2.11 is a general purpose data compression library.  All the code is"}
+{"event": "thread safe.  The data format used by the zlib library is described by RFCs"}
+{"event": "(Request for Comments) 1950 to 1952 in the files"}
+{"event": "http://www.ietf.org/rfc/rfc1950.txt (zlib format), rfc1951.txt (deflate format)"}
+{"event": "and rfc1952.txt (gzip format)."}
+{"event": "All functions of the compression library are documented in the file zlib.h"}
+{"event": "(volunteer to write man pages welcome, contact zlib@gzip.org).  Two compiled"}
+{"event": "examples are distributed in this package, example and minigzip.  The example_d"}
+{"event": "and minigzip_d flavors validate that the zlib1.dll file is working correctly."}
+{"event": "Questions about zlib should be sent to <zlib@gzip.org>.  The zlib home page"}
+{"event": "is http://zlib.net/ .  Before reporting a problem, please check this site to"}
+{"event": "verify that you have the latest version of zlib; otherwise get the latest"}
+{"event": "version and check whether the problem still exists or not."}
+{"event": "PLEASE read DLL_FAQ.txt, and the the zlib FAQ http://zlib.net/zlib_faq.html"}
+{"event": "before asking for help."}
+{"event": "Manifest:"}
+{"event": "The package zlib-1.2.11-win32-x86.zip will contain the following files:"}
+{"event": "README-WIN32.txt This document"}
+{"event": "ChangeLog        Changes since previous zlib packages"}
+{"event": "DLL_FAQ.txt      Frequently asked questions about zlib1.dll"}
+{"event": "zlib.3.pdf       Documentation of this library in Adobe Acrobat format"}
+{"event": "example.exe      A statically-bound example (using zlib.lib, not the dll)"}
+{"event": "example.pdb      Symbolic information for debugging example.exe"}
+{"event": "example_d.exe    A zlib1.dll bound example (using zdll.lib)"}
+{"event": "example_d.pdb    Symbolic information for debugging example_d.exe"}
+{"event": "minigzip.exe     A statically-bound test program (using zlib.lib, not the dll)"}
+{"event": "minigzip.pdb     Symbolic information for debugging minigzip.exe"}
+{"event": "minigzip_d.exe   A zlib1.dll bound test program (using zdll.lib)"}
+{"event": "minigzip_d.pdb   Symbolic information for debugging minigzip_d.exe"}
+{"event": "zlib.h           Install these files into the compilers' INCLUDE path to"}
+{"event": "zconf.h          compile programs which use zlib.lib or zdll.lib"}
+{"event": "zdll.lib         Install these files into the compilers' LIB path if linking"}
+{"event": "zdll.exp         a compiled program to the zlib1.dll binary"}
+{"event": "zlib.lib         Install these files into the compilers' LIB path to link zlib"}
+{"event": "zlib.pdb         into compiled programs, without zlib1.dll runtime dependency"}
+{"event": "(zlib.pdb provides debugging info to the compile time linker)"}
+{"event": "zlib1.dll        Install this binary shared library into the system PATH, or"}
+{"event": "the program's runtime directory (where the .exe resides)"}
+{"event": "zlib1.pdb        Install in the same directory as zlib1.dll, in order to debug"}
+{"event": "an application crash using WinDbg or similar tools."}
+{"event": "All .pdb files above are entirely optional, but are very useful to a developer"}
+{"event": "attempting to diagnose program misbehavior or a crash.  Many additional"}
+{"event": "important files for developers can be found in the zlib127.zip source package"}
+{"event": "available from http://zlib.net/ - review that package's README file for details."}
+{"event": "Acknowledgments:"}
+{"event": "The deflate format used by zlib was defined by Phil Katz.  The deflate and"}
+{"event": "zlib specifications were written by L.  Peter Deutsch.  Thanks to all the"}
+{"event": "people who reported problems and suggested various improvements in zlib; they"}
+{"event": "are too numerous to cite here."}
+{"event": "Copyright notice:"}
+{"event": "(C) 1995-2017 Jean-loup Gailly and Mark Adler"}
+{"event": "This software is provided 'as-is', without any express or implied"}
+{"event": "warranty.  In no event will the authors be held liable for any damages"}
+{"event": "arising from the use of this software."}
+{"event": "Permission is granted to anyone to use this software for any purpose,"}
+{"event": "including commercial applications, and to alter it and redistribute it"}
+{"event": "freely, subject to the following restrictions:"}
+{"event": "1. The origin of this software must not be misrepresented; you must not"}
+{"event": "claim that you wrote the original software. If you use this software"}
+{"event": "in a product, an acknowledgment in the product documentation would be"}
+{"event": "appreciated but is not required."}
+{"event": "2. Altered source versions must be plainly marked as such, and must not be"}
+{"event": "misrepresented as being the original software."}
+{"event": "3. This notice may not be removed or altered from any source distribution."}
+{"event": "Jean-loup Gailly        Mark Adler"}
+{"event": "jloup@gzip.org          madler@alumni.caltech.edu"}
+{"event": "If you use the zlib library in a product, we would appreciate *not* receiving"}
+{"event": "lengthy legal documents to sign.  The sources are provided for free but without"}
+{"event": "warranty of any kind.  The library has been entirely written by Jean-loup"}
+{"event": "Gailly and Mark Adler; it does not include third-party code."}
+{"event": "If you redistribute modified sources, we would appreciate that you include in"}
+{"event": "the file ChangeLog history information documenting your changes.  Please read"}
+{"event": "the FAQ for more information on the distribution of modified source versions."}

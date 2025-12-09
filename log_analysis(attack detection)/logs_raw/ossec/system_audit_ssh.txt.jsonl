@@ -1,0 +1,61 @@
+{"event": "#  SSH Rootcheck"}
+{"event": "#"}
+{"event": "#  v1.0 2016/01/20"}
+{"event": "#  Created by Wazuh, Inc. <ossec@wazuh.com>."}
+{"event": "#  jesus@wazuh.com"}
+{"event": "#  This program is a free software; you can redistribute it and/or modify it under the terms of GPLv2"}
+{"event": "#"}
+{"event": "$sshd_file=/etc/ssh/sshd_config;"}
+{"event": "# Listen PORT != 22"}
+{"event": "# The option Port specifies on which port number ssh daemon listens for incoming connections."}
+{"event": "# Changing the default port you may reduce the number of successful attacks from zombie bots, an attacker or bot doing port-scanning can quickly identify your SSH port."}
+{"event": "[SSH Hardening - 1: Port 22 {PCI_DSS: 2.2.4}] [any] [1]"}
+{"event": "f:$sshd_file -> !r:^# && r:Port\\.+22;"}
+{"event": "# Protocol 2"}
+{"event": "# The Protocol parameter dictates which version of the SSH communication and encryption protocols are in use."}
+{"event": "# Version 1 of the SSH protocol has weaknesses."}
+{"event": "[SSH Hardening - 2: Protocol 1 {PCI_DSS: 2.2.4}] [any] [2]"}
+{"event": "f:$sshd_file -> !r:^# && r:Protocol\\.+1;"}
+{"event": "# PermitRootLogin no"}
+{"event": "# The option PermitRootLogin specifies whether root can log in using ssh."}
+{"event": "# If you want log in as root, you should use the option \"Match\" and restrict it to a few IP addresses."}
+{"event": "[SSH Hardening - 3: Root can log in] [any] [3]"}
+{"event": "f:$sshd_file -> !r:^# && r:PermitRootLogin\\.+yes;"}
+{"event": "f:$sshd_file -> r:^#\\s*PermitRootLogin;"}
+{"event": "# PubkeyAuthentication yes"}
+{"event": "# Access only by public key"}
+{"event": "# Generally people will use weak passwords and have poor password practices. Keys are considered stronger than password."}
+{"event": "[SSH Hardening - 4: No Public Key autentication {PCI_DSS: 2.2.4}] [any] [4]"}
+{"event": "f:$sshd_file -> !r:^# && r:PubkeyAuthentication\\.+no;"}
+{"event": "f:$sshd_file -> r:^#\\s*PubkeyAuthentication;"}
+{"event": "# PasswordAuthentication no"}
+{"event": "# The option PasswordAuthentication specifies whether we should use password-based authentication."}
+{"event": "# Use public key authentication instead of passwords"}
+{"event": "[SSH Hardening - 5: Password Authentication {PCI_DSS: 2.2.4}] [any] [5]"}
+{"event": "f:$sshd_file -> !r:^# && r:PasswordAuthentication\\.+yes;"}
+{"event": "f:$sshd_file -> r:^#\\s*PasswordAuthentication;"}
+{"event": "# PermitEmptyPasswords no"}
+{"event": "# The option PermitEmptyPasswords specifies whether the server allows logging in to accounts with a null password"}
+{"event": "# Accounts with null passwords are a bad practice."}
+{"event": "[SSH Hardening - 6: Empty passwords allowed {PCI_DSS: 2.2.4}] [any] [6]"}
+{"event": "f:$sshd_file -> !r:^# && r:PermitEmptyPasswords\\.+yes;"}
+{"event": "f:$sshd_file -> r:^#\\s*PermitEmptyPasswords;"}
+{"event": "# IgnoreRhosts yes"}
+{"event": "# The option IgnoreRhosts specifies whether rhosts or shosts files should not be used in authentication."}
+{"event": "# For security reasons it is recommended to no use rhosts or shosts files for authentication."}
+{"event": "[SSH Hardening - 7: Rhost or shost used for authentication {PCI_DSS: 2.2.4}] [any] [7]"}
+{"event": "f:$sshd_file -> !r:^# && r:IgnoreRhosts\\.+no;"}
+{"event": "f:$sshd_file -> r:^#\\s*IgnoreRhosts;"}
+{"event": "# LoginGraceTime 30"}
+{"event": "# The option LoginGraceTime specifies how long in seconds after a connection request the server will wait before disconnecting if the user has not successfully logged in."}
+{"event": "# 30 seconds is the recommended time for avoiding open connections without authenticate"}
+{"event": "[SSH Hardening - 8: Wrong Grace Time {PCI_DSS: 2.2.4}] [any] [8]"}
+{"event": "f:$sshd_file -> !r:^# && r:LoginGraceTime && !r:30\\s*$;"}
+{"event": "f:$sshd_file -> r:^#\\s*LoginGraceTime;"}
+{"event": "# MaxAuthTries 3"}
+{"event": "# The MaxAuthTries parameter specifices the maximum number of authentication attempts permitted per connection. Once the number of failures reaches half this value, additional failures are logged."}
+{"event": "# This should be set to 3."}
+{"event": "[SSH Hardening - 9: Wrong Maximum number of authentication attempts {PCI_DSS: 2.2.4}] [any] [9]"}
+{"event": "f:$sshd_file -> !r:^# && r:MaxAuthTries && !r:3\\s*$;"}
+{"event": "f:$sshd_file -> r:^#\\s*MaxAuthTries;"}
+{"event": "f:$sshd_file -> !r:MaxAuthTries;"}

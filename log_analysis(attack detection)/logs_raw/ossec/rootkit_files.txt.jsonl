@@ -1,0 +1,355 @@
+{"event": "# rootkit_files.txt, (C) 2018 OSSEC Project"}
+{"event": "# Imported from the rootcheck project."}
+{"event": "#"}
+{"event": "# Released under the same license as OSSEC."}
+{"event": "# More details at the LICENSE file included with OSSEC or online"}
+{"event": "# at: https://github.com/ossec/ossec-hids/blob/master/LICENSE"}
+{"event": "#"}
+{"event": "# Blank lines and lines starting with '#' are ignored."}
+{"event": "#"}
+{"event": "# Each line must be in the following format:"}
+{"event": "# file_name ! Name ::Link to it"}
+{"event": "#"}
+{"event": "# Files that start with an '*' will be searched in the whole system."}
+{"event": "# Bash door"}
+{"event": "tmp/mcliZokhb           ! Bash door ::/rootkits/bashdoor.php"}
+{"event": "tmp/mclzaKmfa           ! Bash door ::/rootkits/bashdoor.php"}
+{"event": "# adore Worm"}
+{"event": "dev/.shit/red.tgz       ! Adore Worm ::/rootkits/adorew.php"}
+{"event": "usr/lib/libt            ! Adore Worm ::/rootkits/adorew.php"}
+{"event": "usr/bin/adore           ! Adore Worm ::/rootkits/adorew.php"}
+{"event": "*/klogd.o               ! Adore Worm ::/rootkits/adorew.php"}
+{"event": "*/red.tar               ! Adore Worm ::/rootkits/adorew.php"}
+{"event": "# T.R.K rootkit"}
+{"event": "usr/bin/soucemask       ! TRK rootkit ::/rootkits/trk.php"}
+{"event": "usr/bin/sourcemask      ! TRK rootkit ::/rootkits/trk.php"}
+{"event": "# 55.808.A Worm"}
+{"event": "tmp/.../a               ! 55808.A Worm ::"}
+{"event": "tmp/.../r               ! 55808.A Worm ::"}
+{"event": "# Volc Rootkit"}
+{"event": "usr/lib/volc            ! Volc Rootkit ::"}
+{"event": "usr/bin/volc            ! Volc Rootkit ::"}
+{"event": "# Illogic"}
+{"event": "lib/security/.config    ! Illogic Rootkit ::rootkits/illogic.php"}
+{"event": "usr/bin/sia             ! Illogic Rootkit ::rootkits/illogic.php"}
+{"event": "etc/ld.so.hash          ! Illogic Rootkit ::rootkits/illogic.php"}
+{"event": "*/uconf.inv             ! Illogic Rootkit ::rootkits/illogic.php"}
+{"event": "# T0rnkit"}
+{"event": "usr/src/.puta           ! t0rn Rootkit ::rootkits/torn.php"}
+{"event": "usr/info/.t0rn          ! t0rn Rootkit ::rootkits/torn.php"}
+{"event": "lib/ldlib.tk            ! t0rn Rootkit ::rootkits/torn.php"}
+{"event": "etc/ttyhash             ! t0rn Rootkit ::rootkits/torn.php"}
+{"event": "sbin/xlogin             ! t0rn Rootkit ::rootkits/torn.php"}
+{"event": "*/ldlib.tk              ! t0rn Rootkit ::rootkits/torn.php"}
+{"event": "*/.t0rn                 ! t0rn Rootkit ::rootkits/torn.php"}
+{"event": "*/.puta                 ! t0rn Rootkit ::rootkits/torn.php"}
+{"event": "# RK17"}
+{"event": "bin/rtty                        ! RK17 ::"}
+{"event": "bin/squit                       ! RK17 ::"}
+{"event": "sbin/pback                      ! RK17 ::"}
+{"event": "proc/kset                       ! RK17 ::"}
+{"event": "usr/src/linux/modules/autod.o   ! RK17 ::"}
+{"event": "usr/src/linux/modules/soundx.o  ! RK17 ::"}
+{"event": "# Ramen Worm"}
+{"event": "usr/lib/ldlibps.so      ! Ramen Worm ::rootkits/ramen.php"}
+{"event": "usr/lib/ldlibns.so      ! Ramen Worm ::rootkits/ramen.php"}
+{"event": "usr/lib/ldliblogin.so   ! Ramen Worm ::rootkits/ramen.php"}
+{"event": "usr/src/.poop           ! Ramen Worm ::rootkits/ramen.php"}
+{"event": "tmp/ramen.tgz           ! Ramen Worm ::rootkits/ramen.php"}
+{"event": "etc/xinetd.d/asp        ! Ramen Worm ::rootkits/ramen.php"}
+{"event": "# Sadmind/IIS Worm"}
+{"event": "dev/cuc                 ! Sadmind/IIS Worm ::"}
+{"event": "# Monkit"}
+{"event": "lib/defs                ! Monkit ::"}
+{"event": "usr/lib/libpikapp.a     ! Monkit found ::"}
+{"event": "# RSHA"}
+{"event": "usr/bin/kr4p            ! RSHA ::"}
+{"event": "usr/bin/n3tstat         ! RSHA ::"}
+{"event": "usr/bin/chsh2           ! RSHA ::"}
+{"event": "usr/bin/slice2          ! RSHA ::"}
+{"event": "etc/rc.d/rsha           ! RSHA ::"}
+{"event": "# ShitC worm"}
+{"event": "bin/home                ! ShitC ::"}
+{"event": "sbin/home               ! ShitC ::"}
+{"event": "usr/sbin/in.slogind     ! ShitC ::"}
+{"event": "# Omega Worm"}
+{"event": "dev/chr                 ! Omega Worm ::"}
+{"event": "# rh-sharpe"}
+{"event": "bin/.ps                 ! Rh-Sharpe ::"}
+{"event": "usr/bin/cleaner         ! Rh-Sharpe ::"}
+{"event": "usr/bin/slice           ! Rh-Sharpe ::"}
+{"event": "usr/bin/vadim           ! Rh-Sharpe ::"}
+{"event": "usr/bin/.ps             ! Rh-Sharpe ::"}
+{"event": "bin/.lpstree            ! Rh-Sharpe ::"}
+{"event": "usr/bin/.lpstree        ! Rh-Sharpe ::"}
+{"event": "usr/bin/lnetstat        ! Rh-Sharpe ::"}
+{"event": "bin/lnetstat            ! Rh-Sharpe ::"}
+{"event": "usr/bin/ldu             ! Rh-Sharpe ::"}
+{"event": "bin/ldu                 ! Rh-Sharpe ::"}
+{"event": "usr/bin/lkillall        ! Rh-Sharpe ::"}
+{"event": "bin/lkillall            ! Rh-Sharpe ::"}
+{"event": "usr/include/rpcsvc/du   ! Rh-Sharpe ::"}
+{"event": "# Maniac RK"}
+{"event": "usr/bin/mailrc          ! Maniac RK ::"}
+{"event": "# Showtee / Romanian"}
+{"event": "usr/lib/.egcs           ! Showtee ::"}
+{"event": "usr/lib/.wormie         ! Showtee ::"}
+{"event": "usr/lib/.kinetic        ! Showtee ::"}
+{"event": "usr/lib/liblog.o        ! Showtee ::"}
+{"event": "usr/include/addr.h      ! Showtee / Romanian rootkit ::"}
+{"event": "usr/include/cron.h      ! Showtee ::"}
+{"event": "usr/include/file.h      ! Showtee / Romanian rootkit ::"}
+{"event": "usr/include/syslogs.h   ! Showtee / Romanian rootkit ::"}
+{"event": "usr/include/proc.h      ! Showtee / Romanian rootkit ::"}
+{"event": "usr/include/chk.h       ! Showtee ::"}
+{"event": "usr/sbin/initdl         ! Romanian rootkit ::"}
+{"event": "usr/sbin/xntps          ! Romanian rootkit ::"}
+{"event": "# Optickit"}
+{"event": "usr/bin/xchk            ! Optickit ::"}
+{"event": "usr/bin/xsf             ! Optickit ::"}
+{"event": "# LDP worm"}
+{"event": "dev/.kork           ! LDP Worm ::"}
+{"event": "bin/.login          ! LDP Worm ::"}
+{"event": "bin/.ps             ! LDP Worm ::"}
+{"event": "# Telekit"}
+{"event": "dev/hda06           ! TeLeKit trojan ::"}
+{"event": "usr/info/libc1.so   ! TeleKit trojan ::"}
+{"event": "# Tribe bot"}
+{"event": "dev/wd4     ! Tribe bot ::"}
+{"event": "# LRK"}
+{"event": "dev/ida/.inet       ! LRK rootkit ::rootkits/lrk.php"}
+{"event": "*/bindshell         ! LRK rootkit ::rootkits/lrk.php"}
+{"event": "# Adore Rootkit"}
+{"event": "etc/bin/ava         ! Adore Rootkit ::"}
+{"event": "etc/sbin/ava        ! Adore Rootkit ::"}
+{"event": "# Slapper"}
+{"event": "tmp/.bugtraq            ! Slapper installed ::"}
+{"event": "tmp/.bugtraq.c          ! Slapper installed ::"}
+{"event": "tmp/.cinik              ! Slapper installed ::"}
+{"event": "tmp/.b                  ! Slapper installed ::"}
+{"event": "tmp/httpd               ! Slapper installed ::"}
+{"event": "tmp./update             ! Slapper installed ::"}
+{"event": "tmp/.unlock             ! Slapper installed ::"}
+{"event": "tmp/.font-unix/.cinik   ! Slapper installed ::"}
+{"event": "tmp/.cinik              ! Slapper installed ::"}
+{"event": "# Scalper"}
+{"event": "tmp/.uua            ! Scalper installed ::"}
+{"event": "tmp/.a              ! Scalper installed ::"}
+{"event": "# Knark"}
+{"event": "proc/knark          ! Knark Installed ::rootkits/knark.php"}
+{"event": "dev/.pizda          ! Knark Installed ::rootkits/knark.php"}
+{"event": "dev/.pula           ! Knark Installed ::rootkits/knark.php"}
+{"event": "dev/.pula           ! Knark Installed ::rootkits/knark.php"}
+{"event": "*/taskhack          ! Knark Installed ::rootkits/knark.php"}
+{"event": "*/rootme            ! Knark Installed ::rootkits/knark.php"}
+{"event": "*/nethide           ! Knark Installed ::rootkits/knark.php"}
+{"event": "*/hidef             ! Knark Installed ::rootkits/knark.php"}
+{"event": "*/ered              ! Knark Installed ::rootkits/knark.php"}
+{"event": "# Lion worm"}
+{"event": "dev/.lib            ! Lion Worm ::rootkits/lion.php"}
+{"event": "dev/.lib/1iOn.sh    ! Lion Worm ::rootkits/lion.php"}
+{"event": "bin/mjy             ! Lion Worm ::rootkits/lion.php"}
+{"event": "bin/in.telnetd      ! Lion Worm ::rootkits/lion.php"}
+{"event": "usr/info/torn       ! Lion Worm ::rootkits/lion.php"}
+{"event": "*/1iOn\\.sh          ! Lion Worm ::rootkits/lion.php"}
+{"event": "# Bobkit"}
+{"event": "usr/include/.../        ! Bobkit Rootkit ::rootkits/bobkit.php"}
+{"event": "usr/lib/.../            ! Bobkit Rootkit ::rootkits/bobkit.php"}
+{"event": "usr/sbin/.../           ! Bobkit Rootkit ::rootkits/bobkit.php"}
+{"event": "usr/bin/ntpsx           ! Bobkit Rootkit ::rootkits/bobkit.php"}
+{"event": "tmp/.bkp                ! Bobkit Rootkit ::rootkits/bobkit.php"}
+{"event": "usr/lib/.bkit-          ! Bobkit Rootkit ::rootkits/bobkit.php"}
+{"event": "*/bkit-                 ! Bobkit Rootkit ::rootkits/bobkit.php"}
+{"event": "# Hidrootkit"}
+{"event": "var/lib/games/.k        ! Hidr00tkit ::"}
+{"event": "# Ark"}
+{"event": "dev/ptyxx       ! Ark rootkit ::"}
+{"event": "# Mithra Rootkit"}
+{"event": "usr/lib/locale/uboot        ! Mithra`s rootkit ::"}
+{"event": "# Optickit"}
+{"event": "usr/bin/xsf         ! OpticKit ::"}
+{"event": "usr/bin/xchk        ! OpticKit ::"}
+{"event": "# LOC rookit"}
+{"event": "tmp/xp          ! LOC rookit ::"}
+{"event": "tmp/kidd0.c     ! LOC rookit ::"}
+{"event": "tmp/kidd0       ! LOC rookit ::"}
+{"event": "# TC2 worm"}
+{"event": "usr/info/.tc2k      ! TC2 Worm ::"}
+{"event": "usr/bin/util        ! TC2 Worm ::"}
+{"event": "usr/sbin/initcheck  ! TC2 Worm ::"}
+{"event": "usr/sbin/ldb        ! TC2 Worm ::"}
+{"event": "# Anonoiyng rootkit"}
+{"event": "usr/sbin/mech       ! Anonoiyng rootkit ::"}
+{"event": "usr/sbin/kswapd     ! Anonoiyng rootkit ::"}
+{"event": "# SuckIt"}
+{"event": "lib/.x              ! SuckIt rootkit ::"}
+{"event": "*/hide.log          ! Suckit rootkit ::"}
+{"event": "lib/sk              ! SuckIT rootkit ::"}
+{"event": "# Beastkit"}
+{"event": "usr/local/bin/bin       ! Beastkit rootkit ::rootkits/beastkit.php"}
+{"event": "usr/man/.man10          ! Beastkit rootkit ::rootkits/beastkit.php"}
+{"event": "usr/sbin/arobia         ! Beastkit rootkit ::rootkits/beastkit.php"}
+{"event": "usr/lib/elm/arobia      ! Beastkit rootkit ::rootkits/beastkit.php"}
+{"event": "usr/local/bin/.../bktd  ! Beastkit rootkit ::rootkits/beastkit.php"}
+{"event": "# Tuxkit"}
+{"event": "dev/tux             ! Tuxkit rootkit ::rootkits/Tuxkit.php"}
+{"event": "usr/bin/xsf         ! Tuxkit rootkit ::rootkits/Tuxkit.php"}
+{"event": "usr/bin/xchk        ! Tuxkit rootkit ::rootkits/Tuxkit.php"}
+{"event": "*/.file             ! Tuxkit rootkit ::rootkits/Tuxkit.php"}
+{"event": "*/.addr             ! Tuxkit rootkit ::rootkits/Tuxkit.php"}
+{"event": "# Old rootkits"}
+{"event": "usr/include/rpc/ ../kit     ! Old rootkits ::rootkits/Old.php"}
+{"event": "usr/include/rpc/ ../kit2    ! Old rootkits ::rootkits/Old.php"}
+{"event": "usr/doc/.sl                 ! Old rootkits ::rootkits/Old.php"}
+{"event": "usr/doc/.sp                 ! Old rootkits ::rootkits/Old.php"}
+{"event": "usr/doc/.statnet            ! Old rootkits ::rootkits/Old.php"}
+{"event": "usr/doc/.logdsys            ! Old rootkits ::rootkits/Old.php"}
+{"event": "usr/doc/.dpct               ! Old rootkits ::rootkits/Old.php"}
+{"event": "usr/doc/.gifnocfi           ! Old rootkits ::rootkits/Old.php"}
+{"event": "usr/doc/.dnif               ! Old rootkits ::rootkits/Old.php"}
+{"event": "usr/doc/.nigol              ! Old rootkits ::rootkits/Old.php"}
+{"event": "# Kenga3 rootkit"}
+{"event": "usr/include/. .         ! Kenga3 rootkit"}
+{"event": "# ESRK rootkit"}
+{"event": "usr/lib/tcl5.3          ! ESRK rootkit"}
+{"event": "# Fu rootkit"}
+{"event": "sbin/xc                 ! Fu rootkit"}
+{"event": "usr/include/ivtype.h    ! Fu rootkit"}
+{"event": "bin/.lib                ! Fu rootkit"}
+{"event": "# ShKit rootkit"}
+{"event": "lib/security/.config    ! ShKit rootkit"}
+{"event": "etc/ld.so.hash          ! ShKit rootkit"}
+{"event": "# AjaKit rootkit"}
+{"event": "lib/.ligh.gh            ! AjaKit rootkit"}
+{"event": "lib/.libgh.gh           ! AjaKit rootkit"}
+{"event": "lib/.libgh-gh           ! AjaKit rootkit"}
+{"event": "dev/tux                 ! AjaKit rootkit"}
+{"event": "dev/tux/.proc           ! AjaKit rootkit"}
+{"event": "dev/tux/.file           ! AjaKit rootkit"}
+{"event": "# zaRwT rootkit"}
+{"event": "bin/imin                ! zaRwT rootkit"}
+{"event": "bin/imout               ! zaRwT rootkit"}
+{"event": "# Madalin rootkit"}
+{"event": "usr/include/icekey.h    ! Madalin rootkit"}
+{"event": "usr/include/iceconf.h   ! Madalin rootkit"}
+{"event": "usr/include/iceseed.h   ! Madalin rootkit"}
+{"event": "# shv5 rootkit XXX http://www.askaboutskating.com/forum/.../shv5/setup"}
+{"event": "lib/libsh.so            ! shv5 rootkit"}
+{"event": "usr/lib/libsh           ! shv5 rootkit"}
+{"event": "# BMBL rootkit (http://www.giac.com/practical/GSEC/Steve_Terrell_GSEC.pdf)"}
+{"event": "etc/.bmbl               ! BMBL rootkit"}
+{"event": "etc/.bmbl/sk            ! BMBL rootkit"}
+{"event": "# rootedoor rootkit"}
+{"event": "*/rootedoor             ! Rootedoor rootkit"}
+{"event": "# 0vason rootkit"}
+{"event": "*/ovas0n                ! ovas0n rootkit ::/rootkits/ovason.php"}
+{"event": "*/ovason                ! ovas0n rootkit ::/rootkits/ovason.php"}
+{"event": "# Rpimp reverse telnet"}
+{"event": "*/rpimp                 ! rpv21 (Reverse Pimpage)::/rootkits/rpimp.php"}
+{"event": "# Cback Linux worm"}
+{"event": "tmp/cback              ! cback worm ::/rootkits/cback.php"}
+{"event": "tmp/derfiq             ! cback worm ::/rootkits/cback.php"}
+{"event": "# aPa Kit (from rkhunter)"}
+{"event": "usr/share/.aPa          ! Apa Kit"}
+{"event": "# enye-sec Rootkit"}
+{"event": "etc/.enyelkmHIDE^IT.ko  ! enye-sec Rootkit ::/rootkits/enye-sec.php"}
+{"event": "# Override Rootkit"}
+{"event": "dev/grid-hide-pid-     ! Override rootkit ::/rootkits/override.php"}
+{"event": "dev/grid-unhide-pid-   ! Override rootkit ::/rootkits/override.php"}
+{"event": "dev/grid-show-pids     ! Override rootkit ::/rootkits/override.php"}
+{"event": "dev/grid-hide-port-    ! Override rootkit ::/rootkits/override.php"}
+{"event": "dev/grid-unhide-port-  ! Override rootkit ::/rootkits/override.php"}
+{"event": "# PHALANX rootkit"}
+{"event": "usr/share/.home*        ! PHALANX rootkit ::"}
+{"event": "usr/share/.home*/tty    ! PHALANX rootkit ::"}
+{"event": "etc/host.ph1            ! PHALANX rootkit ::"}
+{"event": "bin/host.ph1            ! PHALANX rootkit ::"}
+{"event": "# ZK rootkit (http://honeyblog.org/junkyard/reports/redhat-compromise2.pdf)"}
+{"event": "# and from chkrootkit"}
+{"event": "usr/share/.zk                   ! ZK rootkit ::"}
+{"event": "usr/share/.zk/zk                ! ZK rootkit ::"}
+{"event": "etc/1ssue.net                   ! ZK rootkit ::"}
+{"event": "usr/X11R6/.zk                   ! ZK rootkit ::"}
+{"event": "usr/X11R6/.zk/xfs               ! ZK rootkit ::"}
+{"event": "usr/X11R6/.zk/echo              ! ZK rootkit ::"}
+{"event": "etc/sysconfig/console/load.zk   ! ZK rootkit ::"}
+{"event": "# Public sniffers"}
+{"event": "*/.linux-sniff          ! Sniffer log ::"}
+{"event": "*/sniff-l0g             ! Sniffer log ::"}
+{"event": "*/core_$                ! Sniffer log ::"}
+{"event": "*/tcp.log               ! Sniffer log ::"}
+{"event": "*/chipsul               ! Sniffer log ::"}
+{"event": "*/beshina               ! Sniffer log ::"}
+{"event": "*/.owned$               | Sniffer log ::"}
+{"event": "# Solaris worm -"}
+{"event": "# http://blogs.sun.com/security/entry/solaris_in_telnetd_worm_seen"}
+{"event": "var/adm/.profile        ! Solaris Worm ::"}
+{"event": "var/spool/lp/.profile   ! Solaris Worm ::"}
+{"event": "var/adm/sa/.adm         ! Solaris Worm ::"}
+{"event": "var/spool/lp/admins/.lp ! Solaris Worm ::"}
+{"event": "# Suspicious files"}
+{"event": "etc/rc.d/init.d/rc.modules  ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "lib/ldd.so                  ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/man/muie                ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/X11R6/include/pain      ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/sourcemask          ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/ras2xm              ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/ddc                 ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/jdc                 ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/sbin/in.telnet          ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "sbin/vobiscum               ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/sbin/jcd                ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/sbin/atd2               ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/ishit               ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/.etc                ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/xstat               ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "var/run/.tmp                ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/man/man1/lib/.lib       ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/man/man2/.man8          ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "var/run/.pid                ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "lib/.so                     ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "lib/.fx                     ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "lib/lblip.tk                ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/lib/.fx                 ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "var/local/.lpd              ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/rd/cdb                  ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/.rd/                    ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/lib/pt07                ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/atm                 ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "tmp/.cheese                 ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/.arctic                 ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/.xman                   ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/.golf                   ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/srd0                    ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/ptyzx                   ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/ptyzg                   ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/xdf1                    ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/ttyop                   ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/ttyof                   ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/hd7                     ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/hdx1                    ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/hdx2                    ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/xdf2                    ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/ptyp                    ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "dev/ptyr                    ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "sbin/pback                  ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/man/man3/psid           ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "proc/kset                   ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/gib                 ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/snick               ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "usr/bin/kfl                 ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "tmp/.dump                   ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "var/.x                      ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "var/.x/psotnic              ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "*/.log                      ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "*/ecmf                      ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "*/mirkforce                 ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "*/mfclean                   ! Suspicious file ::rootkits/Suspicious.php"}
+{"event": "/reptile/reptile_cmd        ! Suspicious file ::reptile"}
+{"event": "/lib/udev/reptile           ! Suspicious file ::reptile"}
+{"event": "# BEURK rootkit"}
+{"event": "/lib/libselinux.so          ! BEURK rootkit"}
+{"event": "# JynxKit2 rootkit"}
+{"event": "*/jynx2.so                  ! JynxKit2 rootkit"}
+{"event": "# JynxKit rootkit"}
+{"event": "*/ld_poison.so              ! JynxKit rootkit"}

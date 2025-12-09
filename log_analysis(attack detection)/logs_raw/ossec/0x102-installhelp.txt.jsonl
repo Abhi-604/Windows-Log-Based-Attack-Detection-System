@@ -1,0 +1,20 @@
+{"event": "- \u00c3\u009c\u00c3\u00a7 adet kurulum se\u00c3\u00a7ene\u00c4\u009fi bulunmaktad\u00c4\u00b1r: sunucu, arac\u00c4\u00b1 veya yerel."}
+{"event": "- E\u00c4\u009fer sunucu se\u00c3\u00a7erseniz, b\u00c3\u00bct\u00c3\u00bcn g\u00c3\u00bcnl\u00c3\u00bck kay\u00c4\u00b1tlar\u00c4\u00b1n\u00c4\u00b1 inceleyebilir"}
+{"event": "e-posta ile bilgilendirilebilir, yan\u00c4\u00b1t \u00c3\u00bcretebilirsiniz."}
+{"event": "Ayr\u00c4\u00b1ca uzak syslog bilgisayarlar\u00c4\u00b1ndan ve 'arac\u00c4\u00b1' olarak"}
+{"event": "\u00c3\u00a7al\u00c4\u00b1\u00c5\u009fan sistemlerden g\u00c3\u00bcnl\u00c3\u00bck kay\u00c4\u00b1tlar\u00c4\u00b1n\u00c4\u00b1 alabilirsiniz"}
+{"event": "(aradaki trafik \u00c5\u009fifrelenecektir)."}
+{"event": "- E\u00c4\u009fer 'arac\u00c4\u00b1' (istemci) se\u00c3\u00a7erseniz, syslog, snort, apache vb."}
+{"event": "taraf\u00c4\u00b1ndan \u00c3\u00bcretilen yerel dosyalar\u00c4\u00b1 okuyabilir ve incelenmek \u00c3\u00bczere"}
+{"event": "\u00c5\u009fifreli bir \u00c5\u009fekilde sunucuya g\u00c3\u00b6nderebilirsiniz."}
+{"event": "- E\u00c4\u009fer 'yerel' se\u00c3\u00a7erseniz, arac\u00c4\u00b1lardan veya harici syslog"}
+{"event": "ayg\u00c4\u00b1tlar\u00c4\u00b1ndan gelen mesajlar\u00c4\u00b1 almak d\u00c4\u00b1\u00c5\u009f\u00c4\u00b1nda sunucunun"}
+{"event": "yapabildi\u00c4\u009fi her\u00c5\u009feyi yapabilirsiniz."}
+{"event": "- E\u00c4\u009fer g\u00c3\u00bcnl\u00c3\u00bck kayd\u00c4\u00b1 inceleme sunucusu olu\u00c5\u009fturuyorsan\u00c4\u00b1z 'sunucu' kullan\u00c4\u00b1n."}
+{"event": "- E\u00c4\u009fer ba\u00c5\u009fka bir g\u00c3\u00bcnl\u00c3\u00bck kayd\u00c4\u00b1 sunucunuz varsa ve incelenmesi i\u00c3\u00a7in"}
+{"event": "g\u00c3\u00bcnl\u00c3\u00bck kay\u00c4\u00b1tlar\u00c4\u00b1n\u00c4\u00b1z\u00c4\u00b1 bu sunucuya y\u00c3\u00b6nlendirmek istiyorsan\u00c4\u00b1z"}
+{"event": "'arac\u00c4\u00b1' kullan\u00c4\u00b1n. (web sunucular, veritaban\u00c4\u00b1 sunucular vb. i\u00c3\u00a7in"}
+{"event": "idealdir)"}
+{"event": "- E\u00c4\u009fer inceleme yapaca\u00c4\u009f\u00c4\u00b1n\u00c4\u00b1z tek sisteminiz varsa 'yerel' kullan\u00c4\u00b1n."}
+{"event": "- Daha fazla bilgi:"}
+{"event": "http://www.ossec.net/docs/docs/manual/non-technical-overview.html"}

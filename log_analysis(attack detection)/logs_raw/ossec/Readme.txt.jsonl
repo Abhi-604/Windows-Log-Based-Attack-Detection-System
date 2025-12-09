@@ -1,0 +1,56 @@
+{"event": "Building instructions for the DLL versions of Zlib 1.2.11"}
+{"event": "========================================================"}
+{"event": "This directory contains projects that build zlib and minizip using"}
+{"event": "Microsoft Visual C++ 9.0/10.0."}
+{"event": "You don't need to build these projects yourself. You can download the"}
+{"event": "binaries from:"}
+{"event": "http://www.winimage.com/zLibDll"}
+{"event": "More information can be found at this site."}
+{"event": "Build instructions for Visual Studio 2008 (32 bits or 64 bits)"}
+{"event": "--------------------------------------------------------------"}
+{"event": "- Decompress current zlib, including all contrib/* files"}
+{"event": "- Compile assembly code (with Visual Studio Command Prompt) by running:"}
+{"event": "bld_ml64.bat (in contrib\\masmx64)"}
+{"event": "bld_ml32.bat (in contrib\\masmx86)"}
+{"event": "- Open contrib\\vstudio\\vc9\\zlibvc.sln with Microsoft Visual C++ 2008"}
+{"event": "- Or run: vcbuild /rebuild contrib\\vstudio\\vc9\\zlibvc.sln \"Release|Win32\""}
+{"event": "Build instructions for Visual Studio 2010 (32 bits or 64 bits)"}
+{"event": "--------------------------------------------------------------"}
+{"event": "- Decompress current zlib, including all contrib/* files"}
+{"event": "- Open contrib\\vstudio\\vc10\\zlibvc.sln with Microsoft Visual C++ 2010"}
+{"event": "Build instructions for Visual Studio 2012 (32 bits or 64 bits)"}
+{"event": "--------------------------------------------------------------"}
+{"event": "- Decompress current zlib, including all contrib/* files"}
+{"event": "- Open contrib\\vstudio\\vc11\\zlibvc.sln with Microsoft Visual C++ 2012"}
+{"event": "Build instructions for Visual Studio 2013 (32 bits or 64 bits)"}
+{"event": "--------------------------------------------------------------"}
+{"event": "- Decompress current zlib, including all contrib/* files"}
+{"event": "- Open contrib\\vstudio\\vc12\\zlibvc.sln with Microsoft Visual C++ 2013"}
+{"event": "Build instructions for Visual Studio 2015 (32 bits or 64 bits)"}
+{"event": "--------------------------------------------------------------"}
+{"event": "- Decompress current zlib, including all contrib/* files"}
+{"event": "- Open contrib\\vstudio\\vc14\\zlibvc.sln with Microsoft Visual C++ 2015"}
+{"event": "Important"}
+{"event": "---------"}
+{"event": "- To use zlibwapi.dll in your application, you must define the"}
+{"event": "macro ZLIB_WINAPI when compiling your application's source files."}
+{"event": "Additional notes"}
+{"event": "----------------"}
+{"event": "- This DLL, named zlibwapi.dll, is compatible to the old zlib.dll built"}
+{"event": "by Gilles Vollant from the zlib 1.1.x sources, and distributed at"}
+{"event": "http://www.winimage.com/zLibDll"}
+{"event": "It uses the WINAPI calling convention for the exported functions, and"}
+{"event": "includes the minizip functionality. If your application needs that"}
+{"event": "particular build of zlib.dll, you can rename zlibwapi.dll to zlib.dll."}
+{"event": "- The new DLL was renamed because there exist several incompatible"}
+{"event": "versions of zlib.dll on the Internet."}
+{"event": "- There is also an official DLL build of zlib, named zlib1.dll. This one"}
+{"event": "is exporting the functions using the CDECL convention. See the file"}
+{"event": "win32\\DLL_FAQ.txt found in this zlib distribution."}
+{"event": "- There used to be a ZLIB_DLL macro in zlib 1.1.x, but now this symbol"}
+{"event": "has a slightly different effect. To avoid compatibility problems, do"}
+{"event": "not define it here."}
+{"event": "Gilles Vollant"}
+{"event": "info@winimage.com"}
+{"event": "Visual Studio 2013 and 2015 Projects from Sean Hunt"}
+{"event": "seandhunt_7@yahoo.com"}

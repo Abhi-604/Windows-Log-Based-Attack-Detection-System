@@ -1,0 +1,219 @@
+{"event": "ossec rules reordering Mini Howto"}
+{"event": "by Meir Michanie"}
+{"event": "Patching an Ossec installation"}
+{"event": "Reordering the rules"}
+{"event": "* Stop ossec"}
+{"event": "root@topgun:/var/ossec#/etc/init.d/ossec stop"}
+{"event": "* Backup the whole ossec directory"}
+{"event": "/root# tar -C /var -zcpvf ossec-orig.tar.gz ossec"}
+{"event": "* Move the contrib directory from the source package to the oseec installation"}
+{"event": "/var/ossec# cp -a /tmp/ossec/contrib ."}
+{"event": "* Create directories to host the rules"}
+{"event": "/var/ossec# mkdir signatures user_signatures repository"}
+{"event": "* Move the file rules_config.xml to the etc directory."}
+{"event": "/var/ossec# mv rules/rules_config.xml etc/"}
+{"event": "* Move the rest of the rules to the repository directory"}
+{"event": "/var/ossec# mv rules/* repository/"}
+{"event": "* copy the rules tag portion to a file under /var/ossec. i.e. rules.txt"}
+{"event": "* delete the rules opening and closing tags"}
+{"event": "* remove all xml code leaving only the list of the files. i.e."}
+{"event": "pam_rules.xml"}
+{"event": "sshd_rules.xml"}
+{"event": "telnetd_rules.xml"}
+{"event": "syslog_rules.xml"}
+{"event": "pix_rules.xml"}
+{"event": "named_rules.xml"}
+{"event": "smbd_rules.xml"}
+{"event": "vsftpd_rules.xml"}
+{"event": "pure-ftpd_rules.xml"}
+{"event": "proftpd_rules.xml"}
+{"event": "hordeimp_rules.xml"}
+{"event": "web_rules.xml"}
+{"event": "apache_rules.xml"}
+{"event": "ids_rules.xml"}
+{"event": "squid_rules.xml"}
+{"event": "firewall_rules.xml"}
+{"event": "netscreenfw_rules.xml"}
+{"event": "postfix_rules.xml"}
+{"event": "sendmail_rules.xml"}
+{"event": "imapd_rules.xml"}
+{"event": "spamd_rules.xml"}
+{"event": "msauth_rules.xml"}
+{"event": "policy_rules.xml"}
+{"event": "attack_rules.xml"}
+{"event": "* modify the rules tag to:"}
+{"event": "<rules>"}
+{"event": "<include>rules_ossec.xml</include>"}
+{"event": "</rules>"}
+{"event": "* list of repository directory."}
+{"event": "/var/ossec# ls -1 repository/"}
+{"event": "apache_rules.xml"}
+{"event": "attack_rules.xml"}
+{"event": "firewall_rules.xml"}
+{"event": "ftpd_rules.xml"}
+{"event": "hordeimp_rules.xml"}
+{"event": "ids_rules.xml"}
+{"event": "imapd_rules.xml"}
+{"event": "msauth_rules.xml"}
+{"event": "named_rules.xml"}
+{"event": "netscreenfw_rules.xml"}
+{"event": "ossec_rules.xml"}
+{"event": "pam_rules.xml"}
+{"event": "pix_rules.xml"}
+{"event": "policy_rules.xml"}
+{"event": "postfix_rules.xml"}
+{"event": "proftpd_rules.xml"}
+{"event": "pure-ftpd_rules.xml"}
+{"event": "rules-backup"}
+{"event": "sendmail_rules.xml"}
+{"event": "smbd_rules.xml"}
+{"event": "spamd_rules.xml"}
+{"event": "squid_rules.xml"}
+{"event": "sshd_rules.xml"}
+{"event": "syslog_rules.xml"}
+{"event": "telnetd_rules.xml"}
+{"event": "vsftpd_rules.xml"}
+{"event": "web_rules.xml"}
+{"event": "* Viewing the content of file rules.txt"}
+{"event": "/var/ossec# cat rules.txt"}
+{"event": "pam_rules.xml"}
+{"event": "sshd_rules.xml"}
+{"event": "telnetd_rules.xml"}
+{"event": "syslog_rules.xml"}
+{"event": "pix_rules.xml"}
+{"event": "named_rules.xml"}
+{"event": "smbd_rules.xml"}
+{"event": "vsftpd_rules.xml"}
+{"event": "pure-ftpd_rules.xml"}
+{"event": "proftpd_rules.xml"}
+{"event": "hordeimp_rules.xml"}
+{"event": "web_rules.xml"}
+{"event": "apache_rules.xml"}
+{"event": "ids_rules.xml"}
+{"event": "squid_rules.xml"}
+{"event": "firewall_rules.xml"}
+{"event": "netscreenfw_rules.xml"}
+{"event": "postfix_rules.xml"}
+{"event": "sendmail_rules.xml"}
+{"event": "imapd_rules.xml"}
+{"event": "spamd_rules.xml"}
+{"event": "msauth_rules.xml"}
+{"event": "policy_rules.xml"}
+{"event": "attack_rules.xml"}
+{"event": "* Build links to the original rules files under the signatures directory"}
+{"event": "/var/ossec# COUNT=0; for i in `cat rules.txt`; do"}
+{"event": "(( COUNT = COUNT + 1)) ;"}
+{"event": "ln -s ../repository/$i `printf \"signatures/%02d%s\" $COUNT $i`;"}
+{"event": "done"}
+{"event": "* If you wish to alterate a rule you should remove the link of the file from signature where XX denotes the two digits number prefixing the name of the file."}
+{"event": "/var/ossec# unlink signatures/XXattack_rules.xml"}
+{"event": "* Copy the file to be modified"}
+{"event": "/var/ossec# cp repository/attack_rules.xml signatures/XXattack_rules.xml"}
+{"event": "* Edit your file."}
+{"event": "* write your own rules file under the directory user_signatures"}
+{"event": "/var/ossec# cat user_signatures/user_defined.xml"}
+{"event": "<group name=\"syslog,scans\">"}
+{"event": "<rule id=\"9000\" level=\"0\">"}
+{"event": "<regex>Accepted publickey</regex>"}
+{"event": "<description>Accepted publickey bypass</description>"}
+{"event": "</rule>"}
+{"event": "</group>"}
+{"event": "* List the rules under signature"}
+{"event": "/var/ossec# ls -l signatures/"}
+{"event": "total 0"}
+{"event": "lrwxrwxrwx 1 root root 27 2006-07-24 23:37 01pam_rules.xml -> ../repository/pam_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 28 2006-07-24 23:37 02sshd_rules.xml -> ../repository/sshd_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 31 2006-07-24 23:37 03telnetd_rules.xml -> ../repository/telnetd_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 30 2006-07-24 23:37 04syslog_rules.xml -> ../repository/syslog_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 27 2006-07-24 23:37 05pix_rules.xml -> ../repository/pix_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 29 2006-07-24 23:37 06named_rules.xml -> ../repository/named_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 28 2006-07-24 23:37 07smbd_rules.xml -> ../repository/smbd_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 30 2006-07-24 23:37 08vsftpd_rules.xml -> ../repository/vsftpd_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 33 2006-07-24 23:37 09pure-ftpd_rules.xml -> ../repository/pure-ftpd_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 31 2006-07-24 23:37 10proftpd_rules.xml -> ../repository/proftpd_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 32 2006-07-24 23:37 11hordeimp_rules.xml -> ../repository/hordeimp_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 27 2006-07-24 23:37 12web_rules.xml -> ../repository/web_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 30 2006-07-24 23:37 13apache_rules.xml -> ../repository/apache_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 27 2006-07-24 23:37 14ids_rules.xml -> ../repository/ids_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 29 2006-07-24 23:37 15squid_rules.xml -> ../repository/squid_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 32 2006-07-24 23:37 16firewall_rules.xml -> ../repository/firewall_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 35 2006-07-24 23:37 17netscreenfw_rules.xml -> ../repository/netscreenfw_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 31 2006-07-24 23:37 18postfix_rules.xml -> ../repository/postfix_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 32 2006-07-24 23:37 19sendmail_rules.xml -> ../repository/sendmail_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 29 2006-07-24 23:37 20imapd_rules.xml -> ../repository/imapd_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 29 2006-07-24 23:37 21spamd_rules.xml -> ../repository/spamd_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 30 2006-07-24 23:37 22msauth_rules.xml -> ../repository/msauth_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 30 2006-07-24 23:37 23policy_rules.xml -> ../repository/policy_rules.xml"}
+{"event": "lrwxrwxrwx 1 root root 30 2006-07-24 23:37 24attack_rules.xml -> ../repository/attack_rules.xml"}
+{"event": "* Compile the alerts into a monolitic rule file."}
+{"event": "/var/ossec# perl contrib/compile_alerts.pl --user-signatures /var/ossec/user_signatures --signatures \\"}
+{"event": "/var/ossec/signatures --rules-config /var/ossec/etc/rules_config.xml > rules/rules_ossec.xml"}
+{"event": "Adding /var/ossec/etc/rules_config.xml"}
+{"event": "Adding /var/ossec/user_signatures/user_defined_rules.xml"}
+{"event": "Adding /var/ossec/signatures/01pam_rules.xml"}
+{"event": "Adding /var/ossec/signatures/02sshd_rules.xml"}
+{"event": "Adding /var/ossec/signatures/03telnetd_rules.xml"}
+{"event": "Adding /var/ossec/signatures/04syslog_rules.xml"}
+{"event": "Adding /var/ossec/signatures/05pix_rules.xml"}
+{"event": "Adding /var/ossec/signatures/06named_rules.xml"}
+{"event": "Adding /var/ossec/signatures/07smbd_rules.xml"}
+{"event": "Adding /var/ossec/signatures/08vsftpd_rules.xml"}
+{"event": "Adding /var/ossec/signatures/09pure-ftpd_rules.xml"}
+{"event": "Adding /var/ossec/signatures/10proftpd_rules.xml"}
+{"event": "Adding /var/ossec/signatures/11hordeimp_rules.xml"}
+{"event": "Adding /var/ossec/signatures/12web_rules.xml"}
+{"event": "Adding /var/ossec/signatures/13apache_rules.xml"}
+{"event": "Adding /var/ossec/signatures/14ids_rules.xml"}
+{"event": "Adding /var/ossec/signatures/15squid_rules.xml"}
+{"event": "Adding /var/ossec/signatures/16firewall_rules.xml"}
+{"event": "Adding /var/ossec/signatures/17netscreenfw_rules.xml"}
+{"event": "Adding /var/ossec/signatures/18postfix_rules.xml"}
+{"event": "Adding /var/ossec/signatures/19sendmail_rules.xml"}
+{"event": "Adding /var/ossec/signatures/20imapd_rules.xml"}
+{"event": "Adding /var/ossec/signatures/21spamd_rules.xml"}
+{"event": "Adding /var/ossec/signatures/22msauth_rules.xml"}
+{"event": "Adding /var/ossec/signatures/23policy_rules.xml"}
+{"event": "Adding /var/ossec/signatures/24attack_rules.xml"}
+{"event": "processing: /var/ossec/etc/rules_config.xml"}
+{"event": "processing: /var/ossec/user_signatures/user_defined_rules.xml"}
+{"event": "processing: /var/ossec/signatures/01pam_rules.xml"}
+{"event": "processing: /var/ossec/signatures/02sshd_rules.xml"}
+{"event": "processing: /var/ossec/signatures/03telnetd_rules.xml"}
+{"event": "processing: /var/ossec/signatures/04syslog_rules.xml"}
+{"event": "processing: /var/ossec/signatures/05pix_rules.xml"}
+{"event": "processing: /var/ossec/signatures/06named_rules.xml"}
+{"event": "processing: /var/ossec/signatures/07smbd_rules.xml"}
+{"event": "processing: /var/ossec/signatures/08vsftpd_rules.xml"}
+{"event": "processing: /var/ossec/signatures/09pure-ftpd_rules.xml"}
+{"event": "processing: /var/ossec/signatures/10proftpd_rules.xml"}
+{"event": "processing: /var/ossec/signatures/11hordeimp_rules.xml"}
+{"event": "processing: /var/ossec/signatures/12web_rules.xml"}
+{"event": "processing: /var/ossec/signatures/13apache_rules.xml"}
+{"event": "processing: /var/ossec/signatures/14ids_rules.xml"}
+{"event": "processing: /var/ossec/signatures/15squid_rules.xml"}
+{"event": "processing: /var/ossec/signatures/16firewall_rules.xml"}
+{"event": "processing: /var/ossec/signatures/17netscreenfw_rules.xml"}
+{"event": "processing: /var/ossec/signatures/18postfix_rules.xml"}
+{"event": "processing: /var/ossec/signatures/19sendmail_rules.xml"}
+{"event": "processing: /var/ossec/signatures/20imapd_rules.xml"}
+{"event": "processing: /var/ossec/signatures/21spamd_rules.xml"}
+{"event": "processing: /var/ossec/signatures/22msauth_rules.xml"}
+{"event": "processing: /var/ossec/signatures/23policy_rules.xml"}
+{"event": "processing: /var/ossec/signatures/24attack_rules.xml"}
+{"event": "* Now you can start again ossec"}
+{"event": "/var/ossec#/etc/init.d/ossec start"}
+{"event": "Starting OSSEC Starting OSSEC HIDS v0.9 (by Daniel B. Cid)..."}
+{"event": "Started ossec-maild..."}
+{"event": "Started ossec-execd..."}
+{"event": "Started ossec-analysisd..."}
+{"event": "Started ossec-logcollector..."}
+{"event": "Started ossec-remoted..."}
+{"event": "Started ossec-syscheckd..."}
+{"event": "Completed."}
+{"event": "Extract of ossec.conf with the modified rules tag"}
+{"event": "/var/ossec# cat etc/ossec.conf"}
+{"event": "..."}
+{"event": "<rules>"}
+{"event": "<include>rules_ossec.xml</include>"}
+{"event": "</rules>"}
+{"event": "..."}

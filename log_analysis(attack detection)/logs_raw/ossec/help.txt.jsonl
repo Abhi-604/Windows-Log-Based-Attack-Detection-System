@@ -1,0 +1,30 @@
+{"event": "** OSSEC Windows Agent v3.8.0 **"}
+{"event": "** Copyright (C) 2014 Trend Micro Inc. **"}
+{"event": "Thanks for installing the 'OSSEC Windows Agent'. Before you continue,"}
+{"event": "make sure that you have an instance of the OSSEC server running and configured"}
+{"event": "to accept this system as an agent."}
+{"event": "For more information on how to install the server version of OSSEC, look at:"}
+{"event": "http://www.ossec.net/doc/manual/installation/index.html"}
+{"event": "** Table of contents **"}
+{"event": "1- How to obtain more information"}
+{"event": "2- What this agent does"}
+{"event": "3- Questions/Support"}
+{"event": "** Responses **"}
+{"event": "1- How to obtain more information"}
+{"event": "You can obtain more information about OSSEC on the following links:"}
+{"event": "http://www.ossec.net/doc/manual/index.html"}
+{"event": "http://www.ossec.net/doc/faq/index.html (FAQ)"}
+{"event": "http://www.ossec.net (OSSEC site)"}
+{"event": "2- What this agent does"}
+{"event": "The Windows agent does the following tasks:"}
+{"event": "-Monitors the Windows event log in real time."}
+{"event": "-Monitors IIS logs (Web, FTP, SMTP) and any other logs present on your"}
+{"event": "system (including Symantec Anti-Virus, MySQL, Apache, etc) in real time."}
+{"event": "-Periodically checks the Windows Registry for changes."}
+{"event": "-Periodically, or in real-time, checks your Windows folders for changes."}
+{"event": "-Periodically does policy verifications to make sure your system is"}
+{"event": "configured properly."}
+{"event": "3- Questions/Support"}
+{"event": "Visit the following link for information on how to get help or"}
+{"event": "support for OSSEC:"}
+{"event": "http://www.ossec.net/main/support/"}

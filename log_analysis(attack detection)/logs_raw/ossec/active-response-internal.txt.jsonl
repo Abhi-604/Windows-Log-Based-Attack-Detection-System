@@ -1,0 +1,20 @@
+{"event": "OSSEC HIDS 0.6"}
+{"event": "Copyright (c) 2004-2006 Daniel B. Cid   <daniel.cid@gmail.com>"}
+{"event": "<dcid@ossec.net>"}
+{"event": "Jak dzia\u00c5\u0082a aktywa ochrona (od \u00c5\u009brodka):"}
+{"event": "- Przeczytaj active-respose-doc.txt aby dowiedzie\u00c4\u0087 si\u00c4\u0099 wi\u00c4\u0099cej"}
+{"event": "o konfiguracji"}
+{"event": "1 - Zdarzenie kt\u00c3\u00b3re pasuje do polityki aktywnej ochrony jest"}
+{"event": "wysy\u00c5\u0082ane do serwera analizuj\u00c4\u0085cego."}
+{"event": "2 - Serwer weryfikuje czy wszystkie wymagane pola s\u00c4\u0085 s\u00c4"}
+{"event": "dostarczone w zdarzeniu. Oznacza to, \u00c5\u00bce serwer zdekodowa\u00c5\u0082"}
+{"event": "zdarzenie i odczyta\u00c5\u0082 wszystkie po\u00c5\u00bc\u00c4\u0085dane informacje. Np."}
+{"event": "musi odczytac adres IP aby podj\u00c4\u0085\u00c4\u0087 akcj\u00c4\u0099 o zablokwaniu go"}
+{"event": "na firewall-u."}
+{"event": "3 - Je\u00c5\u009bli aktywna ochrona jest skonfigurowana aby akcje by\u00c5\u0082y"}
+{"event": "wykonywane lokalnie, widomo\u00c5\u009b\u00c4\u0087 zostaje bezpo\u00c5\u009brednio wysy\u00c5\u0082ana"}
+{"event": "do execd."}
+{"event": "4 - Je\u00c5\u009bli aktywna ochrona jest skonfigurowana aby akcje by\u00c5\u0082y"}
+{"event": "wykonywane zdalnie, wiadomo\u00c5\u009b\u00c4\u0087 jest wysy\u00c5\u0082ana do remoted"}
+{"event": "(forwarder aktywnej ochrony), kt\u00c3\u00b3ry przekazuje j\u00c4\u0085 dalej"}
+{"event": "do odpowiedniego agenta."}

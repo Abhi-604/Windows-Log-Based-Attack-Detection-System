@@ -1,0 +1,21 @@
+{"event": "OSSEC report tool 0.1"}
+{"event": "Licensed under GPL"}
+{"event": "Contributor Meir Michanie"}
+{"event": "ossec_report_contrib.pl [-h|--help] # This text you read now"}
+{"event": "ossec_report_contrib.pl [-r|--report] # prints a report for each element"}
+{"event": "ossec_report_contrib.pl [-s|--summary] # prints a summary report"}
+{"event": "ossec_report_contrib.pl [-t|--top] #prints the top list"}
+{"event": "How To:"}
+{"event": "======="}
+{"event": "ossec_report_contrib.pl OSSEC report tool 0.1"}
+{"event": "ossec_report_contrib.pl is a GNU style program."}
+{"event": "It reads from STDIN and write to stdout. This gives you the advantage to use it in pipes."}
+{"event": "i.e."}
+{"event": "cat ossec-alerts-05.log | ossec_report_contrib.pl -r | mail root -s 'OSSEC detailed report'"}
+{"event": "cat ossec-alerts-05.log | ossec_report_contrib.pl -s | mail root -s 'OSSEC summary report'"}
+{"event": "cat <log file> | ossec_report_contrib.pl -t <key> | head -n 15 (for top 15)"}
+{"event": "cat <log file> | ossec_report_contrib.pl -s (for summary)"}
+{"event": "Crontab entry:"}
+{"event": "58 23 * * * (cat ossec-alerts-05.log | ossec_report_contrib.pl -s)"}
+{"event": "The <key> could be any one of the variables used in ossec log:"}
+{"event": "mail,alerthost,datasource,rule,level,description,srcip,user."}

@@ -1,0 +1,93 @@
+{"event": "# Configuration"}
+{"event": "yes=\"e\""}
+{"event": "no=\"h\""}
+{"event": "yesmatch=\"e\""}
+{"event": "nomatch=\"h\""}
+{"event": "agent=\"arac\u00c4\u00b1\""}
+{"event": "local=\"yerel\""}
+{"event": "server=\"sunucu\""}
+{"event": "help=\"yard\u00c4\u00b1m\""}
+{"event": "# Global"}
+{"event": "moreinfo=\"Daha fazla bilgi: \""}
+{"event": "starting=\"OSSEC HIDS ba\u00c5\u009flat\u00c4\u00b1l\u00c4\u00b1yor\""}
+{"event": "systemis=\"Sistem\""}
+{"event": "modifiedinit=\"OSSEC HIDS'i \u00c3\u00b6ny\u00c3\u00bcklemede ba\u00c5\u009flatmak i\u00c3\u00a7in ba\u00c5\u009flang\u00c4\u00b1\u00c3\u00a7 beti\u00c4\u009fi de\u00c4\u009fi\u00c5\u009ftirildi.\""}
+{"event": "noboot=\"Bilinmeyen sistem. Ba\u00c5\u009flang\u00c4\u00b1\u00c3\u00a7 beti\u00c4\u009fi eklenmedi.\""}
+{"event": "# Part 1"}
+{"event": "installscript=\"Kurulum Beti\u00c4\u009fi\""}
+{"event": "system=\"Sistem\""}
+{"event": "user=\"Kullan\u00c4\u00b1c\u00c4\u00b1\""}
+{"event": "host=\"Bilgisayar\""}
+{"event": "hitanyorabort=\"Devam etmek i\u00c3\u00a7in ENTER veya \u00c3\u00a7\u00c4\u00b1kmak i\u00c3\u00a7in Ctrl-C ye bas\u00c4\u00b1n\""}
+{"event": "whattoinstall=\"Ne t\u00c3\u00bcr kurulum yapmak istiyorsunuz (sunucu,arac\u00c4\u00b1,yerel veya yard\u00c4\u00b1m)?\""}
+{"event": "serverchose=\"Sunucu kurulumu se\u00c3\u00a7ildi\""}
+{"event": "clientchose=\"Arac\u00c4\u00b1(istemci) kurulumu se\u00c3\u00a7ildi\""}
+{"event": "localchose=\"Yerel kurulum se\u00c3\u00a7ildi\""}
+{"event": "# Part 2"}
+{"event": "settingupenv=\"Kurulum ortam\u00c4\u00b1 haz\u00c4\u00b1rlan\u00c4\u00b1yor\""}
+{"event": "wheretoinstall=\"OSSEC HIDS kurulacak yeri se\u00c3\u00a7in\""}
+{"event": "installat=\"Kurulum buraya yap\u00c4\u00b1lacak: \""}
+{"event": "deletedir=\"Kurulum dizini zaten var. Silinsin mi?\""}
+{"event": "# Part 3"}
+{"event": "configuring=\"yap\u00c4\u00b1land\u00c4\u00b1r\u00c4\u00b1l\u00c4\u00b1yor:\""}
+{"event": "mailnotify=\"E-posta ile bilgilendirilmek ister misiniz?\""}
+{"event": "nomail=\"E-posta ile bilgilendirme etkisiz k\u00c4\u00b1l\u00c4\u00b1nd\u00c4\u00b1\""}
+{"event": "whatsemail=\"E-posta adresiniz nedir?\""}
+{"event": "yoursmtp=\"SMTP sunucunuz olarak bunu bulduk\""}
+{"event": "usesmtp=\"Kullanmak ister misiniz?\""}
+{"event": "usingsmtp=\"SMTP sunucu kullan\u00c4\u00b1l\u00c4\u00b1yor: \""}
+{"event": "whatsmtp=\"SMTP sunucunuzun IP adresi veya ismi nedir?\""}
+{"event": "# Part 3.1/agent"}
+{"event": "serverip=\"OSSEC HIDS sunucusunun IP adresi nedir?\""}
+{"event": "serveraddr=\"OSSEC HIDS sunucusunun IP adresi veya ismi nedir?\""}
+{"event": "addingip=\"Sunucu IP adresi ekleniyor\""}
+{"event": "addingname=\"Sunucu ismi ekleniyor\""}
+{"event": "# Part 3.2"}
+{"event": "runsyscheck=\"G\u00c3\u00bcvenilirlik/b\u00c3\u00bct\u00c3\u00bcnl\u00c3\u00bck kontrol program\u00c4\u00b1n\u00c4\u00b1n \u00c3\u00a7al\u00c4\u00b1\u00c5\u009ft\u00c4\u00b1r\u00c4\u00b1lmas\u00c4\u00b1n\u00c4\u00b1 ister misiniz?\""}
+{"event": "nosyscheck=\"syscheck \u00c3\u00a7al\u00c4\u00b1\u00c5\u009ft\u00c4\u00b1r\u00c4\u00b1lm\u00c4\u00b1yor (g\u00c3\u00bcvenilirlik/b\u00c3\u00bct\u00c3\u00bcnl\u00c3\u00bck kontrol program\u00c4\u00b1)\""}
+{"event": "yessyscheck=\"syscheck \u00c3\u00a7al\u00c4\u00b1\u00c5\u009ft\u00c4\u00b1r\u00c4\u00b1l\u00c4\u00b1yor (g\u00c3\u00bcvenilirlik/b\u00c3\u00bct\u00c3\u00bcnl\u00c3\u00bck kontrol program\u00c4\u00b1)\""}
+{"event": "# Part 3.3"}
+{"event": "runrootcheck=\"rootkit tespit etme motorunun \u00c3\u00a7al\u00c4\u00b1\u00c5\u009fmas\u00c4\u00b1n\u00c4\u00b1 ister misiniz?\""}
+{"event": "norootcheck=\"rootcheck \u00c3\u00a7al\u00c4\u00b1\u00c5\u009ft\u00c4\u00b1r\u00c4\u00b1lm\u00c4\u00b1yor (rootkit tespit etme)\""}
+{"event": "yesrootcheck=\"rootcheck \u00c3\u00a7al\u00c4\u00b1\u00c5\u009ft\u00c4\u00b1r\u00c4\u00b1l\u00c4\u00b1yor (rootkit tespit etme)\""}
+{"event": "# Part 3.4/server/local"}
+{"event": "enable_ar=\"Etkin yan\u00c4\u00b1t \u00c3\u00bcretmenin (Active response) etkin k\u00c4\u00b1l\u00c4\u00b1nmas\u00c4\u00b1n\u00c4\u00b1 ister misiniz?\""}
+{"event": "noactive=\"Etkin yan\u00c4\u00b1t \u00c3\u00bcretme(Active response) etkisiz k\u00c4\u00b1l\u00c4\u00b1nd\u00c4\u00b1\""}
+{"event": "nohosts=\"host-deny etkin k\u00c4\u00b1l\u00c4\u00b1nmad\u00c4\u00b1\""}
+{"event": "yeshosts=\"Uyar\u00c4\u00b1 seviyesi >= 6 i\u00c3\u00a7in host-deny etkin k\u00c4\u00b1l\u00c4\u00b1nd\u00c4\u00b1 (yerel)\""}
+{"event": "firewallar=\"firewall-drop yan\u00c4\u00b1t\u00c4\u00b1n\u00c4\u00b1n etkin k\u00c4\u00b1l\u00c4\u00b1nmas\u00c4\u00b1n\u00c4\u00b1 ister misiniz?\""}
+{"event": "nofirewall=\"firewall-drop etkisiz k\u00c4\u00b1l\u00c4\u00b1nd\u00c4\u00b1.\""}
+{"event": "yesfirewall=\"Uyar\u00c4\u00b1 seviyesi >= 6 i\u00c3\u00a7in firewall-drop etkin k\u00c4\u00b1l\u00c4\u00b1nd\u00c4\u00b1 (yerel)\""}
+{"event": "defaultwhitelist=\"Etkin yan\u00c4\u00b1t \u00c3\u00bcretme i\u00c3\u00a7in \u00c3\u00b6ntan\u00c4\u00b1ml\u00c4\u00b1 beyaz liste:\""}
+{"event": "addwhite=\"Beyaz listeye ba\u00c5\u009fka IP adreslerini de eklemek ister misiniz?\""}
+{"event": "ipswhite=\"IPler (bo\u00c5\u009flukla ayr\u00c4\u00b1lm\u00c4\u00b1\u00c5\u009f): \""}
+{"event": "# Part 3.5/server/local"}
+{"event": "syslog=\"Uzak syslog'un (514 udp) etkin k\u00c4\u00b1l\u00c4\u00b1nmas\u00c4\u00b1n\u00c4\u00b1 ister misiniz?\""}
+{"event": "nosyslog=\"Uzak syslog etkisiz k\u00c4\u00b1l\u00c4\u00b1nd\u00c4\u00b1\""}
+{"event": "yessyslog=\"Uzak syslog etkin k\u00c4\u00b1l\u00c4\u00b1nd\u00c4\u00b1\""}
+{"event": "# Part 3.4/3.5"}
+{"event": "readlogs=\"Bu dosyalar\u00c4\u00b1 incelemek i\u00c3\u00a7in yap\u00c4\u00b1land\u00c4\u00b1rma olu\u00c5\u009fturuluyor:\""}
+{"event": "# Part 5"}
+{"event": "installing=\"Sistem kuruluyor\""}
+{"event": "runningmake=\"Makefile \u00c3\u00a7al\u00c4\u00b1\u00c5\u009ft\u00c4\u00b1r\u00c4\u00b1l\u00c4\u00b1yor\""}
+{"event": "# Final"}
+{"event": "configurationdone=\"Yap\u00c4\u00b1land\u00c4\u00b1rma do\u00c4\u009fru olarak tamamland\u00c4\u00b1\""}
+{"event": "tostart=\"OSSEC HIDS'i ba\u00c5\u009flatmak i\u00c3\u00a7in\""}
+{"event": "tostop=\"OSSEC HIDS'i durdurmak i\u00c3\u00a7in\""}
+{"event": "configat=\"Yap\u00c4\u00b1land\u00c4\u00b1rma buradan g\u00c3\u00b6r\u00c3\u00bclebilir veya de\u00c4\u009fi\u00c5\u009ftirilebilir:\""}
+{"event": "addserveragent=\"Her bir arac\u00c4\u00b1y\u00c4\u00b1/istemciyi eri\u00c5\u009fim i\u00c3\u00a7in yetkilendirmeden \u00c3\u00b6nce eklemeniz gerekmektedir.\""}
+{"event": "runma=\"Eklemek ve \u00c3\u00a7\u00c4\u00b1karmak i\u00c3\u00a7in 'manage_agents' komutunu kullan\u00c4\u00b1n.\""}
+{"event": "presskey=\"Devam etmek i\u00c3\u00a7in ENTER tu\u00c5\u009funa bas\u00c4\u00b1n\u00c4\u00b1z\""}
+{"event": "# Update"}
+{"event": "wanttoupdate=\"Bir OSSEC kurulumu mevcut. G\u00c3\u00bcncellemek ister misiniz?\""}
+{"event": "unabletoupdate=\"G\u00c3\u00bcncelleme ger\u00c3\u00a7ekle\u00c5\u009ftirilemedi. Yeni kurulum yap\u00c4\u00b1lmas\u00c4\u00b1 gerekiyor.\""}
+{"event": "updatecompleted=\"G\u00c3\u00bcncelleme tamamland\u00c4\u00b1.\""}
+{"event": "updatefailed=\"G\u00c3\u00bcncelleme ba\u00c5\u009far\u00c4\u00b1s\u00c4\u00b1z oldu.\""}
+{"event": "updaterules=\"Kurallar\u00c4\u00b1 g\u00c3\u00bcncellemek ister misiniz?\""}
+{"event": "updatingrules=\"Kurallar g\u00c3\u00bcncelleniyor.\""}
+{"event": "notupdatingrules=\"Kurallar g\u00c3\u00bcncellenmiyor.\""}
+{"event": "# Pf support"}
+{"event": "pfenable=\"Etkin yan\u00c4\u00b1tlarda PF g\u00c3\u00bcvenlik duvar\u00c4\u00b1n\u00c4\u00b1 kullanmak istiyor musunuz?\""}
+{"event": "nopf=\"PF yan\u00c4\u00b1tlar\u00c4\u00b1 etkisiz k\u00c4\u00b1l\u00c4\u00b1nd\u00c4\u00b1.\""}
+{"event": "pftablename=\"Kullan\u00c4\u00b1lacak PF tablosunun ad\u00c4\u00b1?\""}
+{"event": "pfmessage=\"A\u00c5\u009fa\u00c4\u009f\u00c4\u00b1daki sat\u00c4\u00b1rlar\u00c4\u00b1 kurallar\u00c4\u00b1n\u00c4\u00b1z\u00c4\u00b1n ba\u00c5\u009f\u00c4\u00b1na ekleyin\""}

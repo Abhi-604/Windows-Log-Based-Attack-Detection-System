@@ -1,0 +1,635 @@
+{"event": "Network Working Group                                         P. Deutsch"}
+{"event": "Request for Comments: 1951                           Aladdin Enterprises"}
+{"event": "Category: Informational                                         May 1996"}
+{"event": "DEFLATE Compressed Data Format Specification version 1.3"}
+{"event": "Status of This Memo"}
+{"event": "This memo provides information for the Internet community.  This memo"}
+{"event": "does not specify an Internet standard of any kind.  Distribution of"}
+{"event": "this memo is unlimited."}
+{"event": "IESG Note:"}
+{"event": "The IESG takes no position on the validity of any Intellectual"}
+{"event": "Property Rights statements contained in this document."}
+{"event": "Notices"}
+{"event": "Copyright (c) 1996 L. Peter Deutsch"}
+{"event": "Permission is granted to copy and distribute this document for any"}
+{"event": "purpose and without charge, including translations into other"}
+{"event": "languages and incorporation into compilations, provided that the"}
+{"event": "copyright notice and this notice are preserved, and that any"}
+{"event": "substantive changes or deletions from the original are clearly"}
+{"event": "marked."}
+{"event": "A pointer to the latest version of this and related documentation in"}
+{"event": "HTML format can be found at the URL"}
+{"event": "<ftp://ftp.uu.net/graphics/png/documents/zlib/zdoc-index.html>."}
+{"event": "Abstract"}
+{"event": "This specification defines a lossless compressed data format that"}
+{"event": "compresses data using a combination of the LZ77 algorithm and Huffman"}
+{"event": "coding, with efficiency comparable to the best currently available"}
+{"event": "general-purpose compression methods.  The data can be produced or"}
+{"event": "consumed, even for an arbitrarily long sequentially presented input"}
+{"event": "data stream, using only an a priori bounded amount of intermediate"}
+{"event": "storage.  The format can be implemented readily in a manner not"}
+{"event": "covered by patents."}
+{"event": "Deutsch                      Informational                      [Page 1]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "Table of Contents"}
+{"event": "1. Introduction ................................................... 2"}
+{"event": "1.1. Purpose ................................................... 2"}
+{"event": "1.2. Intended audience ......................................... 3"}
+{"event": "1.3. Scope ..................................................... 3"}
+{"event": "1.4. Compliance ................................................ 3"}
+{"event": "1.5.  Definitions of terms and conventions used ................ 3"}
+{"event": "1.6. Changes from previous versions ............................ 4"}
+{"event": "2. Compressed representation overview ............................. 4"}
+{"event": "3. Detailed specification ......................................... 5"}
+{"event": "3.1. Overall conventions ....................................... 5"}
+{"event": "3.1.1. Packing into bytes .................................. 5"}
+{"event": "3.2. Compressed block format ................................... 6"}
+{"event": "3.2.1. Synopsis of prefix and Huffman coding ............... 6"}
+{"event": "3.2.2. Use of Huffman coding in the \"deflate\" format ....... 7"}
+{"event": "3.2.3. Details of block format ............................. 9"}
+{"event": "3.2.4. Non-compressed blocks (BTYPE=00) ................... 11"}
+{"event": "3.2.5. Compressed blocks (length and distance codes) ...... 11"}
+{"event": "3.2.6. Compression with fixed Huffman codes (BTYPE=01) .... 12"}
+{"event": "3.2.7. Compression with dynamic Huffman codes (BTYPE=10) .. 13"}
+{"event": "3.3. Compliance ............................................... 14"}
+{"event": "4. Compression algorithm details ................................. 14"}
+{"event": "5. References .................................................... 16"}
+{"event": "6. Security Considerations ....................................... 16"}
+{"event": "7. Source code ................................................... 16"}
+{"event": "8. Acknowledgements .............................................. 16"}
+{"event": "9. Author's Address .............................................. 17"}
+{"event": "1. Introduction"}
+{"event": "1.1. Purpose"}
+{"event": "The purpose of this specification is to define a lossless"}
+{"event": "compressed data format that:"}
+{"event": "* Is independent of CPU type, operating system, file system,"}
+{"event": "and character set, and hence can be used for interchange;"}
+{"event": "* Can be produced or consumed, even for an arbitrarily long"}
+{"event": "sequentially presented input data stream, using only an a"}
+{"event": "priori bounded amount of intermediate storage, and hence"}
+{"event": "can be used in data communications or similar structures"}
+{"event": "such as Unix filters;"}
+{"event": "* Compresses data with efficiency comparable to the best"}
+{"event": "currently available general-purpose compression methods,"}
+{"event": "and in particular considerably better than the \"compress\""}
+{"event": "program;"}
+{"event": "* Can be implemented readily in a manner not covered by"}
+{"event": "patents, and hence can be practiced freely;"}
+{"event": "Deutsch                      Informational                      [Page 2]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "* Is compatible with the file format produced by the current"}
+{"event": "widely used gzip utility, in that conforming decompressors"}
+{"event": "will be able to read data produced by the existing gzip"}
+{"event": "compressor."}
+{"event": "The data format defined by this specification does not attempt to:"}
+{"event": "* Allow random access to compressed data;"}
+{"event": "* Compress specialized data (e.g., raster graphics) as well"}
+{"event": "as the best currently available specialized algorithms."}
+{"event": "A simple counting argument shows that no lossless compression"}
+{"event": "algorithm can compress every possible input data set.  For the"}
+{"event": "format defined here, the worst case expansion is 5 bytes per 32K-"}
+{"event": "byte block, i.e., a size increase of 0.015% for large data sets."}
+{"event": "English text usually compresses by a factor of 2.5 to 3;"}
+{"event": "executable files usually compress somewhat less; graphical data"}
+{"event": "such as raster images may compress much more."}
+{"event": "1.2. Intended audience"}
+{"event": "This specification is intended for use by implementors of software"}
+{"event": "to compress data into \"deflate\" format and/or decompress data from"}
+{"event": "\"deflate\" format."}
+{"event": "The text of the specification assumes a basic background in"}
+{"event": "programming at the level of bits and other primitive data"}
+{"event": "representations.  Familiarity with the technique of Huffman coding"}
+{"event": "is helpful but not required."}
+{"event": "1.3. Scope"}
+{"event": "The specification specifies a method for representing a sequence"}
+{"event": "of bytes as a (usually shorter) sequence of bits, and a method for"}
+{"event": "packing the latter bit sequence into bytes."}
+{"event": "1.4. Compliance"}
+{"event": "Unless otherwise indicated below, a compliant decompressor must be"}
+{"event": "able to accept and decompress any data set that conforms to all"}
+{"event": "the specifications presented here; a compliant compressor must"}
+{"event": "produce data sets that conform to all the specifications presented"}
+{"event": "here."}
+{"event": "1.5.  Definitions of terms and conventions used"}
+{"event": "Byte: 8 bits stored or transmitted as a unit (same as an octet)."}
+{"event": "For this specification, a byte is exactly 8 bits, even on machines"}
+{"event": "Deutsch                      Informational                      [Page 3]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "which store a character on a number of bits different from eight."}
+{"event": "See below, for the numbering of bits within a byte."}
+{"event": "String: a sequence of arbitrary bytes."}
+{"event": "1.6. Changes from previous versions"}
+{"event": "There have been no technical changes to the deflate format since"}
+{"event": "version 1.1 of this specification.  In version 1.2, some"}
+{"event": "terminology was changed.  Version 1.3 is a conversion of the"}
+{"event": "specification to RFC style."}
+{"event": "2. Compressed representation overview"}
+{"event": "A compressed data set consists of a series of blocks, corresponding"}
+{"event": "to successive blocks of input data.  The block sizes are arbitrary,"}
+{"event": "except that non-compressible blocks are limited to 65,535 bytes."}
+{"event": "Each block is compressed using a combination of the LZ77 algorithm"}
+{"event": "and Huffman coding. The Huffman trees for each block are independent"}
+{"event": "of those for previous or subsequent blocks; the LZ77 algorithm may"}
+{"event": "use a reference to a duplicated string occurring in a previous block,"}
+{"event": "up to 32K input bytes before."}
+{"event": "Each block consists of two parts: a pair of Huffman code trees that"}
+{"event": "describe the representation of the compressed data part, and a"}
+{"event": "compressed data part.  (The Huffman trees themselves are compressed"}
+{"event": "using Huffman encoding.)  The compressed data consists of a series of"}
+{"event": "elements of two types: literal bytes (of strings that have not been"}
+{"event": "detected as duplicated within the previous 32K input bytes), and"}
+{"event": "pointers to duplicated strings, where a pointer is represented as a"}
+{"event": "pair <length, backward distance>.  The representation used in the"}
+{"event": "\"deflate\" format limits distances to 32K bytes and lengths to 258"}
+{"event": "bytes, but does not limit the size of a block, except for"}
+{"event": "uncompressible blocks, which are limited as noted above."}
+{"event": "Each type of value (literals, distances, and lengths) in the"}
+{"event": "compressed data is represented using a Huffman code, using one code"}
+{"event": "tree for literals and lengths and a separate code tree for distances."}
+{"event": "The code trees for each block appear in a compact form just before"}
+{"event": "the compressed data for that block."}
+{"event": "Deutsch                      Informational                      [Page 4]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "3. Detailed specification"}
+{"event": "3.1. Overall conventions In the diagrams below, a box like this:"}
+{"event": "+---+"}
+{"event": "|   | <-- the vertical bars might be missing"}
+{"event": "+---+"}
+{"event": "represents one byte; a box like this:"}
+{"event": "+==============+"}
+{"event": "|              |"}
+{"event": "+==============+"}
+{"event": "represents a variable number of bytes."}
+{"event": "Bytes stored within a computer do not have a \"bit order\", since"}
+{"event": "they are always treated as a unit.  However, a byte considered as"}
+{"event": "an integer between 0 and 255 does have a most- and least-"}
+{"event": "significant bit, and since we write numbers with the most-"}
+{"event": "significant digit on the left, we also write bytes with the most-"}
+{"event": "significant bit on the left.  In the diagrams below, we number the"}
+{"event": "bits of a byte so that bit 0 is the least-significant bit, i.e.,"}
+{"event": "the bits are numbered:"}
+{"event": "+--------+"}
+{"event": "|76543210|"}
+{"event": "+--------+"}
+{"event": "Within a computer, a number may occupy multiple bytes.  All"}
+{"event": "multi-byte numbers in the format described here are stored with"}
+{"event": "the least-significant byte first (at the lower memory address)."}
+{"event": "For example, the decimal number 520 is stored as:"}
+{"event": "0        1"}
+{"event": "+--------+--------+"}
+{"event": "|00001000|00000010|"}
+{"event": "+--------+--------+"}
+{"event": "^        ^"}
+{"event": "|        |"}
+{"event": "|        + more significant byte = 2 x 256"}
+{"event": "+ less significant byte = 8"}
+{"event": "3.1.1. Packing into bytes"}
+{"event": "This document does not address the issue of the order in which"}
+{"event": "bits of a byte are transmitted on a bit-sequential medium,"}
+{"event": "since the final data format described here is byte- rather than"}
+{"event": "Deutsch                      Informational                      [Page 5]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "bit-oriented.  However, we describe the compressed block format"}
+{"event": "in below, as a sequence of data elements of various bit"}
+{"event": "lengths, not a sequence of bytes.  We must therefore specify"}
+{"event": "how to pack these data elements into bytes to form the final"}
+{"event": "compressed byte sequence:"}
+{"event": "* Data elements are packed into bytes in order of"}
+{"event": "increasing bit number within the byte, i.e., starting"}
+{"event": "with the least-significant bit of the byte."}
+{"event": "* Data elements other than Huffman codes are packed"}
+{"event": "starting with the least-significant bit of the data"}
+{"event": "element."}
+{"event": "* Huffman codes are packed starting with the most-"}
+{"event": "significant bit of the code."}
+{"event": "In other words, if one were to print out the compressed data as"}
+{"event": "a sequence of bytes, starting with the first byte at the"}
+{"event": "*right* margin and proceeding to the *left*, with the most-"}
+{"event": "significant bit of each byte on the left as usual, one would be"}
+{"event": "able to parse the result from right to left, with fixed-width"}
+{"event": "elements in the correct MSB-to-LSB order and Huffman codes in"}
+{"event": "bit-reversed order (i.e., with the first bit of the code in the"}
+{"event": "relative LSB position)."}
+{"event": "3.2. Compressed block format"}
+{"event": "3.2.1. Synopsis of prefix and Huffman coding"}
+{"event": "Prefix coding represents symbols from an a priori known"}
+{"event": "alphabet by bit sequences (codes), one code for each symbol, in"}
+{"event": "a manner such that different symbols may be represented by bit"}
+{"event": "sequences of different lengths, but a parser can always parse"}
+{"event": "an encoded string unambiguously symbol-by-symbol."}
+{"event": "We define a prefix code in terms of a binary tree in which the"}
+{"event": "two edges descending from each non-leaf node are labeled 0 and"}
+{"event": "1 and in which the leaf nodes correspond one-for-one with (are"}
+{"event": "labeled with) the symbols of the alphabet; then the code for a"}
+{"event": "symbol is the sequence of 0's and 1's on the edges leading from"}
+{"event": "the root to the leaf labeled with that symbol.  For example:"}
+{"event": "Deutsch                      Informational                      [Page 6]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "/\\              Symbol    Code"}
+{"event": "0  1             ------    ----"}
+{"event": "/    \\                A      00"}
+{"event": "/\\     B               B       1"}
+{"event": "0  1                    C     011"}
+{"event": "/    \\                   D     010"}
+{"event": "A     /\\"}
+{"event": "0  1"}
+{"event": "/    \\"}
+{"event": "D      C"}
+{"event": "A parser can decode the next symbol from an encoded input"}
+{"event": "stream by walking down the tree from the root, at each step"}
+{"event": "choosing the edge corresponding to the next input bit."}
+{"event": "Given an alphabet with known symbol frequencies, the Huffman"}
+{"event": "algorithm allows the construction of an optimal prefix code"}
+{"event": "(one which represents strings with those symbol frequencies"}
+{"event": "using the fewest bits of any possible prefix codes for that"}
+{"event": "alphabet).  Such a code is called a Huffman code.  (See"}
+{"event": "reference [1] in Chapter 5, references for additional"}
+{"event": "information on Huffman codes.)"}
+{"event": "Note that in the \"deflate\" format, the Huffman codes for the"}
+{"event": "various alphabets must not exceed certain maximum code lengths."}
+{"event": "This constraint complicates the algorithm for computing code"}
+{"event": "lengths from symbol frequencies.  Again, see Chapter 5,"}
+{"event": "references for details."}
+{"event": "3.2.2. Use of Huffman coding in the \"deflate\" format"}
+{"event": "The Huffman codes used for each alphabet in the \"deflate\""}
+{"event": "format have two additional rules:"}
+{"event": "* All codes of a given bit length have lexicographically"}
+{"event": "consecutive values, in the same order as the symbols"}
+{"event": "they represent;"}
+{"event": "* Shorter codes lexicographically precede longer codes."}
+{"event": "Deutsch                      Informational                      [Page 7]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "We could recode the example above to follow this rule as"}
+{"event": "follows, assuming that the order of the alphabet is ABCD:"}
+{"event": "Symbol  Code"}
+{"event": "------  ----"}
+{"event": "A       10"}
+{"event": "B       0"}
+{"event": "C       110"}
+{"event": "D       111"}
+{"event": "I.e., 0 precedes 10 which precedes 11x, and 110 and 111 are"}
+{"event": "lexicographically consecutive."}
+{"event": "Given this rule, we can define the Huffman code for an alphabet"}
+{"event": "just by giving the bit lengths of the codes for each symbol of"}
+{"event": "the alphabet in order; this is sufficient to determine the"}
+{"event": "actual codes.  In our example, the code is completely defined"}
+{"event": "by the sequence of bit lengths (2, 1, 3, 3).  The following"}
+{"event": "algorithm generates the codes as integers, intended to be read"}
+{"event": "from most- to least-significant bit.  The code lengths are"}
+{"event": "initially in tree[I].Len; the codes are produced in"}
+{"event": "tree[I].Code."}
+{"event": "1)  Count the number of codes for each code length.  Let"}
+{"event": "bl_count[N] be the number of codes of length N, N >= 1."}
+{"event": "2)  Find the numerical value of the smallest code for each"}
+{"event": "code length:"}
+{"event": "code = 0;"}
+{"event": "bl_count[0] = 0;"}
+{"event": "for (bits = 1; bits <= MAX_BITS; bits++) {"}
+{"event": "code = (code + bl_count[bits-1]) << 1;"}
+{"event": "next_code[bits] = code;"}
+{"event": "}"}
+{"event": "3)  Assign numerical values to all codes, using consecutive"}
+{"event": "values for all codes of the same length with the base"}
+{"event": "values determined at step 2. Codes that are never used"}
+{"event": "(which have a bit length of zero) must not be assigned a"}
+{"event": "value."}
+{"event": "for (n = 0;  n <= max_code; n++) {"}
+{"event": "len = tree[n].Len;"}
+{"event": "if (len != 0) {"}
+{"event": "tree[n].Code = next_code[len];"}
+{"event": "next_code[len]++;"}
+{"event": "}"}
+{"event": "Deutsch                      Informational                      [Page 8]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "}"}
+{"event": "Example:"}
+{"event": "Consider the alphabet ABCDEFGH, with bit lengths (3, 3, 3, 3,"}
+{"event": "3, 2, 4, 4).  After step 1, we have:"}
+{"event": "N      bl_count[N]"}
+{"event": "-      -----------"}
+{"event": "2      1"}
+{"event": "3      5"}
+{"event": "4      2"}
+{"event": "Step 2 computes the following next_code values:"}
+{"event": "N      next_code[N]"}
+{"event": "-      ------------"}
+{"event": "1      0"}
+{"event": "2      0"}
+{"event": "3      2"}
+{"event": "4      14"}
+{"event": "Step 3 produces the following code values:"}
+{"event": "Symbol Length   Code"}
+{"event": "------ ------   ----"}
+{"event": "A       3        010"}
+{"event": "B       3        011"}
+{"event": "C       3        100"}
+{"event": "D       3        101"}
+{"event": "E       3        110"}
+{"event": "F       2         00"}
+{"event": "G       4       1110"}
+{"event": "H       4       1111"}
+{"event": "3.2.3. Details of block format"}
+{"event": "Each block of compressed data begins with 3 header bits"}
+{"event": "containing the following data:"}
+{"event": "first bit       BFINAL"}
+{"event": "next 2 bits     BTYPE"}
+{"event": "Note that the header bits do not necessarily begin on a byte"}
+{"event": "boundary, since a block does not necessarily occupy an integral"}
+{"event": "number of bytes."}
+{"event": "Deutsch                      Informational                      [Page 9]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "BFINAL is set if and only if this is the last block of the data"}
+{"event": "set."}
+{"event": "BTYPE specifies how the data are compressed, as follows:"}
+{"event": "00 - no compression"}
+{"event": "01 - compressed with fixed Huffman codes"}
+{"event": "10 - compressed with dynamic Huffman codes"}
+{"event": "11 - reserved (error)"}
+{"event": "The only difference between the two compressed cases is how the"}
+{"event": "Huffman codes for the literal/length and distance alphabets are"}
+{"event": "defined."}
+{"event": "In all cases, the decoding algorithm for the actual data is as"}
+{"event": "follows:"}
+{"event": "do"}
+{"event": "read block header from input stream."}
+{"event": "if stored with no compression"}
+{"event": "skip any remaining bits in current partially"}
+{"event": "processed byte"}
+{"event": "read LEN and NLEN (see next section)"}
+{"event": "copy LEN bytes of data to output"}
+{"event": "otherwise"}
+{"event": "if compressed with dynamic Huffman codes"}
+{"event": "read representation of code trees (see"}
+{"event": "subsection below)"}
+{"event": "loop (until end of block code recognized)"}
+{"event": "decode literal/length value from input stream"}
+{"event": "if value < 256"}
+{"event": "copy value (literal byte) to output stream"}
+{"event": "otherwise"}
+{"event": "if value = end of block (256)"}
+{"event": "break from loop"}
+{"event": "otherwise (value = 257..285)"}
+{"event": "decode distance from input stream"}
+{"event": "move backwards distance bytes in the output"}
+{"event": "stream, and copy length bytes from this"}
+{"event": "position to the output stream."}
+{"event": "end loop"}
+{"event": "while not last block"}
+{"event": "Note that a duplicated string reference may refer to a string"}
+{"event": "in a previous block; i.e., the backward distance may cross one"}
+{"event": "or more block boundaries.  However a distance cannot refer past"}
+{"event": "the beginning of the output stream.  (An application using a"}
+{"event": "Deutsch                      Informational                     [Page 10]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "preset dictionary might discard part of the output stream; a"}
+{"event": "distance can refer to that part of the output stream anyway)"}
+{"event": "Note also that the referenced string may overlap the current"}
+{"event": "position; for example, if the last 2 bytes decoded have values"}
+{"event": "X and Y, a string reference with <length = 5, distance = 2>"}
+{"event": "adds X,Y,X,Y,X to the output stream."}
+{"event": "We now specify each compression method in turn."}
+{"event": "3.2.4. Non-compressed blocks (BTYPE=00)"}
+{"event": "Any bits of input up to the next byte boundary are ignored."}
+{"event": "The rest of the block consists of the following information:"}
+{"event": "0   1   2   3   4..."}
+{"event": "+---+---+---+---+================================+"}
+{"event": "|  LEN  | NLEN  |... LEN bytes of literal data...|"}
+{"event": "+---+---+---+---+================================+"}
+{"event": "LEN is the number of data bytes in the block.  NLEN is the"}
+{"event": "one's complement of LEN."}
+{"event": "3.2.5. Compressed blocks (length and distance codes)"}
+{"event": "As noted above, encoded data blocks in the \"deflate\" format"}
+{"event": "consist of sequences of symbols drawn from three conceptually"}
+{"event": "distinct alphabets: either literal bytes, from the alphabet of"}
+{"event": "byte values (0..255), or <length, backward distance> pairs,"}
+{"event": "where the length is drawn from (3..258) and the distance is"}
+{"event": "drawn from (1..32,768).  In fact, the literal and length"}
+{"event": "alphabets are merged into a single alphabet (0..285), where"}
+{"event": "values 0..255 represent literal bytes, the value 256 indicates"}
+{"event": "end-of-block, and values 257..285 represent length codes"}
+{"event": "(possibly in conjunction with extra bits following the symbol"}
+{"event": "code) as follows:"}
+{"event": "Deutsch                      Informational                     [Page 11]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "Extra               Extra               Extra"}
+{"event": "Code Bits Length(s) Code Bits Lengths   Code Bits Length(s)"}
+{"event": "---- ---- ------     ---- ---- -------   ---- ---- -------"}
+{"event": "257   0     3       267   1   15,16     277   4   67-82"}
+{"event": "258   0     4       268   1   17,18     278   4   83-98"}
+{"event": "259   0     5       269   2   19-22     279   4   99-114"}
+{"event": "260   0     6       270   2   23-26     280   4  115-130"}
+{"event": "261   0     7       271   2   27-30     281   5  131-162"}
+{"event": "262   0     8       272   2   31-34     282   5  163-194"}
+{"event": "263   0     9       273   3   35-42     283   5  195-226"}
+{"event": "264   0    10       274   3   43-50     284   5  227-257"}
+{"event": "265   1  11,12      275   3   51-58     285   0    258"}
+{"event": "266   1  13,14      276   3   59-66"}
+{"event": "The extra bits should be interpreted as a machine integer"}
+{"event": "stored with the most-significant bit first, e.g., bits 1110"}
+{"event": "represent the value 14."}
+{"event": "Extra           Extra               Extra"}
+{"event": "Code Bits Dist  Code Bits   Dist     Code Bits Distance"}
+{"event": "---- ---- ----  ---- ----  ------    ---- ---- --------"}
+{"event": "0   0    1     10   4     33-48    20    9   1025-1536"}
+{"event": "1   0    2     11   4     49-64    21    9   1537-2048"}
+{"event": "2   0    3     12   5     65-96    22   10   2049-3072"}
+{"event": "3   0    4     13   5     97-128   23   10   3073-4096"}
+{"event": "4   1   5,6    14   6    129-192   24   11   4097-6144"}
+{"event": "5   1   7,8    15   6    193-256   25   11   6145-8192"}
+{"event": "6   2   9-12   16   7    257-384   26   12  8193-12288"}
+{"event": "7   2  13-16   17   7    385-512   27   12 12289-16384"}
+{"event": "8   3  17-24   18   8    513-768   28   13 16385-24576"}
+{"event": "9   3  25-32   19   8   769-1024   29   13 24577-32768"}
+{"event": "3.2.6. Compression with fixed Huffman codes (BTYPE=01)"}
+{"event": "The Huffman codes for the two alphabets are fixed, and are not"}
+{"event": "represented explicitly in the data.  The Huffman code lengths"}
+{"event": "for the literal/length alphabet are:"}
+{"event": "Lit Value    Bits        Codes"}
+{"event": "---------    ----        -----"}
+{"event": "0 - 143     8          00110000 through"}
+{"event": "10111111"}
+{"event": "144 - 255     9          110010000 through"}
+{"event": "111111111"}
+{"event": "256 - 279     7          0000000 through"}
+{"event": "0010111"}
+{"event": "280 - 287     8          11000000 through"}
+{"event": "11000111"}
+{"event": "Deutsch                      Informational                     [Page 12]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "The code lengths are sufficient to generate the actual codes,"}
+{"event": "as described above; we show the codes in the table for added"}
+{"event": "clarity.  Literal/length values 286-287 will never actually"}
+{"event": "occur in the compressed data, but participate in the code"}
+{"event": "construction."}
+{"event": "Distance codes 0-31 are represented by (fixed-length) 5-bit"}
+{"event": "codes, with possible additional bits as shown in the table"}
+{"event": "shown in Paragraph 3.2.5, above.  Note that distance codes 30-"}
+{"event": "31 will never actually occur in the compressed data."}
+{"event": "3.2.7. Compression with dynamic Huffman codes (BTYPE=10)"}
+{"event": "The Huffman codes for the two alphabets appear in the block"}
+{"event": "immediately after the header bits and before the actual"}
+{"event": "compressed data, first the literal/length code and then the"}
+{"event": "distance code.  Each code is defined by a sequence of code"}
+{"event": "lengths, as discussed in Paragraph 3.2.2, above.  For even"}
+{"event": "greater compactness, the code length sequences themselves are"}
+{"event": "compressed using a Huffman code.  The alphabet for code lengths"}
+{"event": "is as follows:"}
+{"event": "0 - 15: Represent code lengths of 0 - 15"}
+{"event": "16: Copy the previous code length 3 - 6 times."}
+{"event": "The next 2 bits indicate repeat length"}
+{"event": "(0 = 3, ... , 3 = 6)"}
+{"event": "Example:  Codes 8, 16 (+2 bits 11),"}
+{"event": "16 (+2 bits 10) will expand to"}
+{"event": "12 code lengths of 8 (1 + 6 + 5)"}
+{"event": "17: Repeat a code length of 0 for 3 - 10 times."}
+{"event": "(3 bits of length)"}
+{"event": "18: Repeat a code length of 0 for 11 - 138 times"}
+{"event": "(7 bits of length)"}
+{"event": "A code length of 0 indicates that the corresponding symbol in"}
+{"event": "the literal/length or distance alphabet will not occur in the"}
+{"event": "block, and should not participate in the Huffman code"}
+{"event": "construction algorithm given earlier.  If only one distance"}
+{"event": "code is used, it is encoded using one bit, not zero bits; in"}
+{"event": "this case there is a single code length of one, with one unused"}
+{"event": "code.  One distance code of zero bits means that there are no"}
+{"event": "distance codes used at all (the data is all literals)."}
+{"event": "We can now define the format of the block:"}
+{"event": "5 Bits: HLIT, # of Literal/Length codes - 257 (257 - 286)"}
+{"event": "5 Bits: HDIST, # of Distance codes - 1        (1 - 32)"}
+{"event": "4 Bits: HCLEN, # of Code Length codes - 4     (4 - 19)"}
+{"event": "Deutsch                      Informational                     [Page 13]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "(HCLEN + 4) x 3 bits: code lengths for the code length"}
+{"event": "alphabet given just above, in the order: 16, 17, 18,"}
+{"event": "0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15"}
+{"event": "These code lengths are interpreted as 3-bit integers"}
+{"event": "(0-7); as above, a code length of 0 means the"}
+{"event": "corresponding symbol (literal/length or distance code"}
+{"event": "length) is not used."}
+{"event": "HLIT + 257 code lengths for the literal/length alphabet,"}
+{"event": "encoded using the code length Huffman code"}
+{"event": "HDIST + 1 code lengths for the distance alphabet,"}
+{"event": "encoded using the code length Huffman code"}
+{"event": "The actual compressed data of the block,"}
+{"event": "encoded using the literal/length and distance Huffman"}
+{"event": "codes"}
+{"event": "The literal/length symbol 256 (end of data),"}
+{"event": "encoded using the literal/length Huffman code"}
+{"event": "The code length repeat codes can cross from HLIT + 257 to the"}
+{"event": "HDIST + 1 code lengths.  In other words, all code lengths form"}
+{"event": "a single sequence of HLIT + HDIST + 258 values."}
+{"event": "3.3. Compliance"}
+{"event": "A compressor may limit further the ranges of values specified in"}
+{"event": "the previous section and still be compliant; for example, it may"}
+{"event": "limit the range of backward pointers to some value smaller than"}
+{"event": "32K.  Similarly, a compressor may limit the size of blocks so that"}
+{"event": "a compressible block fits in memory."}
+{"event": "A compliant decompressor must accept the full range of possible"}
+{"event": "values defined in the previous section, and must accept blocks of"}
+{"event": "arbitrary size."}
+{"event": "4. Compression algorithm details"}
+{"event": "While it is the intent of this document to define the \"deflate\""}
+{"event": "compressed data format without reference to any particular"}
+{"event": "compression algorithm, the format is related to the compressed"}
+{"event": "formats produced by LZ77 (Lempel-Ziv 1977, see reference [2] below);"}
+{"event": "since many variations of LZ77 are patented, it is strongly"}
+{"event": "recommended that the implementor of a compressor follow the general"}
+{"event": "algorithm presented here, which is known not to be patented per se."}
+{"event": "The material in this section is not part of the definition of the"}
+{"event": "Deutsch                      Informational                     [Page 14]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "specification per se, and a compressor need not follow it in order to"}
+{"event": "be compliant."}
+{"event": "The compressor terminates a block when it determines that starting a"}
+{"event": "new block with fresh trees would be useful, or when the block size"}
+{"event": "fills up the compressor's block buffer."}
+{"event": "The compressor uses a chained hash table to find duplicated strings,"}
+{"event": "using a hash function that operates on 3-byte sequences.  At any"}
+{"event": "given point during compression, let XYZ be the next 3 input bytes to"}
+{"event": "be examined (not necessarily all different, of course).  First, the"}
+{"event": "compressor examines the hash chain for XYZ.  If the chain is empty,"}
+{"event": "the compressor simply writes out X as a literal byte and advances one"}
+{"event": "byte in the input.  If the hash chain is not empty, indicating that"}
+{"event": "the sequence XYZ (or, if we are unlucky, some other 3 bytes with the"}
+{"event": "same hash function value) has occurred recently, the compressor"}
+{"event": "compares all strings on the XYZ hash chain with the actual input data"}
+{"event": "sequence starting at the current point, and selects the longest"}
+{"event": "match."}
+{"event": "The compressor searches the hash chains starting with the most recent"}
+{"event": "strings, to favor small distances and thus take advantage of the"}
+{"event": "Huffman encoding.  The hash chains are singly linked. There are no"}
+{"event": "deletions from the hash chains; the algorithm simply discards matches"}
+{"event": "that are too old.  To avoid a worst-case situation, very long hash"}
+{"event": "chains are arbitrarily truncated at a certain length, determined by a"}
+{"event": "run-time parameter."}
+{"event": "To improve overall compression, the compressor optionally defers the"}
+{"event": "selection of matches (\"lazy matching\"): after a match of length N has"}
+{"event": "been found, the compressor searches for a longer match starting at"}
+{"event": "the next input byte.  If it finds a longer match, it truncates the"}
+{"event": "previous match to a length of one (thus producing a single literal"}
+{"event": "byte) and then emits the longer match.  Otherwise, it emits the"}
+{"event": "original match, and, as described above, advances N bytes before"}
+{"event": "continuing."}
+{"event": "Run-time parameters also control this \"lazy match\" procedure.  If"}
+{"event": "compression ratio is most important, the compressor attempts a"}
+{"event": "complete second search regardless of the length of the first match."}
+{"event": "In the normal case, if the current match is \"long enough\", the"}
+{"event": "compressor reduces the search for a longer match, thus speeding up"}
+{"event": "the process.  If speed is most important, the compressor inserts new"}
+{"event": "strings in the hash table only when no match was found, or when the"}
+{"event": "match is not \"too long\".  This degrades the compression ratio but"}
+{"event": "saves time since there are both fewer insertions and fewer searches."}
+{"event": "Deutsch                      Informational                     [Page 15]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "5. References"}
+{"event": "[1] Huffman, D. A., \"A Method for the Construction of Minimum"}
+{"event": "Redundancy Codes\", Proceedings of the Institute of Radio"}
+{"event": "Engineers, September 1952, Volume 40, Number 9, pp. 1098-1101."}
+{"event": "[2] Ziv J., Lempel A., \"A Universal Algorithm for Sequential Data"}
+{"event": "Compression\", IEEE Transactions on Information Theory, Vol. 23,"}
+{"event": "No. 3, pp. 337-343."}
+{"event": "[3] Gailly, J.-L., and Adler, M., ZLIB documentation and sources,"}
+{"event": "available in ftp://ftp.uu.net/pub/archiving/zip/doc/"}
+{"event": "[4] Gailly, J.-L., and Adler, M., GZIP documentation and sources,"}
+{"event": "available as gzip-*.tar in ftp://prep.ai.mit.edu/pub/gnu/"}
+{"event": "[5] Schwartz, E. S., and Kallick, B. \"Generating a canonical prefix"}
+{"event": "encoding.\" Comm. ACM, 7,3 (Mar. 1964), pp. 166-169."}
+{"event": "[6] Hirschberg and Lelewer, \"Efficient decoding of prefix codes,\""}
+{"event": "Comm. ACM, 33,4, April 1990, pp. 449-459."}
+{"event": "6. Security Considerations"}
+{"event": "Any data compression method involves the reduction of redundancy in"}
+{"event": "the data.  Consequently, any corruption of the data is likely to have"}
+{"event": "severe effects and be difficult to correct.  Uncompressed text, on"}
+{"event": "the other hand, will probably still be readable despite the presence"}
+{"event": "of some corrupted bytes."}
+{"event": "It is recommended that systems using this data format provide some"}
+{"event": "means of validating the integrity of the compressed data.  See"}
+{"event": "reference [3], for example."}
+{"event": "7. Source code"}
+{"event": "Source code for a C language implementation of a \"deflate\" compliant"}
+{"event": "compressor and decompressor is available within the zlib package at"}
+{"event": "ftp://ftp.uu.net/pub/archiving/zip/zlib/."}
+{"event": "8. Acknowledgements"}
+{"event": "Trademarks cited in this document are the property of their"}
+{"event": "respective owners."}
+{"event": "Phil Katz designed the deflate format.  Jean-Loup Gailly and Mark"}
+{"event": "Adler wrote the related software described in this specification."}
+{"event": "Glenn Randers-Pehrson converted this document to RFC and HTML format."}
+{"event": "Deutsch                      Informational                     [Page 16]"}
+{"event": "RFC 1951      DEFLATE Compressed Data Format Specification      May 1996"}
+{"event": "9. Author's Address"}
+{"event": "L. Peter Deutsch"}
+{"event": "Aladdin Enterprises"}
+{"event": "203 Santa Margarita Ave."}
+{"event": "Menlo Park, CA 94025"}
+{"event": "Phone: (415) 322-0103 (AM only)"}
+{"event": "FAX:   (415) 322-1734"}
+{"event": "EMail: <ghost@aladdin.com>"}
+{"event": "Questions about the technical content of this specification can be"}
+{"event": "sent by email to:"}
+{"event": "Jean-Loup Gailly <gzip@prep.ai.mit.edu> and"}
+{"event": "Mark Adler <madler@alumni.caltech.edu>"}
+{"event": "Editorial comments on this specification can be sent by email to:"}
+{"event": "L. Peter Deutsch <ghost@aladdin.com> and"}
+{"event": "Glenn Randers-Pehrson <randeg@alumni.rpi.edu>"}
+{"event": "Deutsch                      Informational                     [Page 17]"}

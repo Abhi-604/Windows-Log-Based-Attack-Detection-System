@@ -1,0 +1,13 @@
+{"event": "OSSEC HIDS 0.5"}
+{"event": "Copyright (c) 2004,2005 Daniel B. Cid   <daniel.cid@gmail.com>"}
+{"event": "<dcid@ossec.net>"}
+{"event": "Jak serwer zarz\u00c4\u0085dza agentami."}
+{"event": "-Klient otwiera port 1514 (domy\u00c5\u009blnie) i nas\u00c5\u0082uchuje na wiadomo\u00c5\u009bci od"}
+{"event": "serwera. Wy\u00c5\u0082\u00c4\u0085cznie IP serwera jest akceptowane."}
+{"event": "-Co 10 minut, klient wysy\u00c5\u0082a powiadomienie o stanie do serwera."}
+{"event": "Powiadomienie zawiera niekt\u00c3\u00b3re informacje o systemie klienckim oraz"}
+{"event": "informacje o plikach kt\u00c3\u00b3re posiada w katalogu shared."}
+{"event": "-Serwer otrzymuje wiadomo\u00c5\u009bci statusu, aktualizuje plik statusu agenta"}
+{"event": "oraz sprawdza czy posiada jaki\u00c5\u009b plik do wys\u00c5\u0082ania dla agenta. Je\u00c5\u009bli ma,"}
+{"event": "to \u00c5\u0082\u00c4\u0085czy si\u00c4\u0099 z klientem i wysy\u00c5\u0082a go."}
+{"event": "-Ka\u00c5\u00bcda wiadomo\u00c5\u009b\u00c4\u0087 jest szyfrowana."}

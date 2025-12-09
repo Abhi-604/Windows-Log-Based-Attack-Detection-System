@@ -1,0 +1,10 @@
+{"event": "- Etkin yan\u00c4\u00b1t \u00c3\u00bcretme (Active response) etkin k\u00c4\u00b1l\u00c4\u00b1nd\u00c4\u00b1."}
+{"event": "- \u00c3\u0096ntan\u00c4\u00b1ml\u00c4\u00b1 olarak host-deny ve firewall-drop etkin yan\u00c4\u00b1t"}
+{"event": "mekanizmalar\u00c4\u00b1n\u00c4\u00b1 etkin hale getirebiliriz. Bunlardan ilki"}
+{"event": "bir bilgisayar\u00c4\u00b1 /etc/hosts.deny dosyas\u00c4\u00b1na ekler, ikincisi"}
+{"event": "bilgisayar\u00c4\u00b1 iptables (linux) veya ipfilter (Solaris,"}
+{"event": "FreeBSD vb.) ile engeller."}
+{"event": "- Bunlar, SSHD kaba g\u00c3\u00bc\u00c3\u00a7 sald\u00c4\u00b1r\u00c4\u00b1lar\u00c4\u00b1n\u00c4\u00b1, port taramalar\u00c4\u00b1n\u00c4\u00b1"}
+{"event": "ve di\u00c4\u009fer sald\u00c4\u00b1r\u00c4\u00b1 \u00c5\u009fekillerini durdurmak i\u00c3\u00a7in kullan\u00c4\u00b1labilir."}
+{"event": "Ayr\u00c4\u00b1ca snort olaylar\u00c4\u00b1n\u00c4\u00b1 de\u00c4\u009ferlendirerek engelleme yapmak"}
+{"event": "i\u00c3\u00a7in de ekleyebilirsiniz."}

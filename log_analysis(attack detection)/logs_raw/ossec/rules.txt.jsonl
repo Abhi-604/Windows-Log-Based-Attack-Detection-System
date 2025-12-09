@@ -1,0 +1,70 @@
+{"event": "OSSEC HIDS v0.7"}
+{"event": "Copyright (c) 2004-2006 Daniel B. Cid   <daniel.cid@gmail.com>"}
+{"event": "<dcid@ossec.net>"}
+{"event": "--- Klasyfikacja regu\u00c5\u0082 ---"}
+{"event": "-- Klasyfikacja --"}
+{"event": "Regu\u00c5\u0082y s\u00c4\u0085 podzielone na 16 poziom\u00c3\u00b3w. Niekt\u00c3\u00b3re poziomy s\u00c4\u0085 aktualnie nie u\u00c5\u00bcywane."}
+{"event": "Inne mog\u00c4\u0085 by\u00c4\u0087 dodane pomi\u00c4\u0099dzy nimi lub za."}
+{"event": "**Regu\u00c5\u0082y s\u00c4\u0085 czytane od najwy\u00c5\u00bcszego do najni\u00c5\u00bcszego poziomu. **"}
+{"event": "00 - Ignorowane - Nie jest podejmowana \u00c5\u00bcadna akcja. U\u00c5\u00bcywane aby unikn\u00c4\u0085\u00c4\u0087"}
+{"event": "fa\u00c5\u0082szywych atak\u00c3\u00b3w. Te regu\u00c5\u0082y s\u00c4\u0085 przetwarzane przed wszystkimi pozosta\u00c5\u0082ymi."}
+{"event": "Zawieraj\u00c4\u0085 zdarzenia nie zwi\u00c4\u0085zane z bezpiecze\u00c5\u0084stwem."}
+{"event": "01 - Brak -"}
+{"event": "02 - Niski priorytet powiadomie\u00c5\u0084 systemowych - Powiadomienia systemowe lub"}
+{"event": "wiadomo\u00c5\u009bci statusu. Nie zwi\u00c4\u0085zane z bezpiecze\u00c5\u0084stwem."}
+{"event": "03 - Pomy\u00c5\u009blne/Autoryzowane akcje - Zawiera pomy\u00c5\u009blne pr\u00c3\u00b3by logowania, dozwolone"}
+{"event": "akcje firewall'a, itd."}
+{"event": "04 - Niski priorytet b\u00c5\u0082\u00c4\u0099d\u00c3\u00b3w systemowych - B\u00c5\u0082\u00c4\u0099dy zwi\u00c4\u0085zane ze z\u00c5\u0082\u00c4\u0085 konfiguracj\u00c4\u0085 lub"}
+{"event": "nieu\u00c5\u00bcywanymi urz\u00c4\u0085dzeniami/aplikacjami. Nie s\u00c4\u0085 zwi\u00c4\u0085zane z bezpiecze\u00c5\u0084stwem,"}
+{"event": "zazwyczaj s\u00c4\u0085 powodowane poprzez instalacje lub testowanie aplikacji."}
+{"event": "05 - B\u00c5\u0082\u00c4\u0099dy wygenerowane przez u\u00c5\u00bcytkownika - Zawieraj\u00c4\u0085 b\u00c5\u0082\u00c4\u0099dne logowania,"}
+{"event": "zabronione akcje, itp. Nie maj\u00c4\u0085 wp\u00c5\u0082ywu na bezpiecze\u00c5\u0084stwo, poniewa\u00c5\u00bc ju\u00c5\u00bc s\u00c4"}
+{"event": "blokowane."}
+{"event": "06 - Atak o niskim znaczeniu - Powodowane przez robaki lub wirusy kt\u00c3\u00b3re nie maj\u00c4"}
+{"event": "wp\u00c5\u0082ywu na system (takie jak code red dla serwera apache, itp). Zawieraj\u00c4"}
+{"event": "tak\u00c5\u00bce cz\u00c4\u0099sto akcje IDS oraz b\u00c5\u0082\u00c4\u0099dy."}
+{"event": "07 - Dopasowanie *bad word* - Zawieraj\u00c4\u0085 s\u00c5\u0082owa \"bad', \"error\", itp. W wi\u00c4\u0099kszo\u00c5\u009bci"}
+{"event": "niesklasyfikowane akcje, kt\u00c3\u00b3re mog\u00c4\u0085 mie\u00c4\u0087 wp\u00c5\u0082yw na bezpiecze\u00c5\u0084stwo."}
+{"event": "08 - Widziane poraz pierwszy - Zawieraj\u00c4\u0085 akcje widziane poraz pierwszy. Np."}
+{"event": "pierwszy raz jest generowana akcja IDS albo pierwsze logowanie u\u00c5\u00bcytkownika."}
+{"event": "Je\u00c5\u009bli dopiero zacz\u00c4\u0085\u00c5\u0082e\u00c5\u009b u\u00c5\u00bcywa\u00c4\u0087 OSSEC HIDS, takie akcje najprawsopodobniej"}
+{"event": "b\u00c4\u0099d\u00c4\u0085 wyst\u00c4\u0099powa\u00c4\u0087 cz\u00c4\u0099sto. Lecz po jakim\u00c5\u009b czasie znikn\u00c4\u0085. Zawieraj\u00c4\u0085 tak\u00c5\u00bce akcje"}
+{"event": "zwi\u00c4\u0085zane z bezpiecze\u00c5\u0084stwem (takie jak uruchomienie sniffera lub podobnego"}
+{"event": "narz\u00c4\u0099dzia)."}
+{"event": "09 - B\u00c5\u0082\u00c4\u0099dy z nieznanego \u00c5\u00bar\u00c3\u00b3d\u00c5\u0082a - Zawieraj\u00c4\u0085 pr\u00c3\u00b3by logowania jako nieznany"}
+{"event": "u\u00c5\u00bcytkownik lub z niepoprawnego \u00c5\u00bar\u00c3\u00b3d\u00c5\u0082a. Mog\u00c4\u0085 mie\u00c4\u0087 wp\u00c5\u0082yw na bezpiecze\u00c5\u0084stwo"}
+{"event": "(szczeg\u00c3\u00b3lnie gdy powtarzane). Obejmuj\u00c4\u0085 tak\u00c5\u00bce b\u00c5\u0082\u00c4\u0099dy zwi\u00c4\u0085zane z kontem"}
+{"event": "\"administratora\", root'a."}
+{"event": "10 - Powtarzalne b\u00c5\u0082\u00c4\u0099dy generowane przez u\u00c5\u00bcytkownika - Zawieraj\u00c4\u0085 wielokrotne"}
+{"event": "nieudane pr\u00c3\u00b3by logowania, b\u00c5\u0082\u00c4\u0099dy autoryzacji itp. Mog\u00c4\u0085 oznacza\u00c4\u0087 atak lub"}
+{"event": "poprostu u\u00c5\u00bcytkownik zapomia\u00c5\u0082 swoich danych autoryzuj\u00c4\u0085cych."}
+{"event": "11 - Ostrze\u00c5\u00bcenie, sprawdzanie sp\u00c3\u00b3jno\u00c5\u009bci - Zawiera wiadomo\u00c5\u009bci oznaczaj\u00c4\u0085ce"}
+{"event": "modyfikacje plik\u00c3\u00b3w binarnych lub obecno\u00c5\u009b\u00c4\u0087 rootkit'\u00c3\u00b3w (generowane przez"}
+{"event": "rootcheck). Je\u00c5\u009bli aktualizowa\u00c5\u0082e\u00c5\u009b system nie powiniene\u00c5\u009b si\u00c4\u0099 przejmowa\u00c4\u0087 tymi"}
+{"event": "ostrze\u00c5\u00bceniami. Mog\u00c4\u0085 oznacza\u00c4\u0087 udany atak."}
+{"event": "12 - Wysoce istotne zdarzenia - Zawieraj\u00c4\u0085 wiadomo\u00c5\u009bci b\u00c5\u0082\u00c4\u0085d\u00c3\u00b3w lub ostrze\u00c5\u00bce\u00c5\u0084 od"}
+{"event": "systemu, j\u00c4\u0085dra, itp. Moga oznacza\u00c4\u0087 atak na konkretn\u00c4\u0085 aplikacje."}
+{"event": "13 - Niespotykane b\u00c5\u0082\u00c4\u0099dy (wysoce istotne) - W wi\u00c4\u0099kszo\u00c5\u009bci dopasowane do wzorc\u00c3\u00b3w"}
+{"event": "znanych atak\u00c3\u00b3w."}
+{"event": "14 - Wysoce istotne zdarzenia bezpiecze\u00c5\u0084stwa - Akcje wykrywane poprzez zwi\u00c4\u0085zki"}
+{"event": "ze sob\u00c4\u0085, zazwyczaj oznaczaj\u00c4\u0085 atak."}
+{"event": "15 - Powa\u00c5\u00bcny atak - Natychmiastowa reakcja jest potrzebna (nie mo\u00c5\u00bce by\u00c4\u0087 mowy tu"}
+{"event": "o fa\u00c5\u0082szywym ataku)."}
+{"event": "== Grupa regu\u00c5\u0082 =="}
+{"event": "-Mo\u00c5\u00bcemy wyspecyfikowa\u00c4\u0087 grupy dla specyficznych regu\u00c5\u0082. Jest to u\u00c5\u00bcywane do"}
+{"event": "aktywnej ochrony oraz do relacji."}
+{"event": "-Aktualnie u\u00c5\u00bcywamy nast\u00c4\u0099puj\u00c4\u0085cych grup:"}
+{"event": "- invalid_login"}
+{"event": "- authentication_success"}
+{"event": "- authentication_failed"}
+{"event": "- connection_attempt"}
+{"event": "- attacks"}
+{"event": "- adduser"}
+{"event": "- sshd"}
+{"event": "- ids"}
+{"event": "- firewall"}
+{"event": "- squid"}
+{"event": "- apache"}
+{"event": "- syslog"}
+{"event": "== Konfiguracja regu\u00c5\u0082 =="}
+{"event": "http://www.ossec.net/docs/docs/manual/rules-decoders/index.html"}

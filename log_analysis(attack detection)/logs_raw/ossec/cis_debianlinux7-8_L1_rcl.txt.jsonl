@@ -1,0 +1,685 @@
+{"event": "# OSSEC Linux Audit - (C) 2018"}
+{"event": "#"}
+{"event": "# Released under the same license as OSSEC."}
+{"event": "# More details at the LICENSE file included with OSSEC or online"}
+{"event": "# at: https://github.com/ossec/ossec-hids/blob/master/LICENSE"}
+{"event": "#"}
+{"event": "# [Application name] [any or all] [reference]"}
+{"event": "# type:<entry name>;"}
+{"event": "#"}
+{"event": "# Type can be:"}
+{"event": "#             - f (for file or directory)"}
+{"event": "#             - r (registry entry)"}
+{"event": "#             - p (process running)"}
+{"event": "#"}
+{"event": "# Additional values:"}
+{"event": "# For the registry and for directories, use \"->\" to look for a specific entry and another"}
+{"event": "# \"->\" to look for the value."}
+{"event": "# Also, use \" -> r:^\\. -> ...\" to search all files in a directory"}
+{"event": "# For files, use \"->\" to look for a specific value in the file."}
+{"event": "#"}
+{"event": "# Values can be preceeded by: =: (for equal) - default"}
+{"event": "#                             r: (for ossec regexes)"}
+{"event": "#                             >: (for strcmp greater)"}
+{"event": "#                             <: (for strcmp  lower)"}
+{"event": "# Multiple patterns can be specified by using \" && \" between them."}
+{"event": "# (All of them must match for it to return true)."}
+{"event": "# Level 1 CIS Checks for Debian Linux 7 and Debian Linux 8"}
+{"event": "# Based on Center for Internet Security Benchmark v1.0.0 for Debian Linux 7 (https://workbench.cisecurity.org/benchmarks/80) and Benchmark v1.0.0 for Debian Linux 8 (https://workbench.cisecurity.org/benchmarks/81)"}
+{"event": "#"}
+{"event": "$rc_dirs=/etc/rc0.d,/etc/rc1.d,/etc/rc2.d,/etc/rc3.d,/etc/rc4.d,/etc/rc5.d,/etc/rc6.d,/etc/rc7.d,/etc/rc8.d,/etc/rc9.d,/etc/rca.d,/etc/rcb.d,/etc/rcc.d,/etc/rcs.d,/etc/rcS.d;"}
+{"event": "$rsyslog_files=/etc/rsyslog.conf,/etc/rsyslog.d/*;"}
+{"event": "$profiledfiles=/etc/profile.d/*;"}
+{"event": "$home_dirs=/usr2/home/*,/home/*,/home,/*/home/*,/*/home,/;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.1 Create Separate Partition for /tmp"}
+{"event": "[CIS - Debian Linux 7/8 - 2.1 Create Separate Partition for /tmp] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/tmp;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.2 Set nodev option for /tmp Partition"}
+{"event": "[CIS - Debian Linux 7/8 - 2.2 Set nodev option for /tmp Partition] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/tmp\\s+\\w+\\s+\\.*nodev;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.3 Set nosuid option for /tmp Partition"}
+{"event": "[CIS - Debian Linux 7/8 - 2.3 Set nosuid option for /tmp Partition] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/tmp\\s+\\w+\\s+\\.*nosuid;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.4 Set noexec option for /tmp Partition"}
+{"event": "[CIS - Debian Linux 7/8 - 2.4 Set noexec option for /tmp Partition] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/tmp\\s+\\w+\\s+\\.*noexec;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.5 Create Separate Partition for /var"}
+{"event": "[CIS - Debian Linux 7/8 - 2.5 Create Separate Partition for /var] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/var;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.6 Bind Mount the /var/tmp directory to /tmp"}
+{"event": "[CIS - Debian Linux 7/8 - 2.6 Bind Mount the /var/tmp directory to /tmp] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/tmp\\s+/var/tmp\\s+none\\s+\\.*bind\\.*0\\s+0;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.7 Create Separate Partition for /var/log"}
+{"event": "[CIS - Debian Linux 7/8 - 2.7 Create Separate Partition for /var/log] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/var/log;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.8 Create Separate Partition for /var/log/audit"}
+{"event": "[CIS - Debian Linux 7/8 - 2.8 Create Separate Partition for /var/log/audit] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/var/log/audit;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.9 Create Separate Partition for /home"}
+{"event": "[CIS - Debian Linux 7/8 - 2.9 Create Separate Partition for /home] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/home;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.10 Add nodev Option to /home"}
+{"event": "[CIS - Debian Linux 7/8 - 2.10 Add nodev Option to /home] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/home\\s+\\w+\\s+\\.*nodev;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.11 Add nodev Option to Removable Media Partitions"}
+{"event": "[CIS - Debian Linux 7/8 - 2.11 Add nodev Option to Removable Media Partitions] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/media\\.*\\s+\\w+\\s+\\.*nodev;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.12 Add noexec Option to Removable Media Partitions"}
+{"event": "[CIS - Debian Linux 7/8 - 2.12 Add noexec Option to Removable Media Partitions] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/media\\.*\\s+\\w+\\s+\\.*noexec;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.13 Add nosuid Option to Removable Media Partitions"}
+{"event": "[CIS - Debian Linux 7/8 - 2.13 Add nosuid Option to Removable Media Partitions] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/media\\.*\\s+\\w+\\s+\\.*nosuid;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.14 Add nodev Option to /run/shm Partition"}
+{"event": "[CIS - Debian Linux 7/8 - 2.14 Add nodev Option to /run/shm Partition] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/run/shm\\s+\\w+\\s+\\.*nodev;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.15 Add nosuid Option to /run/shm Partition"}
+{"event": "[CIS - Debian Linux 7/8 - 2.15 Add nosuid Option to /run/shm Partition] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/run/shm\\s+\\w+\\s+\\.*nosuid;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.16 Add noexec Option to /run/shm Partition"}
+{"event": "[CIS - Debian Linux 7/8 - 2.16 Add noexec Option to /run/shm Partition] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/fstab -> !r:/run/shm\\s+\\w+\\s+\\.*noexec;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#2.25 Disable Automounting"}
+{"event": "[CIS - Debian Linux 7/8 - 2.25 Disable Automounting] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:autofsc;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#3.3 Set Boot Loader Password"}
+{"event": "[CIS - Debian Linux 7/8 - 3.3 Set Boot Loader Password] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/boot/grub/grub.cfg -> !r:^set superusers;"}
+{"event": "f:/boot/grub/grub.cfg -> !r:^password;"}
+{"event": "f:/etc/grub.d -> !r:^set superusers;"}
+{"event": "f:/etc/grub.d -> !r:^password;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#3.4 Require Authentication for Single-User Mode"}
+{"event": "[CIS - Debian Linux 7/8 - 3.4 Require Authentication for Single-User Mode] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/shadow -> r:^root:!:;"}
+{"event": "f:/etc/shadow -> r:^root:*:;"}
+{"event": "f:/etc/shadow -> r:^root:*!:;"}
+{"event": "f:/etc/shadow -> r:^root:!*:;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#4.1 Restrict Core Dumps"}
+{"event": "[CIS - Debian Linux 7/8 - 4.1 Restrict Core Dumps] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/security/limits.conf -> !r:^* hard core 0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^fs.suid_dumpable = 0;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#4.3 Enable Randomized Virtual Memory Region Placement"}
+{"event": "[CIS - Debian Linux 7/8 - 4.3 Enable Randomized Virtual Memory Region Placement] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^kernel.randomize_va_space = 2;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.1.1 Ensure NIS is not installed"}
+{"event": "[CIS - Debian Linux 7/8 - 5.1.1 Ensure NIS is not installed] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/init.d/nis;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.1.2 Ensure rsh server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 5.1.2 Ensure rsh server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/inetd.conf -> !r:^# && r:shell|login|exec;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.1.4 Ensure talk server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 5.1.4 Ensure talk server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/inetd.conf -> !r:^# && r:talk|ntalk;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.1.6 Ensure telnet server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 5.1.6 Ensure telnet server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/inetd.conf -> !r:^# && r:telnet;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.1.7 Ensure tftp-server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 5.1.7 Ensure tftp-server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/inetd.conf -> !r:^# && r:tftp;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.1.8 Ensure xinetd is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 5.1.8 Ensure xinetd is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:xinetd;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.2 Ensure chargen is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 5.2 Ensure chargen is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/inetd.conf -> !r:^# && r:chargen;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.3 Ensure daytime is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 5.3 Ensure daytime is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/inetd.conf -> !r:^# && r:daytime;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.4 Ensure echo is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 5.4 Ensure echo is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/inetd.conf -> !r:^# && r:echo;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.5 Ensure discard is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 5.5 Ensure discard is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/inetd.conf -> !r:^# && r:discard;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#5.6 Ensure time is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 5.6 Ensure time is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/inetd.conf -> !r:^# && r:time;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.2 Ensure Avahi Server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.2 Ensure Avahi Server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:avahi-daemon;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.3 Ensure print server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.3 Ensure print server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:cups;"}
+{"event": "d:$rc_dirs -> S -> r:cups-browsed;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.4 Ensure DHCP Server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.4 Ensure DHCP Server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:disc-dhcp-server;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.5 Configure Network Time Protocol (NTP)"}
+{"event": "[CIS - Debian Linux 7/8 - 6.5 Configure Network Time Protocol (NTP)] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ntp.conf -> !r:^restrict -4 default kod nomodify notrap nopeer noquery;"}
+{"event": "f:/etc/ntp.conf -> !r:^restrict -6 default kod nomodify notrap nopeer noquery;"}
+{"event": "f:/etc/ntp.conf -> !r:^server\\s\\.+;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.6 Ensure LDAP is not ennabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.6 Ensure LDAP is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:/etc/init.d -> r:ldap;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.7 Ensure NFS and RPC are not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.7 Ensure NFS and RPC are not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:rpcbind;"}
+{"event": "d:$rc_dirs -> S -> r:nfs-kernel-server;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.8 Ensure DNS Server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.8 Ensure DNS Server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:bind9;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.9 Ensure FTP Server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.9 Ensure FTP Server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:vsftpd;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.10 Ensure HTTP Server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.10 Ensure HTTP Server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:apache2;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.11 Ensure IMAP and POP server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.11 Ensure IMAP and POP server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:dovecot;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.12 Ensure Samba is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.12 Ensure Samba is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:samba;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.13 Ensure HTTP Proxy Server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.13 Ensure HTTP Proxy Server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:squid3;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.14 Ensure SNMP Server is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.14 Ensure SNMP Server is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$rc_dirs -> S -> r:snmpd;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.15 Configure Mail Transfer Agent for Local-Only Mode"}
+{"event": "[CIS - Debian Linux 7/8 - 6.15 Configure Mail Transfer Agent for Local Only Mode] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/exim4/update-exim4.conf.conf -> r:^dc_local_interfaces= && !r:'127.0.0.1\\s*\\p\\s*::1'$|'::1\\s*\\p\\s*127.0.0.1'$|'127.0.0.1'$|'::1'$;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#6.16 Ensure rsync service is not enabled"}
+{"event": "[CIS - Debian Linux 7/8 - 6.16 Ensure rsync service is not enabled] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/default/rsync -> !r:^# && r:RSYNC_ENABLE=true|inetd;"}
+{"event": "f:/etc/default/rsync -> !r:^RSYNC_ENABLE=false;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.1.1 Disable IP Forwarding"}
+{"event": "[CIS - Debian Linux 7/8 - 7.1.1 Disable IP Forwarding] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.ip_forward=1;"}
+{"event": "f:/etc/sysctl.conf ->  !r:^net.ipv4.ip_forward=0;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.1.2 Disable Send Packet Redirects"}
+{"event": "[CIS - Debian Linux 7/8 - 7.1.2 Disable Send Packet Redirects] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.all.send_redirects=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.all.send_redirects=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.default.send_redirects=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.default.send_redirects=0;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.2.1 Disable Source Routed Packet Acceptance"}
+{"event": "[CIS - Debian Linux 7/8 - 7.2.1 Disable Source Routed Packet Acceptance] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.all.accept_source_route=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.all.accept_source_route=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.default.accept_source_route=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.default.accept_source_route=0;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.2.2 Disable ICMP Redirect Acceptance"}
+{"event": "[CIS - Debian Linux 7/8 - 7.2.2 Disable ICMP Redirect Acceptance] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.all.accept_redirects=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.all.accept_redirects=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.default.accept_redirects=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.default.accept_redirects=0;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.2.3 Disable Secure ICMP Redirect Acceptance"}
+{"event": "[CIS - Debian Linux 7/8 - 7.2.3 Disable Secure ICMP Redirect Acceptance] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.all.secure_redirects=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.all.secure_redirects=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.default.secure_redirects=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.default.secure_redirects=0;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.2.4 Log Suspicious Packets"}
+{"event": "[CIS - Debian Linux 7/8 - 7.2.4 Log Suspicious Packets] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.all.log_martians=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.all.log_martians=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.default.log_martians=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.default.log_martians=1;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.2.5 Enable Ignore Broadcast Requests"}
+{"event": "[CIS - Debian Linux 7/8 - 7.2.5 Enable Ignore Broadcast Requests] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.icmp_echo_ignore_broadcasts=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.icmp_echo_ignore_broadcasts=1;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.2.6 Enable Bad Error Message Protection"}
+{"event": "[CIS - Debian Linux 7/8 - 7.2.6 Enable Bad Error Message Protection] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.icmp_ignore_bogus_error_responses=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.icmp_ignore_bogus_error_responses=1;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.2.7 Enable RFC-recommended Source Route Validation"}
+{"event": "[CIS - Debian Linux 7/8 - 7.2.7 Enable RFC-recommended Source Route Validation] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.all.rp_filter=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.all.rp_filter=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.conf.default.rp_filter=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.conf.default.rp_filter=1;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.2.8 Enable TCP SYN Cookies"}
+{"event": "[CIS - Debian Linux 7/8 - 7.2.8 Enable TCP SYN Cookies] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv4.tcp_syncookies=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv4.tcp_syncookies=1;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.3.1 Disable IPv6 Router Advertisements"}
+{"event": "[CIS - Debian Linux 7/8 - 7.3.1 Disable IPv6 Router Advertisements] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv6.conf.all.accept_ra=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv6.conf.all.accept_ra=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv6.conf.default.accept_ra=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv6.conf.default.accept_ra=0;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.3.2 Disable IPv6 Redirect Acceptance"}
+{"event": "[CIS - Debian Linux 7/8 - 7.3.2 Disable IPv6 Redirect Acceptance] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv6.conf.all.accept_redirects=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv6.conf.all.accept_redirects=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv6.conf.default.accept_redirects=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv6.conf.default.accept_redirects=0;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.3.3 Disable IPv6"}
+{"event": "[CIS - Debian Linux 7/8 - 7.3.3 Disable IPv6] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv6.conf.all.disable_ipv6=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv6.conf.all.disable_ipv6=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv6.conf.default.disable_ipv6=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv6.conf.default.disable_ipv6=1;"}
+{"event": "f:/etc/sysctl.conf -> !r:^# && r:net.ipv6.conf.lo.disable_ipv6=0;"}
+{"event": "f:/etc/sysctl.conf -> !r:^net.ipv6.conf.lo.disable_ipv6=1;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.4.2 Create /etc/hosts.allow"}
+{"event": "[CIS - Debian Linux 7/8 - 7.4.2 Create /etc/hosts.allow] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/hosts.allow;"}
+{"event": "f:/etc/hosts.allow -> !r:^ALL:\\.*;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.4.4 Create /etc/hosts.deny"}
+{"event": "[CIS - Debian Linux 7/8 - 7.4.4 Create /etc/hosts.deny] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/hosts.deny;"}
+{"event": "f:/etc/hosts.deny -> !r:^ALL:\\s*ALL;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.5.1 Disable DCCP"}
+{"event": "[CIS - Debian Linux 7/8 - 7.5.1 Disable DCCP] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/modprobe.d/CIS.conf;"}
+{"event": "f:/etc/modprobe.d/CIS.conf -> !r:^install dccp /bin/true;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.5.2 Disable SCTP"}
+{"event": "[CIS - Debian Linux 7/8 - 7.5.2 Disable SCTP] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/modprobe.d/CIS.conf;"}
+{"event": "f:/etc/modprobe.d/CIS.conf -> !r:^install sctp /bin/true;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.5.3 Disable RDS"}
+{"event": "[CIS - Debian Linux 7/8 - 7.5.3 Disable RDS] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/modprobe.d/CIS.conf;"}
+{"event": "f:/etc/modprobe.d/CIS.conf -> !r:^install rds /bin/true;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.5.4 Disable TIPC"}
+{"event": "[CIS - Debian Linux 7/8 - 7.5.4 Disable TIPC] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/modprobe.d/CIS.conf;"}
+{"event": "f:/etc/modprobe.d/CIS.conf -> !r:^install tipc /bin/true;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#7.7 Ensure Firewall is active (RunLevel 2, 3, 4, 5; Priority 01)"}
+{"event": "[CIS - Debian Linux 7/8 - 7.7 Ensure Firewall is active (RunLevel 2, 3, 4, 5; Priority 01)] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/rc2.d/S01iptables-persistent;"}
+{"event": "f:!/etc/rc3.d/S01iptables-persistent;"}
+{"event": "f:!/etc/rc4.d/S01iptables-persistent;"}
+{"event": "f:!/etc/rc5.d/S01iptables-persistent;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#8.2.2 Ensure the rsyslog Service is activated (RunLevel 2, 3, 4, 5; Priority 01)"}
+{"event": "[CIS - Debian Linux 7/8 - 8.2.2 Ensure the rsyslog Service is activated (RunLevel 2, 3, 4, 5; Priority 01)] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/rc2.d/S01rsyslog;"}
+{"event": "f:!/etc/rc3.d/S01rsyslog;"}
+{"event": "f:!/etc/rc4.d/S01rsyslog;"}
+{"event": "f:!/etc/rc5.d/S01rsyslog;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#8.2.3 Configure /etc/rsyslog.conf"}
+{"event": "[CIS - Debian Linux 7/8 - 8.2.3 Configure /etc/rsyslog.conf] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:$rsyslog_files -> !r:^*.emerg\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^mail.*\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^mail.info\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^mail.warning\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^mail.err\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^news.crit\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^news.err\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^news.notice\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^*.=warning;*.=err\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^*.crit\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^*.*;mail.none;news.none\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^local0,local1.*\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^local2,local3.*\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^local4,local5.*\\s*\\t*\\s*\\S;"}
+{"event": "f:$rsyslog_files -> !r:^local6,local7.*\\s*\\t*\\s*\\S;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#8.2.5 Configure rsyslog to Send Logs to a Remote Log Host"}
+{"event": "[CIS - Debian Linux 7/8 - 8.2.5 Configure rsyslog to Send Logs to a Remote Log Host] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/rsyslog.conf -> !r:^*.* @@\\w+.\\w+.\\w+;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#8.2.6 Accept Remote rsyslog Messages Only on Designated Log Hosts"}
+{"event": "[CIS - Debian Linux 7/8 - 8.2.6 Accept Remote rsyslog Messages Only on Designated Log Hosts] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:$rsyslog_files -> !r:^\\$ModLoad imtcp.so;"}
+{"event": "f:$rsyslog_files -> !r:^\\$InputTCPServerRun 514;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#8.4 Configure logrotate"}
+{"event": "[CIS - Debian Linux 7/8 - 8.4 Configure logrotate] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/logrotate.d/rsyslog;"}
+{"event": "f:/etc/logrotate.d/rsyslog -> !r:\\S+;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.1.1 Enable cron Daemon (RunLevel 2, 3, 4, 5; Priority 15)"}
+{"event": "[CIS - Debian Linux 7/8 - 9.1.1 Enable cron Daemon (RunLevel 2, 3, 4, 5; Priority 15)] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/rc2.d/S15anacron;"}
+{"event": "f:!/etc/rc2.d/S15cron;"}
+{"event": "f:!/etc/rc3.d/S15anacron;"}
+{"event": "f:!/etc/rc3.d/S15cron;"}
+{"event": "f:!/etc/rc4.d/S15anacron;"}
+{"event": "f:!/etc/rc4.d/S15cron;"}
+{"event": "f:!/etc/rc5.d/S15anacron;"}
+{"event": "f:!/etc/rc5.d/S15cron;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.1.8 Restrict at/cron to Authorized Users"}
+{"event": "[CIS - Debian Linux 7/8 - 9.1.8 Restrict at/cron to Authorized Users] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/cron.allow;"}
+{"event": "f:!/etc/at.allow;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.2.1 Set Password Creation Requirement Parameters Using pam_cracklib"}
+{"event": "[CIS - Debian Linux 7/8 - 9.2.1 Set Password Creation Requirement Parameters Using pam_cracklib] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/pam.d/common-password -> !r:password required pam_cracklib.so retry=\\d minlen=\\d\\d+ dcredit=-\\d+ ucredit=-\\d+ ocredit=-\\d+ lcredit=-\\d+;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.2.2 Set Lockout for Failed Password Attempts"}
+{"event": "[CIS - Debian Linux 7/8 - 9.2.2 Set Lockout for Failed Password Attempts] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/pam.d/login -> !r:auth required pam_tally2.so onerr=fail audit silent deny=\\d unlock_time=\\d\\d\\d+;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.2.3 Limit Password Reuse"}
+{"event": "[CIS - Debian Linux 7/8 - 9.2.3 Limit Password Reuse] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/pam.d/common-password -> !r:password [success=1 default=ignore] pam_unix.so obscure sha512 remember=\\d;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.1 Set SSH Protocol to 2"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.1 Set SSH Protocol to 2] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^# && r:protocol 1;"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^protocol 2$;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.2 Set LogLevel to INFO"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.2 Set LogLevel to INFO] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^LogLevel\\s+INFO;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.4 Disable SSH X11 Forwarding"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.4 Disable SSH X11 Forwarding] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^X11Forwarding\\s+no;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.5 Set SSH MaxAuthTries to 4 or Less"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.5 Set SSH MaxAuthTries to 4 or Less] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^MaxAuthTries\\s+\\d;"}
+{"event": "f:/etc/ssh/sshd_config -> r:^MaxAuthTries\\s+\\d\\d+;"}
+{"event": "f:/etc/ssh/sshd_config -> r:^MaxAuthTries\\s+5;"}
+{"event": "f:/etc/ssh/sshd_config -> r:^MaxAuthTries\\s+6;"}
+{"event": "f:/etc/ssh/sshd_config -> r:^MaxAuthTries\\s+7;"}
+{"event": "f:/etc/ssh/sshd_config -> r:^MaxAuthTries\\s+8;"}
+{"event": "f:/etc/ssh/sshd_config -> r:^MaxAuthTries\\s+9;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.6 Set SSH IgnoreRhosts to Yes"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.6 Set SSH IgnoreRhosts to Yes] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^IgnoreRhosts\\s+yes;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.7 Set SSH HostbasedAuthentication to No"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.7 Set SSH HostbasedAuthentication to No] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^HostbasedAuthentication\\s+no;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.8 Disable SSH Root Login"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.8 Disable SSH Root Login] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^# && r:PermitRootLogin\\s+yes;"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^PermitRootLogin\\s+no;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.9 Set SSH PermitEmptyPasswords to No"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.9 Set SSH PermitEmptyPasswords to No] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^# && r:PermitEmptyPasswords\\s+yes;"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^PermitEmptyPasswords\\s+no;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.10 Do Not Allow Users to Set Environment Options"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.10 Do Not Allow Users to Set Environment Options] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^# && r:PermitUserEnvironment\\s+yes;"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^PermitUserEnvironment\\s+no;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.12 Set Idle Timeout Interval for User Login"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.12 Set Idle Timeout Interval for User Login] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^ClientAliveInterval\\s+\\d+;"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^ClientAliveCountMax\\s+\\d;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.13 Limit Access via SSH"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.13 Limit Access via SSH] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^AllowUsers\\s+\\w+|^AllowGroups\\s+\\w+|^DenyUsers\\s+\\w+|^DenyGroups\\s+\\w+;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.3.14 Set SSH Banner"}
+{"event": "[CIS - Debian Linux 7/8 - 9.3.14 Set SSH Banner] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/ssh/sshd_config -> !r:^Banner\\s+\\S+;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#9.5 Restrict Access to the su Command"}
+{"event": "[CIS - Debian Linux 7/8 - 9.5 Restrict Access to the su Command] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/pam.d/su -> !r:auth required pam_wheel.so use_uid;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#10.1.1 Set Password Expiration Days"}
+{"event": "[CIS - Debian Linux 7/8 - 10.1.1 Set Password Expiration Days] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/login.defs -> !r:^PASS_MAX_DAYS\\s+\\d+;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MAX_DAYS\\s+\\d\\d\\d+;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MAX_DAYS\\s+91;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MAX_DAYS\\s+92;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MAX_DAYS\\s+93;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MAX_DAYS\\s+94;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MAX_DAYS\\s+95;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MAX_DAYS\\s+96;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MAX_DAYS\\s+97;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MAX_DAYS\\s+98;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MAX_DAYS\\s+99;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#10.1.2 Set Password Change Minimum Number of Days"}
+{"event": "[CIS - Debian Linux 7/8 - 10.1.2 Set Password Change Minimum Number of Days] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/login.defs -> !r:^PASS_MIN_DAYS\\s+\\d+;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MIN_DAYS\\s+1;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MIN_DAYS\\s+2;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MIN_DAYS\\s+3;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MIN_DAYS\\s+4;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MIN_DAYS\\s+5;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_MIN_DAYS\\s+6;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#10.1.3 Set Password Expiring Warning Days"}
+{"event": "[CIS - Debian Linux 7/8 - 10.1.3 Set Password Expiring Warning Days] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/login.defs -> !r:^PASS_WARN_DAYS\\s+\\d+;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_WARN_DAYS\\s+1;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_WARN_DAYS\\s+2;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_WARN_DAYS\\s+3;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_WARN_DAYS\\s+4;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_WARN_DAYS\\s+5;"}
+{"event": "f:/etc/login.defs -> !r:^# && r:PASS_WARN_DAYS\\s+6;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#10.3 Set Default Group for root Account"}
+{"event": "[CIS - Debian Linux 7/8 - 10.3 Set Default Group for root Account] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/passwd -> !r:^root:\\w+:\\w+:0:;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#10.4 Set Default umask for Users"}
+{"event": "[CIS - Debian Linux 7/8 - 10.4 Set Default umask for Users] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:$profiledfiles -> !r:^umask 077;"}
+{"event": "f:/etc/bash.bashrc -> !r:^umask 077;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#10.5 Lock Inactive User Accounts"}
+{"event": "[CIS - Debian Linux 7/8 - 10.5 Lock Inactive User Accounts] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/default/useradd -> !r:^INACTIVE=\\d\\d*;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#11.1 Set Warning Banner for Standard Login Services"}
+{"event": "[CIS - Debian Linux 7/8 - 11.1 Set Warning Banner for Standard Login Services] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:!/etc/motd;"}
+{"event": "f:!/etc/issue;"}
+{"event": "f:!/etc/issue.net;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#11.2 Remove OS Information from Login Warning Banners"}
+{"event": "[CIS - Debian Linux 7/8 - 11.2 Remove OS Information from Login Warning Banners] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/motd -> r:debian|gnu|linux;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#13.1 Ensure Password Fields are Not Empty"}
+{"event": "[CIS - Debian Linux 7/8 - 13.1 Ensure Password Fields are Not Empty] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/shadow -> r:^\\w+::;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#13.2 Verify No Legacy \"+\" Entries Exist in /etc/passwd File"}
+{"event": "[CIS - Debian Linux 7/8 - 13.2 Verify No Legacy \"+\" Entries Exist in /etc/passwd File] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/passwd -> !r:^# && r:^+:;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#13.3 Verify No Legacy \"+\" Entries Exist in /etc/shadow File"}
+{"event": "[CIS - Debian Linux 7/8 - 13.3 Verify No Legacy \"+\" Entries Exist in /etc/shadow File] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/shadow -> !r:^# && r:^+:;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#13.4 Verify No Legacy \"+\" Entries Exist in /etc/group File"}
+{"event": "[CIS - Debian Linux 7/8 - 13.4 Verify No Legacy \"+\" Entries Exist in /etc/group File] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/group -> !r:^# && r:^+:;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#13.5 Verify No UID 0 Accounts Exist Other Than root"}
+{"event": "[CIS - Debian Linux 7/8 - 13.5 Verify No UID 0 Accounts Exist Other Than root] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/passwd -> !r:^# && !r:^root: && r:^\\w+:\\w+:0:;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#13.10 Check for Presence of User .rhosts Files"}
+{"event": "[CIS - Debian Linux 7/8 - 13.10 Check for Presence of User .rhosts Files] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$home_dirs -> r:^.rhosts$;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#13.18 Check for Presence of User .netrc Files"}
+{"event": "[CIS - Debian Linux 7/8 - 13.18 Check for Presence of User .netrc Files] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$home_dirs -> r:^.netrc$;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#13.19 Check for Presence of User .forward Files"}
+{"event": "[CIS - Debian Linux 7/8 - 13.19 Check for Presence of User .forward Files] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "d:$home_dirs -> r:^.forward$;"}
+{"event": "#"}
+{"event": "#"}
+{"event": "#13.20 Ensure shadow group is empty"}
+{"event": "[CIS - Debian Linux 7/8 - 13.20 Ensure shadow group is empty] [any] [https://workbench.cisecurity.org/benchmarks/80, https://workbench.cisecurity.org/benchmarks/81]"}
+{"event": "f:/etc/group -> !r:^# && r:shadow:\\w*:\\w*:\\S+;"}
