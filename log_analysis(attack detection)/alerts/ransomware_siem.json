@@ -1,0 +1,331 @@
+{
+  "summary": {
+    "files_scanned": 78,
+    "lines_scanned": 18709,
+    "shadow_copy_delete": 33,
+    "ransom_note_created": 1,
+    "encrypted_extensions_detected": 0,
+    "mass_file_encryption": 1,
+    "suspicious_process": 35,
+    "process_chain_alerts": 0,
+    "total_alerts": 70
+  },
+  "alerts": [
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "#18.9.95.1 ensure 'turn on powershell script block logging' is set to 'disabled'"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "[cis - microsoft windows 10 - 18.9.95.1 ensure 'turn on powershell script block logging' is set to 'disabled'] [any] [https://workbench.cisecurity.org/benchmarks/766]"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\scriptblocklogging -> enablescriptblocklogging -> !0;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\scriptblocklogging -> !enablescriptblocklogging;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "#18.9.95.2 ensure 'turn on powershell transcription' is set to 'disabled'"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "[cis - microsoft windows 10 - 18.9.95.2 ensure 'turn on powershell transcription' is set to 'disabled'] [any] [https://workbench.cisecurity.org/benchmarks/766]"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\transcription -> enabletranscripting -> !0;"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: locker"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: locker"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "#18.9.84.1 ensure 'turn on powershell script block logging' is set to 'disabled'[cis - microsoft windows server 2012 r2 - 18.9.84.1: ensure 'turn on powershell script block logging' is set to 'disabled'] [any] [https://workbench.cisecurity.org/benchmarks/288]"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\scriptblocklogging -> enablescriptblocklogging -> !0;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\scriptblocklogging -> !enablescriptblocklogging;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "#18.9.84.2 ensure 'turn on powershell transcription' is set to 'disabled'"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "[cis - microsoft windows server 2012 r2 - 18.9.84.2: ensure 'turn on powershell transcription' is set to 'disabled'] [any] [https://workbench.cisecurity.org/benchmarks/288]"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\transcription -> enabletranscripting -> !0;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "#18.9.84.1 ensure 'turn on powershell script block logging' is set to 'disabled'[cis - microsoft windows server 2012 r2 - 18.9.84.1: ensure 'turn on powershell script block logging' is set to 'disabled'] [any] [https://workbench.cisecurity.org/benchmarks/288]"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\scriptblocklogging -> enablescriptblocklogging -> !0;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\scriptblocklogging -> !enablescriptblocklogging;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "#18.9.84.2 ensure 'turn on powershell transcription' is set to 'disabled'"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "[cis - microsoft windows server 2012 r2 - 18.9.84.2: ensure 'turn on powershell transcription' is set to 'disabled'] [any] [https://workbench.cisecurity.org/benchmarks/288]"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\transcription -> enabletranscripting -> !0;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "#18.9.84.1 ensure 'turn on powershell script block logging' is set to 'disabled'"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "[cis - microsoft windows server 2016 - 18.9.84.1: ensure 'turn on powershell script block logging' is set to 'disabled'] [any] [https://workbench.cisecurity.org/benchmarks/515]"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\scriptblocklogging -> enablescriptblocklogging -> !0;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\scriptblocklogging -> !enablescriptblocklogging;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "#18.9.84.2 ensure 'turn on powershell transcription' is set to 'disabled'"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "[cis - microsoft windows server 2016 - 18.9.84.2: ensure 'turn on powershell transcription' is set to 'disabled'] [any] [https://workbench.cisecurity.org/benchmarks/515]"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\transcription -> enabletranscripting -> !0;"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: locker"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: locker"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "#18.9.84.1 ensure 'turn on powershell script block logging' is set to 'disabled'"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "[cis - microsoft windows server 2016 - 18.9.84.1: ensure 'turn on powershell script block logging' is set to 'disabled'] [any] [https://workbench.cisecurity.org/benchmarks/515]"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\scriptblocklogging -> enablescriptblocklogging -> !0;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\scriptblocklogging -> !enablescriptblocklogging;"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "#18.9.84.2 ensure 'turn on powershell transcription' is set to 'disabled'"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "[cis - microsoft windows server 2016 - 18.9.84.2: ensure 'turn on powershell transcription' is set to 'disabled'] [any] [https://workbench.cisecurity.org/benchmarks/515]"
+    },
+    {
+      "type": "shadow_copy_delete",
+      "message": "Backup deletion detected",
+      "line": "r:hkey_local_machine\\software\\policies\\microsoft\\windows\\powershell\\transcription -> enabletranscripting -> !0;"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: locker"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: locker"
+    },
+    {
+      "type": "ransom_note",
+      "message": "Ransom note file created",
+      "line": "the notes inside \"contrib/vstudio/readme.txt\", found in the"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "suspicious_process",
+      "message": "Suspicious EXE detected: crypto"
+    },
+    {
+      "type": "mass_encryption",
+      "message": "Mass file modification detected",
+      "file": "unknown_file",
+      "writes": 49
+    }
+  ]
+}

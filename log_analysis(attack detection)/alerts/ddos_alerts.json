@@ -1,0 +1,26 @@
+{
+  "pcap_file": "mixed_ddos_demo.pcap",
+  "total_packets": 80000,
+  "duration_seconds": 80,
+  "peak_pps": 1000,
+  "median_pps": 1000.0,
+  "syn_count": 28065,
+  "unique_attackers_per_victim": {
+    "10.0.0.5": 300
+  },
+  "alerts": [
+    {
+      "reason": "High packets per second",
+      "peak_pps": 1000
+    },
+    {
+      "reason": "Many unique sources to single dst",
+      "dst": "10.0.0.5",
+      "unique_sources": 300
+    },
+    {
+      "reason": "High SYN-only packet count",
+      "syn_count": 28065
+    }
+  ]
+}

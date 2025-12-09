@@ -1,0 +1,42 @@
+{
+  "total_files_scanned": 78,
+  "total_log_lines": 18709,
+  "failed_logins": 15,
+  "successful_logins": 2,
+  "alert_summary": {
+    "ip_bruteforce": 2,
+    "user_bruteforce": 2,
+    "fail_success_bruteforce": 1,
+    "username_spraying": 0,
+    "distributed_bruteforce": 0
+  },
+  "total_alerts": 5,
+  "alerts": [
+    {
+      "type": "fail_success_bruteforce",
+      "ip": "unknown_ip",
+      "user": "unknown_user",
+      "failed_attempts": 8
+    },
+    {
+      "type": "ip_bruteforce",
+      "ip": "10.10.10.5",
+      "failed_attempts": 7
+    },
+    {
+      "type": "ip_bruteforce",
+      "ip": "unknown_ip",
+      "failed_attempts": 8
+    },
+    {
+      "type": "user_bruteforce",
+      "user": "login",
+      "failed_attempts": 7
+    },
+    {
+      "type": "user_bruteforce",
+      "user": "unknown_user",
+      "failed_attempts": 8
+    }
+  ]
+}

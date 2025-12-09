@@ -1,0 +1,54 @@
+{
+  "files_scanned": 78,
+  "lines_scanned": 18709,
+  "summary": {
+    "total_alerts": 7,
+    "registry_service_mod": 6,
+    "service_event": 1
+  },
+  "alerts": [
+    {
+      "type": "registry_service_mod",
+      "message": "Registry key under Services modified",
+      "file": "cis_win10_enterprise_L2_rcl.txt.jsonl",
+      "raw": "r:hkey_local_machine\\system\\currentcontrolset\\control\\print\\providers\\lanman print services\\servers -> addprinterdrivers -> !1;"
+    },
+    {
+      "type": "registry_service_mod",
+      "message": "Registry key under Services modified",
+      "file": "cis_win10_enterprise_L2_rcl.txt.jsonl",
+      "raw": "r:hkey_local_machine\\system\\currentcontrolset\\control\\print\\providers\\lanman print services\\servers -> !addprinterdrivers;"
+    },
+    {
+      "type": "registry_service_mod",
+      "message": "Registry key under Services modified",
+      "file": "cis_win2012r2_domainL1_rcl.txt.jsonl",
+      "raw": "r:hkey_local_machine\\system\\currentcontrolset\\control\\print\\providers\\lanman print services\\servers -> addprinterdrivers -> !1;"
+    },
+    {
+      "type": "registry_service_mod",
+      "message": "Registry key under Services modified",
+      "file": "cis_win2012r2_memberL1_rcl.txt.jsonl",
+      "raw": "r:hkey_local_machine\\system\\currentcontrolset\\control\\print\\providers\\lanman print services\\servers -> addprinterdrivers -> !1;"
+    },
+    {
+      "type": "registry_service_mod",
+      "message": "Registry key under Services modified",
+      "file": "cis_win2016_domainL1_rcl.txt.jsonl",
+      "raw": "r:hkey_local_machine\\system\\currentcontrolset\\control\\print\\providers\\lanman print services\\servers -> addprinterdrivers -> !1;"
+    },
+    {
+      "type": "registry_service_mod",
+      "message": "Registry key under Services modified",
+      "file": "cis_win2016_memberL1_rcl.txt.jsonl",
+      "raw": "r:hkey_local_machine\\system\\currentcontrolset\\control\\print\\providers\\lanman print services\\servers -> addprinterdrivers -> !1;"
+    },
+    {
+      "type": "service_event",
+      "message": "Service install/create event detected",
+      "file": "vista_sec.txt.jsonl",
+      "event_id": "4697",
+      "raw": "4697, a service was installed in the system. subject:  security id:  %1  account name:  %2  account domain:  %3  logon id:  %4  service information:  service name:   %5  service file name: %6  service type:   %7  service start type: %8  service account:   %9"
+    }
+  ]
+}
