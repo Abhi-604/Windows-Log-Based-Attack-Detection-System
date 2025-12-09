@@ -1,0 +1,5 @@
+{"event": "set context persistent nowriters"}
+{"event": "set metadata C:\\exfil\\metadata.cab"}
+{"event": "add volume c: alias loot"}
+{"event": "create"}
+{"event": "expose %loot% s:"}

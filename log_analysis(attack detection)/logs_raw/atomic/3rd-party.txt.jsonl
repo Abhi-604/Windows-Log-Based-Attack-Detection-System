@@ -1,0 +1,10 @@
+{"event": "DllExport  [ github.com/3F/DllExport ]"}
+{"event": "- - - - - - - - - - - - - - - - - - -"}
+{"event": "# Third-party software components"}
+{"event": "## The DllExport includes:"}
+{"event": "* CoreCLR / ILAsm / ILDasm [ github.com/3F/coreclr ]"}
+{"event": "* Mono.Cecil [ github.com/jbevain/cecil ]"}
+{"event": "* SDK reference assemblies for PowerShell version 5 [ github.com/PowerShell/ ]"}
+{"event": "## Maintenance of this project also includes:"}
+{"event": "* vsSolutionBuildEvent /+ CI.MSBuild [ github.com/3F/vsSolutionBuildEvent ]"}
+{"event": "* GetNuTool [ github.com/3F/GetNuTool ]"}
