@@ -1,0 +1,74 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.40",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "ProcessCreate": {
+          "@onmatch": "include",
+          "ParentImage": {
+            "@name": "technique_id=T1218,technique_name=Trusted Binary Proxy Execution",
+            "@condition": "is",
+            "#text": "wsl.exe"
+          },
+          "ParentCommandLine": [
+            {
+              "@name": "technique_id=T1218,technique_name=Trusted Binary Proxy Execution",
+              "@condition": "contains all",
+              "#text": "wsl.exe;-e"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Trusted Binary Proxy Execution",
+              "@condition": "contains all",
+              "#text": "wsl.exe;/e"
+            }
+          ],
+          "CommandLine": [
+            {
+              "@name": "technique_id=T1218,technique_name=Trusted Binary Proxy Execution",
+              "@condition": "contains all",
+              "#text": "wsl.exe;-e"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Trusted Binary Proxy Execution",
+              "@condition": "contains all",
+              "#text": "wsl.exe;/e"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Trusted Binary Proxy Execution",
+              "@condition": "contains all",
+              "#text": "wsl.exe;-u root"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Trusted Binary Proxy Execution",
+              "@condition": "contains all",
+              "#text": "wsl.exe;/u root"
+            },
+            {
+              "@name": "technique_id=T1218,technique_name=Trusted Binary Proxy Execution",
+              "@condition": "contains all",
+              "#text": "wsl.exe;--exec bash"
+            }
+          ],
+          "Rule": {
+            "@name": "Remote Copy via wsl",
+            "@groupRelation": "and",
+            "CommandLine": [
+              {
+                "@name": "technique_id=T1202,technique_name=Remote File Copy",
+                "@condition": "contains all",
+                "#text": "wsl.exe;--exec bash"
+              },
+              {
+                "@name": "technique_id=T1202,technique_name=Remote File Copy",
+                "@condition": "contains all",
+                "#text": "/dev/tcp"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

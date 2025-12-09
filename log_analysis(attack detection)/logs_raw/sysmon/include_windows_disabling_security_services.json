@@ -1,0 +1,147 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.70",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "Disabling Security Service",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "include",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Sense"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WinDefend"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\MsMpSvc"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\NisSrv"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdBoot"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisDrv"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisSvc"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\wscsvc"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\SecurityHealthService"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\wuauserv"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@condition": "begin with",
+                "#text": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\UsoSvc"
+              },
+              "Details": {
+                "@condition": "contains",
+                "#text": "DWORD (0x00000004)"
+              }
+            }
+          ],
+          "TargetObject": [
+            {
+              "@condition": "begin with",
+              "#text": "hklm\\software\\microsoft\\windows script\\settings\\amsienable"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\software\\microsoft\\windows script\\settings\\amsienable"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

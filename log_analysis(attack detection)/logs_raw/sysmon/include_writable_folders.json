@@ -1,0 +1,72 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.90",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileExecutableDetected": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@condition": "begin with",
+              "#text": "C:\\ProgramData\\Intel"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\ProgramData\\Mozilla"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\ProgramData\\chocolatey\\"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\ProgramData\\Microsoft\\DeviceSync"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\ProgramData\\Microsoft\\PlayReady"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\ProgramData\\Microsoft\\User Account Pictures"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\ProgramData\\Microsoft\\Office\\Heartbeat"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\ProgramData\\Microsoft\\Windows\\WER"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Users\\All Users\\"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\Tasks"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\tracing"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32\\Tasks"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32\\spool\\drivers\\color"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\SysWOW64\\Tasks"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "include",
+          "TargetObject": {
+            "@condition": "contains",
+            "#text": "{AB8902B4-09CA-4bb6-B78D-A8F59079A8D5}"
+          }
+        }
+      }
+    }
+  }
+}

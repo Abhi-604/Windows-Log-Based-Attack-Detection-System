@@ -1,0 +1,26 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "NetworkConnect": {
+          "@onmatch": "include",
+          "DestinationPort": [
+            {
+              "@name": "technique_id=T1021.006,technique_name=Windows Remote Management",
+              "@condition": "is",
+              "#text": "5985"
+            },
+            {
+              "@name": "technique_id=T1021.006,technique_name=Windows Remote Management",
+              "@condition": "is",
+              "#text": "5986"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

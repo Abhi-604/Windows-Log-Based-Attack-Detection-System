@@ -1,0 +1,31 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "FileCreate": {
+          "@onmatch": "include",
+          "TargetFilename": [
+            {
+              "@name": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\System32\\Wbem"
+            },
+            {
+              "@name": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+              "@condition": "begin with",
+              "#text": "C:\\Windows\\SysWOW64\\Wbem"
+            }
+          ],
+          "Image": {
+            "@name": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+            "@condition": "begin with",
+            "#text": "C:\\WINDOWS\\system32\\wbem\\scrcons.exe"
+          }
+        }
+      }
+    }
+  }
+}

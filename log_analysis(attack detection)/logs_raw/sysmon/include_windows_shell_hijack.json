@@ -1,0 +1,48 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "include",
+          "TargetObject": [
+            {
+              "@condition": "contains",
+              "#text": "\\Classes\\AllFilesystemObjects"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\Classes\\Directory"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\Classes\\Drive"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\Classes\\Folder"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\ShellEx\\ContextMenuHandlers"
+            },
+            {
+              "@condition": "contains",
+              "#text": "\\CurrentVersion\\Shell"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\explorer\\ShellExecuteHooks"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\explorer\\ShellServiceObject"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

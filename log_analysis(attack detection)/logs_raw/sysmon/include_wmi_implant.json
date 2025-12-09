@@ -1,0 +1,41 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "include",
+          "TargetObject": [
+            {
+              "@name": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+              "@condition": "contains",
+              "#text": "SYSTEM\\CurrentControlSet\\Control\\CrashControl"
+            },
+            {
+              "@name": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+              "@condition": "contains all",
+              "#text": "HKLM\\SYSTEM\\;Control\\WMI\\autologger\\senseauditlogger"
+            },
+            {
+              "@name": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+              "@condition": "contains all",
+              "#text": "HKLM\\SYSTEM\\;Control\\WMI\\autologger\\senseeventlog"
+            },
+            {
+              "@name": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+              "@condition": "contains all",
+              "#text": "HKLM\\SYSTEM\\;Control\\WMI\\EtwMaxLoggers"
+            },
+            {
+              "@name": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+              "@condition": "contains all",
+              "#text": "HKLM\\SYSTEM\\;Control\\WMI\\Security"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

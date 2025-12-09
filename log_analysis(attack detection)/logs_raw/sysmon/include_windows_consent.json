@@ -1,0 +1,100 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "include",
+          "Rule": [
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@name": "technique_id=T1125,technique_name=Video Capture",
+                "@condition": "contains",
+                "#text": "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\webcam"
+              },
+              "Image": {
+                "@condition": "excludes any",
+                "#text": "Google\\Chrome\\Application\\chrome.exe;Zoom\\bin\\Zoom.exe;slack\\slack.exe;Mozilla Firefox\\firefox.exe"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@name": "technique_id=T1123,technique_name=Audio Capture",
+                "@condition": "contains",
+                "#text": "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone"
+              },
+              "Image": {
+                "@condition": "excludes any",
+                "#text": "Google\\Chrome\\Application\\chrome.exe;Zoom\\bin\\Zoom.exe;slack\\slack.exe;Mozilla Firefox\\firefox.exe"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@name": "technique_id=T1123,technique_name=Audio Capture",
+                "@condition": "contains",
+                "#text": "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\bluetooth"
+              },
+              "Image": {
+                "@condition": "excludes any",
+                "#text": "Google\\Chrome\\Application\\chrome.exe;Zoom\\bin\\Zoom.exe;slack\\slack.exe;Mozilla Firefox\\firefox.exe"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@name": "technique_id=T1005,technique_name=Data from Local System",
+                "@condition": "contains",
+                "#text": "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\usb"
+              },
+              "Image": {
+                "@condition": "excludes any",
+                "#text": "Google\\Chrome\\Application\\chrome.exe;Zoom\\bin\\Zoom.exe;slack\\slack.exe;Mozilla Firefox\\firefox.exe"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@name": "technique_id=T1005,technique_name=Data from Local System",
+                "@condition": "contains",
+                "#text": "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\location"
+              },
+              "Image": {
+                "@condition": "excludes any",
+                "#text": "Google\\Chrome\\Application\\chrome.exe;Zoom\\bin\\Zoom.exe;slack\\slack.exe;Mozilla Firefox\\firefox.exe"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@name": "technique_id=T1005,technique_name=Data from Local System",
+                "@condition": "contains",
+                "#text": "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\contacts"
+              },
+              "Image": {
+                "@condition": "excludes any",
+                "#text": "Google\\Chrome\\Application\\chrome.exe;Zoom\\bin\\Zoom.exe;slack\\slack.exe;Mozilla Firefox\\firefox.exe"
+              }
+            },
+            {
+              "@groupRelation": "and",
+              "TargetObject": {
+                "@name": "technique_id=T1056.001,technique_name=Input Capture - Keylogging",
+                "@condition": "contains",
+                "#text": "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\humanInterfaceDevice"
+              },
+              "Image": {
+                "@condition": "excludes any",
+                "#text": "Google\\Chrome\\Application\\chrome.exe;Zoom\\bin\\Zoom.exe;slack\\slack.exe;Mozilla Firefox\\firefox.exe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

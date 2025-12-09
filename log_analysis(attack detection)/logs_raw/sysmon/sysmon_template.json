@@ -1,0 +1,10 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.21",
+    "HashAlgorithms": "*",
+    "CheckRevocation": "False",
+    "DnsLookup": "False",
+    "ArchiveDirectory": "Sysmon",
+    "EventFiltering": null
+  }
+}

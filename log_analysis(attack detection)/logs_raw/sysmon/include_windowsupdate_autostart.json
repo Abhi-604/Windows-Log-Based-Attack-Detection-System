@@ -1,0 +1,34 @@
+{
+  "Sysmon": {
+    "@schemaversion": "4.30",
+    "HashAlgorithms": "*",
+    "CheckRevocation": null,
+    "EventFiltering": {
+      "RuleGroup": {
+        "@name": "",
+        "@groupRelation": "or",
+        "RegistryEvent": {
+          "@onmatch": "include",
+          "TargetObject": [
+            {
+              "@condition": "is",
+              "#text": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Setup\\ServiceStartup"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Services\\Pending\\"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Auto Update\\PostRebootReporting\\"
+            },
+            {
+              "@condition": "begin with",
+              "#text": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Auto Update\\RebootRequired\\"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
